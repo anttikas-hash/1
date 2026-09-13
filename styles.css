@@ -31,19 +31,19 @@
 }
 
 :root {
-  --dark-1: #14161A;
-  --dark-2: #1F2329;
-  --light-1: #ECE8E2;
-  --light-2: #E2DCD3;
-  --accent: #B4703C;
-  --accent-dark: #8C5429;
-  --accent-light: #C9925E;
-  --accent-brass: #D9A15B;
-  --accent-rust: #9C5B39;
-  --accent-ember: #C77B4A;
-  --muted: #5A554E;
-  --muted-on-dark: #9A958C;
-  --line-light: #D5CEC4;
+  --dark-1: #152F47;
+  --dark-2: #1D3E5C;
+  --light-1: #F3F8FC;
+  --light-2: #E8F0F8;
+  --accent: #356B99;
+  --accent-dark: #254B6E;
+  --accent-light: #87B5D8;
+  --accent-brass: #5B97C6;
+  --accent-rust: #2C5980;
+  --accent-ember: #4180B4;
+  --muted: #2C5980;
+  --muted-on-dark: #AECDE6;
+  --line-light: #CBDEF0;
   --line-dark: rgba(255, 255, 255, 0.08);
   --white: #FFFFFF;
 
@@ -170,8 +170,8 @@ section {
   position: relative;
   background-color: var(--light-1);
   background-image:
-    radial-gradient(ellipse 55% 60% at 88% 8%, rgba(180, 112, 60, 0.10), transparent 65%),
-    radial-gradient(ellipse 45% 50% at 4% 95%, rgba(217, 161, 91, 0.12), transparent 70%);
+    radial-gradient(ellipse 55% 60% at 88% 8%, rgba(53, 107, 153, 0.10), transparent 65%),
+    radial-gradient(ellipse 45% 50% at 4% 95%, rgba(91, 151, 198, 0.12), transparent 70%);
   color: var(--dark-1);
 }
 
@@ -179,8 +179,8 @@ section {
   position: relative;
   background-color: var(--light-2);
   background-image:
-    radial-gradient(ellipse 50% 55% at 10% 10%, rgba(156, 91, 57, 0.10), transparent 66%),
-    radial-gradient(ellipse 55% 60% at 92% 90%, rgba(180, 112, 60, 0.10), transparent 68%);
+    radial-gradient(ellipse 50% 55% at 10% 10%, rgba(44, 89, 128, 0.10), transparent 66%),
+    radial-gradient(ellipse 55% 60% at 92% 90%, rgba(53, 107, 153, 0.10), transparent 68%);
   color: var(--dark-1);
 }
 
@@ -239,8 +239,8 @@ section {
   z-index: -2;
   background: radial-gradient(
     ellipse 60% 50% at 78% 22%,
-    rgba(180, 112, 60, 0.18),
-    rgba(180, 112, 60, 0.08) 45%,
+    rgba(53, 107, 153, 0.18),
+    rgba(53, 107, 153, 0.08) 45%,
     transparent 70%
   );
   filter: blur(30px);
@@ -310,7 +310,8 @@ section {
 }
 
 .on-light .btn-secondary,
-.on-light-2 .btn-secondary {
+.on-light-2 .btn-secondary,
+.canvas .btn-secondary {
   color: var(--accent-dark);
   border-color: var(--accent-dark);
 }
@@ -398,7 +399,7 @@ section {
 
 .header-actions .btn-primary:hover,
 .header-actions .btn-primary:focus-visible {
-  background-color: #7A4822;
+  background-color: #1D3E5C;
 }
 
 @media (max-width: 420px) {
@@ -489,7 +490,7 @@ section {
   min-height: 640px;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(96deg, rgba(20, 22, 26, 0.96) 20%, rgba(20, 22, 26, 0.72) 46%, rgba(20, 22, 26, 0.24) 76%, rgba(20, 22, 26, 0.44) 100%),
+    linear-gradient(96deg, rgba(21, 47, 71, 0.96) 20%, rgba(21, 47, 71, 0.72) 46%, rgba(21, 47, 71, 0.24) 76%, rgba(21, 47, 71, 0.44) 100%),
     url("images/hero.jpg");
   background-size: cover;
   background-position: center right;
@@ -498,7 +499,7 @@ section {
 @media (max-width: 820px) {
   .hero {
     background-image:
-      linear-gradient(to bottom, rgba(20, 22, 26, 0.90) 30%, rgba(20, 22, 26, 0.80) 100%),
+      linear-gradient(to bottom, rgba(21, 47, 71, 0.90) 30%, rgba(21, 47, 71, 0.80) 100%),
       url("images/hero.jpg");
     background-position: center;
   }
@@ -531,7 +532,7 @@ section {
 }
 
 .hero-support {
-  color: rgba(236, 232, 226, 0.78);
+  color: rgba(243, 248, 252, 0.78);
   font-size: 18px;
   max-width: 56ch;
 }
@@ -553,7 +554,7 @@ section {
   position: relative;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(100deg, rgba(20, 22, 26, 0.95) 24%, rgba(20, 22, 26, 0.70) 50%, rgba(20, 22, 26, 0.30) 100%),
+    linear-gradient(100deg, rgba(21, 47, 71, 0.95) 24%, rgba(21, 47, 71, 0.70) 50%, rgba(21, 47, 71, 0.30) 100%),
     var(--page-img, none);
   background-size: cover;
   background-position: center right;
@@ -569,7 +570,7 @@ section {
 @media (max-width: 820px) {
   .page-header {
     background-image:
-      linear-gradient(to bottom, rgba(20, 22, 26, 0.92), rgba(20, 22, 26, 0.84)),
+      linear-gradient(to bottom, rgba(21, 47, 71, 0.92), rgba(21, 47, 71, 0.84)),
       var(--page-img, none);
     background-position: center;
   }
@@ -584,7 +585,7 @@ section {
   align-items: center;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(94deg, rgba(20, 22, 26, 0.94) 18%, rgba(20, 22, 26, 0.66) 48%, rgba(20, 22, 26, 0.22) 100%),
+    linear-gradient(94deg, rgba(21, 47, 71, 0.94) 18%, rgba(21, 47, 71, 0.66) 48%, rgba(21, 47, 71, 0.22) 100%),
     var(--band-img, none);
   background-size: cover;
   background-position: center;
@@ -595,7 +596,7 @@ section {
 }
 
 .image-band p {
-  color: rgba(236, 232, 226, 0.82);
+  color: rgba(243, 248, 252, 0.82);
   max-width: 48ch;
   margin-top: 16px;
 }
@@ -603,7 +604,7 @@ section {
 @media (max-width: 820px) {
   .image-band {
     background-image:
-      linear-gradient(to bottom, rgba(20, 22, 26, 0.92), rgba(20, 22, 26, 0.86)),
+      linear-gradient(to bottom, rgba(21, 47, 71, 0.92), rgba(21, 47, 71, 0.86)),
       var(--band-img, none);
   }
 }
@@ -902,7 +903,7 @@ section {
   font-family: var(--font-base);
   border: 1px solid var(--line-light);
   border-radius: 4px;
-  background-color: #F7F4F0;
+  background-color: #F7FAFD;
   color: var(--dark-1);
 }
 
@@ -972,7 +973,7 @@ section {
 .footer-col p,
 .footer-col address {
   font-style: normal;
-  color: rgba(236, 232, 226, 0.8);
+  color: rgba(243, 248, 252, 0.8);
   margin: 0 0 8px 0;
 }
 
@@ -985,7 +986,7 @@ section {
 }
 
 .footer-col a {
-  color: rgba(236, 232, 226, 0.85);
+  color: rgba(243, 248, 252, 0.85);
   text-decoration: none;
 }
 
@@ -1224,13 +1225,13 @@ section {
 
 .card:hover {
   transform: translateY(-3px);
-  background-color: rgba(180, 112, 60, 0.05);
+  background-color: rgba(53, 107, 153, 0.05);
 }
 
 /* Kuparihehku tummien osioiden yläreunaan */
 .built-surface {
   border-top: 1px solid transparent;
-  border-image: linear-gradient(90deg, transparent, rgba(180, 112, 60, 0.55), transparent) 1;
+  border-image: linear-gradient(90deg, transparent, rgba(53, 107, 153, 0.55), transparent) 1;
 }
 
 /* ---------- Scroll-reveal (progressiivinen parannus) ---------- */
@@ -1283,7 +1284,7 @@ section {
 .canvas {
   padding: 0;
   background-color: var(--light-1);
-  background-image: linear-gradient(178deg, #F2EEE8 0%, var(--light-1) 26%, #E7E2DA 74%, var(--light-2) 100%);
+  background-image: linear-gradient(178deg, #F7FAFD 0%, var(--light-1) 26%, #DCE9F5 74%, var(--light-2) 100%);
   color: var(--dark-1);
 }
 
@@ -1325,7 +1326,7 @@ section {
   border: 1px solid var(--line-light);
   border-radius: 4px;
   padding: 8px 28px;
-  box-shadow: 0 -1px 0 rgba(180, 112, 60, 0.5);
+  box-shadow: 0 -1px 0 rgba(53, 107, 153, 0.5);
 }
 
 .facts-overlap .facts {
@@ -1347,7 +1348,7 @@ section {
   color: var(--light-1);
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(100deg, rgba(20, 22, 26, 0.95) 24%, rgba(20, 22, 26, 0.74) 52%, rgba(20, 22, 26, 0.34) 100%),
+    linear-gradient(100deg, rgba(21, 47, 71, 0.95) 24%, rgba(21, 47, 71, 0.74) 52%, rgba(21, 47, 71, 0.34) 100%),
     var(--panel-img, none);
   background-size: cover;
   background-position: center right;
@@ -1363,7 +1364,7 @@ section {
 @media (max-width: 820px) {
   .panel-dark {
     background-image:
-      linear-gradient(to bottom, rgba(20, 22, 26, 0.93), rgba(20, 22, 26, 0.86)),
+      linear-gradient(to bottom, rgba(21, 47, 71, 0.93), rgba(21, 47, 71, 0.86)),
       var(--panel-img, none);
   }
 }
@@ -1373,7 +1374,7 @@ section {
 }
 
 .panel-dark p {
-  color: rgba(236, 232, 226, 0.86);
+  color: rgba(243, 248, 252, 0.86);
 }
 
 .panel-dark .plain-list li {
@@ -1397,8 +1398,8 @@ section {
   overflow: hidden;
   background-color: var(--dark-1);
   background-image:
-    radial-gradient(ellipse 60% 60% at 84% 18%, rgba(217, 161, 91, 0.14), transparent 66%),
-    linear-gradient(165deg, #22262C 0%, #14161A 62%);
+    radial-gradient(ellipse 60% 60% at 84% 18%, rgba(91, 151, 198, 0.14), transparent 66%),
+    linear-gradient(165deg, #22486A 0%, #152F47 62%);
   padding: 56px 0 72px;
 }
 
@@ -1437,7 +1438,7 @@ section {
 }
 
 .hero-split .hero-support {
-  color: rgba(236, 232, 226, 0.82);
+  color: rgba(243, 248, 252, 0.82);
   font-size: 18px;
   max-width: 52ch;
 }
@@ -1449,9 +1450,9 @@ section {
   align-items: center;
   gap: 10px;
   padding: 8px 16px;
-  border: 1px solid rgba(217, 161, 91, 0.45);
+  border: 1px solid rgba(91, 151, 198, 0.45);
   border-radius: 999px;
-  background-color: rgba(180, 112, 60, 0.12);
+  background-color: rgba(53, 107, 153, 0.12);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1470,8 +1471,8 @@ section {
 .on-light-2 .chip,
 .canvas .chip {
   color: var(--accent-dark);
-  border-color: rgba(140, 84, 41, 0.4);
-  background-color: rgba(180, 112, 60, 0.08);
+  border-color: rgba(37, 75, 110, 0.4);
+  background-color: rgba(53, 107, 153, 0.08);
 }
 
 /* Aksenttiviiva otsikon alla */
@@ -1495,7 +1496,7 @@ section {
 .collage img {
   position: absolute;
   border-radius: 6px;
-  border: 1px solid rgba(217, 161, 91, 0.3);
+  border: 1px solid rgba(91, 151, 198, 0.3);
   object-fit: cover;
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5);
 }
@@ -1571,19 +1572,19 @@ section {
 
 .action-primary:hover,
 .action-primary:focus-visible {
-  background-color: #7A4822;
-  border-color: #7A4822;
+  background-color: #1D3E5C;
+  border-color: #1D3E5C;
 }
 
 .action:hover,
 .action:focus-visible {
-  background-color: rgba(180, 112, 60, 0.16);
+  background-color: rgba(53, 107, 153, 0.16);
 }
 
 .canvas .action,
 .on-light .action {
   color: var(--accent-dark);
-  border-color: rgba(140, 84, 41, 0.55);
+  border-color: rgba(37, 75, 110, 0.55);
 }
 
 .canvas .action-primary,
@@ -1596,7 +1597,7 @@ section {
 
 .breadcrumb {
   font-size: 14px;
-  color: rgba(236, 232, 226, 0.65);
+  color: rgba(243, 248, 252, 0.65);
   margin-bottom: 20px;
 }
 
@@ -1609,7 +1610,7 @@ section {
 }
 
 .breadcrumb a {
-  color: rgba(236, 232, 226, 0.78);
+  color: rgba(243, 248, 252, 0.78);
   text-decoration: none;
 }
 
@@ -1768,7 +1769,7 @@ html {
 
 .site-header.is-scrolled {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
-  border-bottom-color: rgba(180, 112, 60, 0.45);
+  border-bottom-color: rgba(53, 107, 153, 0.45);
 }
 
 /* Liike: lyhyempi kesto ja pehmeä ylitys (design-systeemin Standard-taso) */
@@ -1817,7 +1818,7 @@ html {
 .form-field.has-error textarea {
   border-color: var(--accent-dark);
   border-width: 2px;
-  background-color: #FBF6F0;
+  background-color: #EAF2F9;
 }
 
 .required-mark {
@@ -1899,9 +1900,9 @@ html {
   align-items: center;
   gap: 12px;
   padding: 10px 18px;
-  border: 1px solid rgba(217, 161, 91, 0.42);
+  border: 1px solid rgba(91, 151, 198, 0.42);
   border-radius: 6px;
-  background-color: rgba(180, 112, 60, 0.12);
+  background-color: rgba(53, 107, 153, 0.12);
 }
 
 .rating-score {
@@ -1913,8 +1914,8 @@ html {
 
 .canvas .rating,
 .on-light .rating {
-  border-color: rgba(140, 84, 41, 0.34);
-  background-color: rgba(180, 112, 60, 0.07);
+  border-color: rgba(37, 75, 110, 0.34);
+  background-color: rgba(53, 107, 153, 0.07);
 }
 
 .canvas .rating-score,
@@ -1930,7 +1931,7 @@ html {
 
 .rating-meta {
   font-size: 14px;
-  color: rgba(236, 232, 226, 0.78);
+  color: rgba(243, 248, 252, 0.78);
   line-height: 1.3;
 }
 
@@ -1974,7 +1975,7 @@ html {
 }
 
 .panel-dark .hours .time {
-  color: rgba(236, 232, 226, 0.72);
+  color: rgba(243, 248, 252, 0.72);
 }
 
 .panel-dark .hours .closed {
@@ -1984,7 +1985,7 @@ html {
 .footer-hours {
   list-style: none;
   font-size: 15px;
-  color: rgba(236, 232, 226, 0.8);
+  color: rgba(243, 248, 252, 0.8);
 }
 
 .footer-hours li {
