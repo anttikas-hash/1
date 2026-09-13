@@ -21,29 +21,46 @@
     window.addEventListener('scroll', setElevation, { passive: true });
   }
 
-  var reveals = document.querySelectorAll('.reveal');
-  if (reveals.length && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
+  if (reveals.length) {
+    // Sijaintiin perustuva tarkistus: toisin kuin leikkaustarkkailu, tämä ei ohita
+    // osioita nopeassa vierityksessä eikä sivulle keskelle saavuttaessa.
+    var pending = reveals;
+    var ticking = false;
+
+    var show = function () {
+      ticking = false;
+      var limit = window.innerHeight * 0.94;
+      var still = [];
+      for (var i = 0; i < pending.length; i++) {
+        var el = pending[i];
+        // Dokumenttisuhteinen mitta: offsetTop olisi suhteessa asemoituun vanhempaan.
+        if (el.getBoundingClientRect().top < limit) {
+          el.classList.add('is-visible');
+        } else {
+          still.push(el);
         }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-
-    reveals.forEach(function (el) {
-      observer.observe(el);
-    });
-
-    // Varmistus: jos esiintuloa ei jostain syystä laukaista, sisältö näytetään joka tapauksessa.
-    var revealAll = function () {
-      reveals.forEach(function (el) {
-        el.classList.add('is-visible');
-      });
+      }
+      pending = still;
+      if (!pending.length) {
+        window.removeEventListener('scroll', queue);
+        window.removeEventListener('resize', queue);
+      }
     };
-    window.setTimeout(revealAll, 4000);
-    window.addEventListener('beforeprint', revealAll);
+
+    var queue = function () {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(show);
+    };
+
+    show();
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
+    window.addEventListener('load', queue);
+    window.addEventListener('beforeprint', function () {
+      reveals.forEach(function (el) { el.classList.add('is-visible'); });
+    });
   }
 
   var form = document.querySelector('form[data-validate]');
