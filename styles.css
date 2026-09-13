@@ -901,7 +901,7 @@ section {
   font-family: var(--font-base);
   border: 1px solid var(--line-light);
   border-radius: 4px;
-  background-color: var(--white);
+  background-color: #F7F4F0;
   color: var(--dark-1);
 }
 
@@ -1275,4 +1275,114 @@ section {
   .service-block h2 {
     font-size: 34px;
   }
+}
+
+/* ---------- Yhtenäinen vaalea pinta (korvaa tumma/vaalea-vuorottelun) ---------- */
+
+.canvas {
+  padding: 0;
+  background-color: var(--light-1);
+  background-image: linear-gradient(178deg, #F2EEE8 0%, var(--light-1) 26%, #E7E2DA 74%, var(--light-2) 100%);
+  color: var(--dark-1);
+}
+
+.canvas .block {
+  padding: var(--section-pad-mobile) 0;
+  border-top: 1px solid var(--line-light);
+}
+
+.canvas .block:first-child {
+  border-top: none;
+}
+
+@media (min-width: 800px) {
+  .canvas .block {
+    padding: var(--section-pad-desktop) 0;
+  }
+}
+
+.canvas .block.tight {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.canvas .eyebrow {
+  color: var(--accent-dark);
+}
+
+.canvas p {
+  color: var(--dark-1);
+}
+
+/* Tunnusluvut nostettuna heron päälle */
+
+.facts-overlap {
+  position: relative;
+  margin-top: -72px;
+  margin-bottom: 8px;
+  background-color: var(--light-1);
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  padding: 8px 28px;
+  box-shadow: 0 -1px 0 rgba(180, 112, 60, 0.5);
+}
+
+.facts-overlap .facts {
+  border-top: none;
+}
+
+@media (min-width: 760px) {
+  .facts-overlap .facts {
+    border-bottom: none;
+  }
+}
+
+/* Upotettu tumma paneeli vaalean pinnan sisällä */
+
+.panel-dark {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  color: var(--light-1);
+  background-color: var(--dark-1);
+  background-image:
+    linear-gradient(100deg, rgba(20, 22, 26, 0.95) 24%, rgba(20, 22, 26, 0.74) 52%, rgba(20, 22, 26, 0.34) 100%),
+    var(--panel-img, none);
+  background-size: cover;
+  background-position: center right;
+  padding: 48px 28px;
+}
+
+@media (min-width: 800px) {
+  .panel-dark {
+    padding: 72px 64px;
+  }
+}
+
+@media (max-width: 820px) {
+  .panel-dark {
+    background-image:
+      linear-gradient(to bottom, rgba(20, 22, 26, 0.93), rgba(20, 22, 26, 0.86)),
+      var(--panel-img, none);
+  }
+}
+
+.panel-dark .eyebrow {
+  color: var(--accent-light);
+}
+
+.panel-dark p {
+  color: rgba(236, 232, 226, 0.86);
+}
+
+.panel-dark .plain-list li {
+  border-top-color: var(--line-dark);
+}
+
+.panel-dark .plain-list li:last-child {
+  border-bottom-color: var(--line-dark);
+}
+
+.panel-dark .plain-list h3 {
+  color: var(--light-1);
 }
