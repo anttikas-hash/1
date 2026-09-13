@@ -7,7 +7,7 @@
 <meta name="description" content="LVI-noutomyymälä Kairakadulla Raumalla. Tuotteet, tarvikkeet ja neuvonta. Soita 02 822 0822 ennen käyntiä.">
 <link rel="canonical" href="noutomyymala.html">
 <link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.remove('no-js');</script>
+<script>var r=document.documentElement;r.classList.remove('no-js');r.classList.add('js');</script>
 </head>
 <body>
 
@@ -50,6 +50,23 @@
 
   <section class="on-dark built-surface page-header">
     <div class="container">
+      <svg class="page-art" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <defs><linearGradient id="cuN" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#D9A15B"/><stop offset="100%" stop-color="#8C5429"/>
+        </linearGradient></defs>
+        <path d="M32 66 L100 34 L168 66" stroke="url(#cuN)" stroke-width="9" stroke-linecap="round"/>
+        <rect x="42" y="66" width="116" height="100" rx="6" fill="#14161A" stroke="url(#cuN)" stroke-width="8"/>
+        <g stroke="#C9925E" stroke-width="6" stroke-linecap="round">
+          <path d="M56 96 L144 96"/><path d="M56 124 L144 124"/>
+        </g>
+        <g fill="url(#cuN)">
+          <rect x="62" y="80" width="12" height="14" rx="2" class="joint-pulse"/>
+          <rect x="86" y="80" width="12" height="14" rx="2" class="joint-pulse joint-pulse-2"/>
+          <rect x="112" y="108" width="12" height="14" rx="2" class="joint-pulse joint-pulse-3"/>
+          <rect x="66" y="108" width="12" height="14" rx="2" class="joint-pulse joint-pulse-2"/>
+        </g>
+        <rect x="86" y="138" width="28" height="28" rx="3" fill="none" stroke="url(#cuN)" stroke-width="6"/>
+      </svg>
       <span class="eyebrow">NOUTOMYYMÄLÄ</span>
       <h1>LVI-noutomyymälä Kairakadulla</h1>
       <p style="margin-top:20px;max-width:60ch;">Myymälämme toimii samassa osoitteessa kuin toimistomme, Kairakatu 12:ssa Raumalla.</p>
@@ -58,7 +75,7 @@
 
   <section class="on-light">
     <div class="container">
-      <div class="split-5-7">
+      <div class="split-5-7 reveal">
         <div>
           <span class="eyebrow">VALIKOIMA</span>
           <h2>Mitä myymälästä saa</h2>
@@ -73,7 +90,7 @@
 
   <section class="on-light-2">
     <div class="container">
-      <div class="split-5-7">
+      <div class="split-5-7 reveal">
         <div>
           <span class="eyebrow">NEUVONTA</span>
           <h2>Apua tuotteen valintaan</h2>
@@ -105,7 +122,7 @@
   </section>
 
   <section class="on-light-2">
-    <div class="container cta-strip">
+    <div class="container cta-strip reveal">
       <span class="eyebrow">YHTEYSTIEDOT</span>
       <h2>Soita ja kerro mitä tarvitset</h2>
       <p style="margin-top:16px;max-width:56ch;">Kerro puhelimessa mitä tuotetta etsit tai mitä työ vaatii.</p>
@@ -150,17 +167,7 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  var toggle = document.getElementById('menu-toggle');
-  var nav = document.getElementById('mobile-nav');
-  if (!toggle || !nav) return;
-  toggle.addEventListener('click', function () {
-    var isOpen = nav.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-})();
-</script>
+<script src="site.js" defer></script>
 
 </body>
 </html>

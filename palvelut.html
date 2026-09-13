@@ -7,7 +7,7 @@
 <meta name="description" content="Putkiremontit, linjasaneeraukset, viemärityöt ja lämmitysurakointi Raumalla ja ympäryskunnissa. Soita 02 822 0822 ja kerro kohteesta.">
 <link rel="canonical" href="palvelut.html">
 <link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.remove('no-js');</script>
+<script>var r=document.documentElement;r.classList.remove('no-js');r.classList.add('js');</script>
 </head>
 <body>
 
@@ -50,6 +50,24 @@
 
   <section class="on-dark built-surface page-header">
     <div class="container">
+      <svg class="page-art" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <defs><linearGradient id="cuP" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#D9A15B"/><stop offset="100%" stop-color="#8C5429"/>
+        </linearGradient></defs>
+        <g stroke="url(#cuP)" stroke-width="9" stroke-linecap="round">
+          <path d="M42 150 L42 96 Q42 74 64 74 L110 74"/>
+          <path d="M110 74 Q132 74 132 52 L132 34"/>
+          <path d="M60 150 L150 150"/>
+        </g>
+        <g fill="none" stroke="url(#cuP)" stroke-width="8" stroke-linecap="round">
+          <path d="M112 118 L152 158" class="joint-pulse"/>
+          <path d="M150 104 a18 18 0 1 0 14 30 l-14 -14 z" class="joint-pulse joint-pulse-2"/>
+        </g>
+        <g fill="#14161A" stroke="url(#cuP)" stroke-width="6">
+          <rect x="96" y="58" width="32" height="32" rx="4" class="joint-pulse"/>
+          <rect x="26" y="86" width="32" height="32" rx="4" class="joint-pulse joint-pulse-3"/>
+        </g>
+      </svg>
       <span class="eyebrow">PALVELUT</span>
       <h1>LVI-työt ja putkiasennukset Raumalla</h1>
       <p style="margin-top:20px;max-width:60ch;">Teemme putkiremontit, linjasaneeraukset, putkiasennukset, viemärityöt, lämmitysurakoinnin ja putkistojen huolto- ja korjaustyöt Raumalla ja ympäryskunnissa. Työt tehdään kotitalouksille, taloyhtiöille, kunnille ja kaupungeille, ja teemme myös aliurakointia muille yrityksille.</p>
@@ -57,7 +75,7 @@
   </section>
 
   <section class="on-light service-block">
-    <div class="container">
+    <div class="container reveal">
       <span class="eyebrow">PALVELU</span>
       <h2>Putkiremontit ja linjasaneeraukset</h2>
       <p>Uusimme kiinteistön vesi- ja viemäriputkiston osittain tai kokonaan. Linjasaneerauksessa käydään läpi koko taloyhtiön nousulinjat ja pystyviemärit.</p>
@@ -66,7 +84,7 @@
   </section>
 
   <section class="on-light-2 service-block">
-    <div class="container">
+    <div class="container reveal">
       <span class="eyebrow">PALVELU</span>
       <h2>Putkiasennukset uudisrakennuksiin</h2>
       <p>Asennamme vesi- ja viemäriputkistot uudisrakennuksiin rakennusvaiheessa. Työ tehdään yhdessä muiden urakoitsijoiden aikataulun kanssa.</p>
@@ -75,7 +93,7 @@
   </section>
 
   <section class="on-light service-block">
-    <div class="container">
+    <div class="container reveal">
       <span class="eyebrow">PALVELU</span>
       <h2>Putkiasennukset remontti- ja saneerauskohteisiin</h2>
       <p>Teemme putkiasennukset remontoitaviin asuntoihin, taloihin ja kiinteistöihin. Vanhat putket puretaan ja uudet asennetaan kohteen suunnitelman mukaan.</p>
@@ -84,7 +102,7 @@
   </section>
 
   <section class="on-light-2 service-block">
-    <div class="container">
+    <div class="container reveal">
       <span class="eyebrow">PALVELU</span>
       <h2>Viemärityöt ja viemärin avaukset</h2>
       <p>Teemme viemäriputkistojen asennukset, korjaukset ja tukkeutuneiden viemäreiden avaukset.</p>
@@ -93,7 +111,7 @@
   </section>
 
   <section class="on-light service-block">
-    <div class="container">
+    <div class="container reveal">
       <span class="eyebrow">PALVELU</span>
       <h2>Lämmitysurakointi ja patterien vaihdot</h2>
       <p>Asennamme ja korjaamme vesikiertoisia lämmitysjärjestelmiä sekä vaihdamme lämmityspattereita.</p>
@@ -102,7 +120,7 @@
   </section>
 
   <section class="on-light-2 service-block">
-    <div class="container">
+    <div class="container reveal">
       <span class="eyebrow">PALVELU</span>
       <h2>Putkistojen huolto- ja korjaustyöt</h2>
       <p>Huollamme ja korjaamme kiinteistöjen putkistoja: vuotokohdat, venttiilien vaihdot ja muut putkiston kunnossapitotyöt.</p>
@@ -111,7 +129,7 @@
   </section>
 
   <section class="on-dark built-surface arcs">
-    <div class="container cta-strip">
+    <div class="container cta-strip reveal">
       <span class="eyebrow">YHTEYSTIEDOT</span>
       <h2>Soita ja kerro mitä tarvitset</h2>
       <p style="margin-top:16px;max-width:56ch;">Kerro puhelimessa millainen kohde on, niin katsotaan miten edetään. Lämpöpumppuasennuksista kerromme tarkemmin omalla sivullaan.</p>
@@ -157,17 +175,7 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  var toggle = document.getElementById('menu-toggle');
-  var nav = document.getElementById('mobile-nav');
-  if (!toggle || !nav) return;
-  toggle.addEventListener('click', function () {
-    var isOpen = nav.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-})();
-</script>
+<script src="site.js" defer></script>
 
 </body>
 </html>

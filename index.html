@@ -7,7 +7,7 @@
 <meta name="description" content="Putkiliike Raumalla vuodesta 1963. Putkiremontit, LVI-asennukset, lämpöpumput ja LVI-noutomyymälä. Soita 02 822 0822.">
 <link rel="canonical" href="index.html">
 <link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.remove('no-js');</script>
+<script>var r=document.documentElement;r.classList.remove('no-js');r.classList.add('js');</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,10 +66,52 @@
 
 <main>
 
-  <!-- HERO: väliaikainen vapaasti lisensoitu kuva (Unsplash), korvataan yrityksen omalla kuvalla ennen julkaisua -->
-  <section class="hero" aria-hidden="false">
+  <!-- HERO: kuvituksena piirretty putkistografiikka, ei valokuvaa. Korvataan yrityksen omalla valokuvalla kun kuvia on saatavilla. -->
+  <section class="hero">
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 760 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="cu" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#D9A15B"/>
+            <stop offset="55%" stop-color="#B4703C"/>
+            <stop offset="100%" stop-color="#8C5429"/>
+          </linearGradient>
+        </defs>
+        <g stroke="url(#cu)" stroke-width="14" stroke-linecap="round">
+          <path d="M60 470 L60 300 Q60 260 100 260 L250 260"/>
+          <path d="M250 260 Q290 260 290 220 L290 120"/>
+          <path d="M290 120 Q290 80 330 80 L540 80"/>
+          <path d="M540 80 Q580 80 580 120 L580 250"/>
+          <path d="M580 250 Q580 290 620 290 L700 290"/>
+          <path d="M180 470 L180 380 Q180 340 220 340 L430 340"/>
+          <path d="M430 340 Q470 340 470 380 L470 470"/>
+        </g>
+        <g stroke="#ECE8E2" stroke-width="3" stroke-linecap="round" opacity="0.5" class="pipe-flow">
+          <path d="M60 470 L60 300 Q60 260 100 260 L250 260"/>
+          <path d="M290 120 Q290 80 330 80 L540 80"/>
+          <path d="M180 470 L180 380 Q180 340 220 340 L430 340"/>
+        </g>
+        <g fill="#14161A" stroke="url(#cu)" stroke-width="7">
+          <rect x="228" y="238" width="44" height="44" rx="5" class="joint-pulse"/>
+          <rect x="268" y="98" width="44" height="44" rx="5" class="joint-pulse joint-pulse-2"/>
+          <rect x="518" y="58" width="44" height="44" rx="5" class="joint-pulse joint-pulse-3"/>
+          <rect x="558" y="228" width="44" height="44" rx="5" class="joint-pulse joint-pulse-2"/>
+          <rect x="408" y="318" width="44" height="44" rx="5" class="joint-pulse joint-pulse-3"/>
+        </g>
+        <g stroke="#D9A15B" stroke-width="9" stroke-linecap="round">
+          <path d="M700 262 L700 318"/>
+          <path d="M660 470 L740 470"/>
+          <circle cx="470" cy="470" r="22" fill="none"/>
+          <path d="M470 448 L470 492"/>
+        </g>
+        <g stroke="#C9925E" stroke-width="6" stroke-linecap="round" opacity="0.75">
+          <path d="M40 470 L80 470"/>
+          <path d="M160 470 L200 470"/>
+        </g>
+      </svg>
+    </div>
     <div class="container">
-      <div class="hero-content">
+      <div class="hero-content reveal">
         <span class="eyebrow">PUTKILIIKE RAUMALLA VUODESTA 1963</span>
         <h1>LVI-työt ja putkiremontit Raumalla</h1>
         <p class="hero-support">Teemme putkityöt kotitalouksille, taloyhtiöille ja kunnille Raumalla ja ympäryskunnissa. Samassa osoitteessa Kairakadulla toimii LVI-noutomyymälämme.</p>
@@ -84,27 +126,46 @@
   <!-- PALVELUT LYHYESTI -->
   <section class="on-light">
     <div class="container">
-      <div class="section-head center">
+      <div class="section-head center reveal">
         <span class="eyebrow">PALVELUT</span>
         <h2>Mitä teemme</h2>
       </div>
       <div class="grid grid-4">
-        <a class="card" href="palvelut.html">
+        <a class="card reveal" href="palvelut.html">
+          <svg class="card-icon tone-copper" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M8 14h12a6 6 0 0 1 6 6v8a6 6 0 0 0 6 6h8"/>
+            <rect x="4" y="8" width="8" height="12" rx="2"/>
+            <rect x="36" y="28" width="8" height="12" rx="2"/>
+          </svg>
           <h3>Putkiremontit ja linjasaneeraukset</h3>
           <p>Vanhojen putkistojen uusiminen ja linjasaneeraukset taloyhtiöille ja kiinteistöille.</p>
           <span class="card-link">Lue lisää →</span>
         </a>
-        <a class="card" href="palvelut.html">
+        <a class="card reveal reveal-delay-1" href="palvelut.html">
+          <svg class="card-icon tone-brass" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M6 40V20l18-12 18 12v20"/>
+            <path d="M18 40V28h12v12"/>
+            <path d="M24 20v4"/>
+          </svg>
           <h3>Putkiasennukset uudis- ja remonttikohteisiin</h3>
           <p>Vesi- ja viemäriputkistot uudisrakennuksiin sekä remontti- ja saneerauskohteisiin.</p>
           <span class="card-link">Lue lisää →</span>
         </a>
-        <a class="card" href="lampopumput.html">
+        <a class="card reveal reveal-delay-2" href="lampopumput.html">
+          <svg class="card-icon tone-ember" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <rect x="6" y="12" width="28" height="24" rx="3"/>
+            <circle cx="20" cy="24" r="7"/>
+            <path d="M38 18h6M38 24h6M38 30h6"/>
+          </svg>
           <h3>Lämpöpumput</h3>
           <p>Ilma-vesilämpöpumppujen ja maalämpöpumppujen myynti ja asennus. Nibe ja Jäspi.</p>
           <span class="card-link">Lue lisää →</span>
         </a>
-        <a class="card" href="noutomyymala.html">
+        <a class="card reveal reveal-delay-3" href="noutomyymala.html">
+          <svg class="card-icon tone-rust" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+            <path d="M8 18h32l-3 22H11z"/>
+            <path d="M18 18v-4a6 6 0 0 1 12 0v4"/>
+          </svg>
           <h3>LVI-noutomyymälä</h3>
           <p>LVI-tuotteita ja -tarvikkeita samassa osoitteessa Kairakadulla.</p>
           <span class="card-link">Lue lisää →</span>
@@ -116,7 +177,7 @@
   <!-- KENELLE TEEMME -->
   <section class="on-dark built-surface">
     <div class="container">
-      <div class="section-head">
+      <div class="section-head reveal">
         <span class="eyebrow">ASIAKKAAT</span>
         <h2>Kenelle työskentelemme</h2>
       </div>
@@ -144,22 +205,22 @@
   <!-- NÄIN HOMMA ETENEE -->
   <section class="on-light">
     <div class="container">
-      <div class="section-head center">
+      <div class="section-head center reveal">
         <span class="eyebrow">NÄIN SE ETENEE</span>
         <h2>Kolme vaihetta</h2>
       </div>
       <div class="steps">
-        <div class="step">
+        <div class="step reveal">
           <div class="step-number">01</div>
           <h3>Soitat tai lähetät tarjouspyynnön</h3>
           <p>Kerrot millainen kohde on ja mitä tarvitaan. Vastaamme kysymyksiin puhelimessa.</p>
         </div>
-        <div class="step">
+        <div class="step reveal reveal-delay-1">
           <div class="step-number">02</div>
           <h3>Katsotaan kohde ja vaihtoehdot</h3>
           <p>Käydään läpi kohteen nykytilanne ja sovitaan mitä tehdään ja missä laajuudessa.</p>
         </div>
-        <div class="step">
+        <div class="step reveal reveal-delay-2">
           <div class="step-number">03</div>
           <h3>Työ tehdään sovitusti</h3>
           <p>Asennus tai remontti toteutetaan sovitun laajuuden mukaisesti.</p>
@@ -171,20 +232,20 @@
   <!-- ASIAKASPALAUTTEET -->
   <section class="on-light-2">
     <div class="container">
-      <div class="section-head center">
+      <div class="section-head center reveal">
         <span class="eyebrow">ASIAKKAAT</span>
         <h2>Asiakkaiden sanoin</h2>
       </div>
       <div class="grid grid-4" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
-        <div class="testimonial">
+        <div class="testimonial reveal">
           <blockquote>Ystävällinen ja asiantunteva palvelu, löytyy kaikki tarvittavat lvi tarvikkeet. Hyvä hinta myös.</blockquote>
           <cite>Pekka Welling · Google-arvio</cite>
         </div>
-        <div class="testimonial">
+        <div class="testimonial reveal">
           <blockquote>Asiantuntevaa ja nopeaa palvelua.</blockquote>
           <cite>Mikko Kaisto · Google-arvio</cite>
         </div>
-        <div class="testimonial">
+        <div class="testimonial reveal">
           <blockquote>Työt hoitui niin kuin sovittiin kiitos</blockquote>
           <cite>Tapani Salonen · Google-arvio</cite>
         </div>
@@ -194,7 +255,7 @@
 
   <!-- YHTEYDENOTTOKAISTA -->
   <section class="on-dark built-surface arcs">
-    <div class="container cta-strip">
+    <div class="container cta-strip reveal">
       <span class="eyebrow">YHTEYSTIEDOT</span>
       <h2>Soita ja kerro mitä tarvitset</h2>
       <p style="margin-top:16px;max-width:56ch;">Kerro puhelimessa millainen kohde on, niin katsotaan miten edetään.</p>
@@ -243,17 +304,7 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  var toggle = document.getElementById('menu-toggle');
-  var nav = document.getElementById('mobile-nav');
-  if (!toggle || !nav) return;
-  toggle.addEventListener('click', function () {
-    var isOpen = nav.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-})();
-</script>
+<script src="site.js" defer></script>
 
 </body>
 </html>

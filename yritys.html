@@ -7,7 +7,7 @@
 <meta name="description" content="Rauman Rauta- ja Putkirakenne Oy on putkiliike Raumalla vuodesta 1963. Palvelemme Raumaa ja ympäryskuntia. Soita 02 822 0822.">
 <link rel="canonical" href="yritys.html">
 <link rel="stylesheet" href="styles.css">
-<script>document.documentElement.classList.remove('no-js');</script>
+<script>var r=document.documentElement;r.classList.remove('no-js');r.classList.add('js');</script>
 </head>
 <body>
 
@@ -50,6 +50,20 @@
 
   <section class="on-dark built-surface page-header">
     <div class="container">
+      <svg class="page-art" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+        <defs><linearGradient id="cuY" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#D9A15B"/><stop offset="100%" stop-color="#8C5429"/>
+        </linearGradient></defs>
+        <circle cx="100" cy="100" r="66" fill="none" stroke="url(#cuY)" stroke-width="8"/>
+        <circle cx="100" cy="100" r="52" fill="none" stroke="#C9925E" stroke-width="3" opacity="0.6"/>
+        <text x="100" y="112" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-size="34" font-weight="800" fill="url(#cuY)">1963</text>
+        <g stroke="url(#cuY)" stroke-width="8" stroke-linecap="round">
+          <path d="M100 20 L100 34" class="joint-pulse"/>
+          <path d="M100 166 L100 180" class="joint-pulse joint-pulse-2"/>
+          <path d="M20 100 L34 100" class="joint-pulse joint-pulse-3"/>
+          <path d="M166 100 L180 100" class="joint-pulse"/>
+        </g>
+      </svg>
       <span class="eyebrow">YRITYS</span>
       <h1>Putkiliike Raumalla vuodesta 1963</h1>
     </div>
@@ -57,7 +71,7 @@
 
   <section class="on-light">
     <div class="container">
-      <div class="split-5-7">
+      <div class="split-5-7 reveal">
         <div>
           <span class="eyebrow">YRITYS</span>
           <h2>Rauman Rauta- ja Putkirakenne Oy</h2>
@@ -72,7 +86,7 @@
 
   <section class="on-dark built-surface arcs">
     <div class="container">
-      <div class="split-5-7">
+      <div class="split-5-7 reveal">
         <div>
           <div class="step-number" style="font-size:88px;">1963</div>
         </div>
@@ -85,20 +99,20 @@
 
   <section class="on-light-2">
     <div class="container">
-      <div class="section-head center">
+      <div class="section-head center reveal">
         <span class="eyebrow">ASIAKKAAT</span>
         <h2>Asiakkaiden sanoin</h2>
       </div>
       <div class="grid grid-4" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
-        <div class="testimonial">
+        <div class="testimonial reveal">
           <blockquote>Sain mitä hainkin eli asiallinen liike ja palvelu</blockquote>
           <cite>Pekka Kuromaa · Google-arvio</cite>
         </div>
-        <div class="testimonial">
+        <div class="testimonial reveal">
           <blockquote>Nopea ja ystävällinen palvelu</blockquote>
           <cite>Reima Tiainen · Google-arvio</cite>
         </div>
-        <div class="testimonial">
+        <div class="testimonial reveal">
           <blockquote>Työt hoitui niin kuin sovittiin kiitos</blockquote>
           <cite>Tapani Salonen · Google-arvio</cite>
         </div>
@@ -107,7 +121,7 @@
   </section>
 
   <section class="on-dark built-surface">
-    <div class="container cta-strip">
+    <div class="container cta-strip reveal">
       <span class="eyebrow">YHTEYSTIEDOT</span>
       <h2>Soita ja kerro mitä tarvitset</h2>
       <div class="btn-row" style="margin-top:24px;">
@@ -151,17 +165,7 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  var toggle = document.getElementById('menu-toggle');
-  var nav = document.getElementById('mobile-nav');
-  if (!toggle || !nav) return;
-  toggle.addEventListener('click', function () {
-    var isOpen = nav.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  });
-})();
-</script>
+<script src="site.js" defer></script>
 
 </body>
 </html>
