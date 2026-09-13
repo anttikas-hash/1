@@ -1725,3 +1725,117 @@ section {
   margin-bottom: 12px;
   display: block;
 }
+
+/* ================= UX-parannukset ================= */
+
+/* Pehmeä vieritys ankkurilinkeille */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Skip-linkki näppäimistökäyttäjille */
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background-color: var(--accent-dark);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Headerin korostus vieritettäessä */
+
+.site-header {
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  border-bottom-color: rgba(180, 112, 60, 0.45);
+}
+
+/* Liike: lyhyempi kesto ja pehmeä ylitys (design-systeemin Standard-taso) */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+  transition:
+    opacity 0.42s cubic-bezier(0.22, 0.8, 0.3, 1),
+    transform 0.42s cubic-bezier(0.22, 0.9, 0.3, 1.12);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal-delay-1 { transition-delay: 0.06s; }
+.js .reveal-delay-2 { transition-delay: 0.12s; }
+.js .reveal-delay-3 { transition-delay: 0.18s; }
+
+/* Lomakkeen kenttäkohtainen virheilmoitus */
+
+.form-field .field-error {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.form-field .field-error svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.form-field.has-error .field-error {
+  display: flex;
+}
+
+.form-field.has-error input,
+.form-field.has-error select,
+.form-field.has-error textarea {
+  border-color: var(--accent-dark);
+  border-width: 2px;
+  background-color: #FBF6F0;
+}
+
+.required-mark {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.form-legend {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* Tunnuslukujen ikonit */
+
+.fact-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--accent-dark);
+  margin-bottom: 12px;
+}
