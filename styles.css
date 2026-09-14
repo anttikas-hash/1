@@ -2113,3 +2113,118 @@ html {
     font-size: 16px;
   }
 }
+
+/* ================= Kysymykset ja vastaukset ================= */
+
+.faq {
+  border-top: 1px solid var(--line-light);
+  max-width: 760px;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 20px 44px 20px 0;
+  position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark-1);
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  margin-top: -7px;
+  border-right: 2px solid var(--accent-dark);
+  border-bottom: 2px solid var(--accent-dark);
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.faq details[open] summary::after {
+  transform: rotate(-135deg);
+  margin-top: -3px;
+}
+
+.faq summary:focus-visible {
+  outline: 3px solid var(--accent-light);
+  outline-offset: 2px;
+}
+
+.faq .answer {
+  padding: 0 44px 22px 0;
+}
+
+.faq .answer p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.faq .answer p:last-child { margin-bottom: 0; }
+
+/* Tietolaatikko */
+
+.notice {
+  border: 1px solid var(--line-light);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 24px 26px;
+  max-width: 640px;
+}
+
+.notice h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.notice p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.notice p:last-child { margin-bottom: 0; }
+
+.notice a {
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+/* Vaiheluettelo numeroin */
+
+.phases {
+  list-style: none;
+  counter-reset: ph;
+  border-top: 1px solid var(--line-light);
+  max-width: 720px;
+}
+
+.phases li {
+  counter-increment: ph;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.phases li::before {
+  content: counter(ph, decimal-leading-zero);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--accent-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.phases h3 { font-size: 17px; margin-bottom: 4px; }
+.phases p { margin: 0; color: var(--muted); font-size: 16px; }
