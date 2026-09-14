@@ -1,0 +1,5 @@
+Tämä kansio sisältää myyntisivun, joka on suunnattu Rauman Rauta- ja
+Putkirakenne Oy:lle. Se EI kuulu asiakkaan verkkosivustoon.
+
+Poista koko tarjous-kansio ennen kuin sivusto julkaistaan asiakkaan
+omaan verkkotunnukseen.

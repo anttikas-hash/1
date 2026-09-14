@@ -1,0 +1,446 @@
+<title>Verkkosivut Rauman Rauta- ja Putkirakenteelle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --ground: #F4F8FC;
+    --surface: #FFFFFF;
+    --deep: #12283D;
+    --deep-2: #1B3A55;
+    --ink: #12283D;
+    --ink-2: #3A5A76;
+    --line: #D4E2EE;
+    --line-strong: #B6CEE2;
+    --accent: #2F6797;
+    --accent-deep: #1E4467;
+    --on-deep: #E4EFF7;
+    --on-deep-2: #9FBBD0;
+    --flag: #8F5A1B;
+    --flag-bg: #F7EFE2;
+    --flag-line: #E3CFAE;
+
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0E1E2C;
+      --surface: #15293B;
+      --deep: #081521;
+      --deep-2: #10283C;
+      --ink: #E4EFF7;
+      --ink-2: #9FBBD0;
+      --line: #274056;
+      --line-strong: #35536D;
+      --accent: #6FA8D4;
+      --accent-deep: #9CC6E4;
+      --on-deep: #E4EFF7;
+      --on-deep-2: #9FBBD0;
+      --flag: #DCA463;
+      --flag-bg: #2A2317;
+      --flag-line: #4A3B23;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #0E1E2C;
+    --surface: #15293B;
+    --deep: #081521;
+    --deep-2: #10283C;
+    --ink: #E4EFF7;
+    --ink-2: #9FBBD0;
+    --line: #274056;
+    --line-strong: #35536D;
+    --accent: #6FA8D4;
+    --accent-deep: #9CC6E4;
+    --on-deep: #E4EFF7;
+    --on-deep-2: #9FBBD0;
+    --flag: #DCA463;
+    --flag-bg: #2A2317;
+    --flag-line: #4A3B23;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.62;
+  }
+
+  h1, h2, h3 { font-family: var(--display); margin: 0; line-height: 1.14; text-wrap: balance; }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+  }
+
+  /* ---- Avaus ---- */
+
+  .lead {
+    background: var(--deep);
+    color: var(--on-deep);
+    padding-block: 64px 60px;
+  }
+
+  .lead .eyebrow { color: #7FB0D8; }
+
+  .lead h1 {
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 640px) { .lead h1 { font-size: 48px; } }
+
+  .lead p {
+    font-size: 19px;
+    color: var(--on-deep-2);
+    max-width: 54ch;
+    margin: 22px 0 0;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 34px;
+    padding: 17px 30px;
+    border-radius: 5px;
+    background: #2F6797;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 1px solid #2F6797;
+    transition: background .15s ease;
+  }
+
+  .cta:hover, .cta:focus-visible { background: #1E4467; }
+
+  .cta-note {
+    margin: 14px 0 0;
+    font-size: 14px;
+    font-family: var(--mono);
+    color: var(--on-deep-2);
+  }
+
+  /* ---- Osiot ---- */
+
+  section { padding-block: 56px; }
+  section + section { border-top: 1px solid var(--line); }
+
+  section .eyebrow { color: var(--accent); }
+
+  h2 {
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+
+  section > .wrap > p { max-width: 60ch; margin: 16px 0 0; color: var(--ink-2); }
+
+  /* ---- Sivuluettelo ---- */
+
+  .pages {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .pages li {
+    display: grid;
+    grid-template-columns: 116px 1fr;
+    gap: 4px 20px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .pages b {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 4px;
+  }
+
+  .pages span { color: var(--ink-2); font-size: 15.5px; }
+
+  @media (max-width: 520px) {
+    .pages li { grid-template-columns: 1fr; }
+  }
+
+  /* ---- Perustelut ---- */
+
+  .reasons { margin: 30px 0 0; display: grid; gap: 26px; }
+
+  .reason h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .reason p { margin: 0; color: var(--ink-2); font-size: 15.5px; max-width: 58ch; }
+
+  /* ---- Hinta ---- */
+
+  .price-block {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 5px;
+    padding: 32px 28px;
+    margin-top: 28px;
+  }
+
+  .amount {
+    font-family: var(--display);
+    font-size: 46px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .amount small {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink-2);
+    letter-spacing: 0;
+  }
+
+  .price-sub { margin: 10px 0 0; color: var(--ink-2); font-size: 15px; }
+
+  .includes { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 11px; }
+
+  .includes li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 10px;
+    font-size: 15.5px;
+    align-items: start;
+  }
+
+  .includes svg { width: 17px; height: 17px; margin-top: 4px; color: var(--accent); }
+
+  /* ---- Tarvitaan asiakkaalta ---- */
+
+  .needs {
+    background: var(--flag-bg);
+    border: 1px solid var(--flag-line);
+    border-radius: 5px;
+    padding: 26px 24px;
+    margin-top: 28px;
+  }
+
+  .needs h3 { font-size: 17px; font-weight: 700; color: var(--flag); margin-bottom: 12px; }
+  .needs ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; font-size: 15.5px; }
+
+  /* ---- Askeleet ---- */
+
+  .steps { list-style: none; counter-reset: s; margin: 30px 0 0; padding: 0; display: grid; gap: 22px; }
+
+  .steps li {
+    counter-increment: s;
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 16px;
+  }
+
+  .steps li::before {
+    content: counter(s);
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--accent);
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+  }
+
+  .steps h3 { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
+  .steps p { margin: 0; color: var(--ink-2); font-size: 15.5px; }
+
+  /* ---- Lopetus ---- */
+
+  .close {
+    background: var(--deep-2);
+    color: var(--on-deep);
+    padding-block: 52px;
+  }
+
+  .close h2 { color: var(--on-deep); }
+  .close p { color: var(--on-deep-2); max-width: 56ch; margin: 16px 0 0; }
+
+  .contact {
+    margin: 26px 0 0;
+    font-size: 17px;
+    display: grid;
+    gap: 6px;
+  }
+
+  .contact a { color: #9CC6E4; }
+
+  .contact-name {
+    font-family: var(--display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--on-deep);
+  }
+
+  footer.note {
+    padding-block: 26px 44px;
+    font-size: 13.5px;
+    color: var(--ink-2);
+  }
+
+  a { color: var(--accent); }
+</style>
+
+<header class="lead">
+  <div class="wrap">
+    <p class="eyebrow">Ehdotus · Rauman Rauta- ja Putkirakenne Oy</p>
+    <h1>Teille on jo rakennettu verkkosivusto. Voitte katsoa sen nyt.</h1>
+    <p>Ei luonnosta eikä mallipohjaa. Kuusi valmista sivua, joissa on teidän oma nimenne, numeronne, aukioloaikanne ja Google-arvostelunne. Avatkaa se puhelimella ja päättäkää sen perusteella.</p>
+    <a class="cta" href="https://anttikas-hash.github.io/1/">
+      Avaa sivusto
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <p class="cta-note">Toimii puhelimella ja tietokoneella</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Mitä on valmiina</p>
+    <h2>Kuusi sivua, ei paikkamerkkitekstiä</h2>
+    <ul class="pages">
+      <li><b>Etusivu</b><span>Palvelut, asiakasryhmät, työn eteneminen, arvostelut ja toimialue.</span></li>
+      <li><b>Palvelut</b><span>Putkiremontit, linjasaneeraukset, uudis- ja saneerausasennukset, viemärityöt, lämmitysurakointi ja huoltotyöt.</span></li>
+      <li><b>Lämpöpumput</b><span>Maalämpö ja ilma-vesilämpöpumput, edustamanne Nibe ja Jäspi.</span></li>
+      <li><b>Noutomyymälä</b><span>Valikoima, neuvonta, aukioloajat ja kartta Kairakadulle.</span></li>
+      <li><b>Yritys</b><span>Historia vuodesta 1963, vastuuhenkilö ja asiakaspalautteet.</span></li>
+      <li><b>Yhteystiedot</b><span>Puhelin, sähköposti, osoite, aukioloajat ja tarjouspyyntölomake.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Miksi tämä toimii</p>
+    <h2>Neljä asiaa, jotka tuovat yhteydenottoja</h2>
+
+    <div class="reasons">
+      <div class="reason">
+        <h3>Soittaminen on yhden painalluksen päässä</h3>
+        <p>Puhelinnumero on näkyvissä jokaisen sivun yläreunassa ja jokainen sivu päättyy soita-painikkeeseen. Puhelimella numeroa ei tarvitse näppäillä — painallus riittää.</p>
+      </div>
+      <div class="reason">
+        <h3>Rakennettu puhelinta varten</h3>
+        <p>Suurin osa kävijöistä tulee puhelimella, usein tilanteessa jossa vesi valuu lattialle. Sivut on suunniteltu ensin kapealle näytölle ja testattu kuudella eri näyttökoolla.</p>
+      </div>
+      <div class="reason">
+        <h3>Google saa tarvitsemansa tiedot</h3>
+        <p>Aukioloajat, sijainti, toimiala, perustamisvuosi ja arvostelut on merkitty koodiin muodossa, jonka Google lukee suoraan hakutuloksiin. Jokaisella sivulla on oma hakukoneteksti.</p>
+      </div>
+      <div class="reason">
+        <h3>Tehty teidän tiedoillanne, ei mallipohjasta</h3>
+        <p>Sivustolla ei ole yhtään keksittyä lukua. Arvostelut ovat sanatarkkoja ja nimillä, aukioloajat oikeat, eikä sivuilla väitetä mitään mitä ette ole kertoneet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Hinta</p>
+    <h2>Yksi kuukausimaksu, ei aloituskuluja</h2>
+
+    <div class="price-block">
+      <div class="amount">200 € <small>/ kk + alv</small></div>
+      <p class="price-sub">Sivuston rakentaminen sisältyy hintaan. Ei erillistä aloitusmaksua.</p>
+
+      <ul class="includes">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Valmis kuusisivuinen sivusto</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Palvelintila, verkkotunnuksen hallinta ja suojattu yhteys</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Sisältömuutokset — soitatte tai laitatte viestin, minä teen</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Tarjouspyyntölomake ja sen ylläpito</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Varmuuskopiot ja tietoturvapäivitykset</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Kävijäseuranta ja raportti siitä, mistä yhteydenotot tulevat</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Tietosuojaseloste lomaketta varten</span></li>
+      </ul>
+    </div>
+
+    <div class="needs">
+      <h3>Mitä teiltä tarvitaan</h3>
+      <ul>
+        <li>Valokuvat työstä, myymälästä ja autosta — käyn tarvittaessa ottamassa ne</li>
+        <li>Hinnoittelun periaate: alkaen-hinnat, tuntiveloitus vai ilmainen kartoitus</li>
+        <li>Toimialueen kunnat nimeltä sekä mahdolliset takuut ja pätevyydet</li>
+        <li>Pääsy verkkotunnuksen hallintaan — sivusto julkaistaan osoitteeseenne</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Näin edetään</p>
+    <h2>Kolme askelta julkaisuun</h2>
+    <ol class="steps">
+      <li>
+        <div>
+          <h3>Katsotte sivuston läpi</h3>
+          <p>Kerrotte mikä pitää muuttaa. Korjaukset kuuluvat hintaan.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Toimitatte kuvat ja puuttuvat tiedot</h3>
+          <p>Samalla sovitaan julkaisupäivä ja käydään verkkotunnus läpi.</p>
+        </div>
+      </li>
+      <li>
+        <div>
+          <h3>Sivusto julkaistaan osoitteeseenne</h3>
+          <p>Lomake kytketään sähköpostiinne ja sivusto ilmoitetaan Googlelle.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <h2>Katsotaan se yhdessä läpi</h2>
+    <p>Soittakaa tai laittakaa viestiä, niin käydään sivusto kohta kohdalta. Jos se ei sovi teille, siitä ei koidu kuluja.</p>
+    <div class="contact">
+      <span class="contact-name">Kasper Anttila</span>
+      <span><a href="tel:+358452450005">045 245 0005</a></span>
+      <span><a href="mailto:kasper.j.anttila@gmail.com">kasper.j.anttila@gmail.com</a></span>
+    </div>
+  </div>
+</section>
+
+<footer class="note">
+  <div class="wrap">
+    Sivuston kuvat ovat toistaiseksi vapaasti lisensoituja yleiskuvia, ja ne korvataan yrityksen omilla valokuvilla ennen julkaisua.
+  </div>
+</footer>
