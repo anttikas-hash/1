@@ -32,7 +32,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
         </svg>
-        <span style="position:absolute;left:-9999px;">Avaa valikko</span>
+        <span class="sr-only">Avaa valikko</span>
       </button>
     </div>
   </div>
@@ -77,31 +77,10 @@
           </div>
         </div>
 
-        <div class="hero-figure reveal reveal-delay-1" aria-hidden="true">
-          <svg viewBox="0 0 520 420" role="presentation">
-            <defs>
-              <linearGradient id="ha1" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#4E9C75"/><stop offset="100%" stop-color="#1F5039"/>
-              </linearGradient>
-              <linearGradient id="ha2" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#B2D9C4" stop-opacity=".9"/>
-                <stop offset="100%" stop-color="#2F7355" stop-opacity=".35"/>
-              </linearGradient>
-            </defs>
-            <rect x="0" y="0" width="520" height="420" rx="22" fill="#14322A"/>
-            <g opacity=".14" stroke="#B2D9C4" stroke-width="1">
-              <path d="M0 60h520M0 120h520M0 180h520M0 240h520M0 300h520M0 360h520"/>
-              <path d="M65 0v420M130 0v420M195 0v420M260 0v420M325 0v420M390 0v420M455 0v420"/>
-            </g>
-            <path d="M80 260 260 120l180 140" fill="none" stroke="url(#ha1)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M120 262v108h280V262" fill="url(#ha2)" opacity=".5"/>
-            <path d="M120 262v108h280V262" fill="none" stroke="url(#ha1)" stroke-width="11" stroke-linejoin="round"/>
-            <rect x="238" y="300" width="44" height="70" rx="4" fill="#F3FBF6" opacity=".92"/>
-            <rect x="160" y="298" width="44" height="40" rx="4" fill="#B2D9C4" opacity=".55"/>
-            <rect x="316" y="298" width="44" height="40" rx="4" fill="#B2D9C4" opacity=".55"/>
-            <path d="M260 120v-42" stroke="#4E9C75" stroke-width="7" stroke-linecap="round"/>
-            <circle cx="260" cy="70" r="11" fill="#8CC9A9"/>
-          </svg>
+        <div class="hero-figure reveal reveal-delay-1">
+          <div class="media media-4-3">
+            <img src="images/hero.jpg" width="1600" height="1125" alt="Rakenteilla olevan talon runko, kattotuolit ja työmaan telineet." fetchpriority="high" decoding="async">
+          </div>
         </div>
 
       </div>
@@ -139,38 +118,31 @@
 
       <div class="block">
         <div class="section-head reveal">
+          <span class="section-index">01</span>
           <span class="eyebrow">PALVELUT</span>
           <h2>Mitä teemme</h2>
         </div>
         <div class="grid grid-4">
           <a class="card reveal" href="palvelut.html">
-            <svg class="card-icon tone-copper" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M6 42h36M10 42V20l14-11 14 11v22"/><path d="M19 42V29h10v13"/>
-            </svg>
+            <div class="card-media"><img src="images/palvelut.jpg" width="1000" height="760" alt="Isometrinen kuvitus talon rungosta." loading="lazy" decoding="async"></div>
             <h3>Uudisrakentaminen</h3>
             <p>Omakotitalot ja vapaa-ajan asunnot perustuksista avaimet käteen -luovutukseen.</p>
             <span class="card-link">Lue lisää →</span>
           </a>
           <a class="card reveal reveal-delay-1" href="palvelut.html">
-            <svg class="card-icon tone-brass" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M30 6l12 12-4 4-12-12z"/><path d="M26 10 8 28v12h12l18-18"/><path d="M8 40l6-6"/>
-            </svg>
+            <div class="card-media"><img src="images/saneeraus.jpg" width="1000" height="760" alt="Kuvitus rakennekerroksista leikkauksena." loading="lazy" decoding="async"></div>
             <h3>Saneeraus ja remontit</h3>
             <p>Keittiöt, kylpyhuoneet ja kokonaisten asuntojen peruskorjaukset.</p>
             <span class="card-link">Lue lisää →</span>
           </a>
           <a class="card reveal reveal-delay-2" href="palvelut.html">
-            <svg class="card-icon tone-ember" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 26 24 10l20 16"/><path d="M8 26v16h32V26"/><path d="M18 42V32h12v10"/>
-            </svg>
+            <div class="card-media"><img src="images/katto.jpg" width="1000" height="760" alt="Kuvitus kattoprofiilista ja ruoteista." loading="lazy" decoding="async"></div>
             <h3>Julkisivut ja kattotyöt</h3>
             <p>Ulkoverhoukset, katteen uusiminen ja rakennuksen vaipan korjaukset.</p>
             <span class="card-link">Lue lisää →</span>
           </a>
           <a class="card reveal reveal-delay-3" href="palvelut.html">
-            <svg class="card-icon tone-rust" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 38h40"/><path d="M10 38V26h10v12"/><path d="M28 38V18h10v20"/><path d="M4 30l8-8"/>
-            </svg>
+            <div class="card-media"><img src="images/piha.jpg" width="1000" height="760" alt="Kuvitus maakerroksista ja kiveyksestä." loading="lazy" decoding="async"></div>
             <h3>Piha- ja maanrakennus</h3>
             <p>Terassit, kiveykset, salaojat ja pihan pohjatyöt.</p>
             <span class="card-link">Lue lisää →</span>
@@ -180,6 +152,7 @@
 
       <div class="block">
         <div class="panel-dark reveal">
+          <span class="section-index">02</span>
           <span class="eyebrow">ASIAKKAAT</span>
           <h2>Kenelle teemme</h2>
           <ul class="plain-list" style="margin-top:32px;">
@@ -205,6 +178,7 @@
 
       <div class="block">
         <div class="section-head reveal">
+          <span class="section-index">03</span>
           <span class="eyebrow">NÄIN SE ETENEE</span>
           <h2>Neljä vaihetta</h2>
         </div>
@@ -234,6 +208,7 @@
 
       <div class="block">
         <div class="section-head reveal">
+          <span class="section-index">04</span>
           <span class="eyebrow">MIKSI ME</span>
           <h2>Kolme asiaa, jotka lupaamme</h2>
         </div>
@@ -253,6 +228,15 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <section class="image-band">
+    <img src="images/band.jpg" width="1920" height="672" alt="Työmaasilhuetti: rakenteilla olevia rakennuksia ja nosturi." loading="lazy" decoding="async">
+    <div class="band-text">
+      <div class="container">
+        <p>Yksi sopimus, yksi vastuullinen — perustuksista luovutukseen.</p>
+      </div>
     </div>
   </section>
 
@@ -316,6 +300,11 @@
     </div>
   </div>
 </footer>
+
+
+<div class="mobile-cta">
+  <a class="btn btn-primary" href="yhteystiedot.html">Pyydä tarjous</a>
+</div>
 
 <script src="site.js" defer></script>
 
