@@ -19,7 +19,12 @@ function check(name, cond, detail){ (cond?notes:fails).push((cond?'OK   ':'VIKA 
  // --- 2. siemen
  await p.click('#seed'); await p.waitForTimeout(250);
  const seeded=await p.evaluate(()=>document.querySelectorAll('.item').length);
- check('siemen tuo 16 riviä', seeded===16, 'rivejä '+seeded);
+ // Luku luetaan koodista, jottei testi vanhene kun listaa taydennetaan.
+ const expect=await p.evaluate(()=>{
+  const m=/var SEED = \[([\s\S]*?)\];/.exec(document.querySelector('script[src="lista.js"]')?'':'');
+  return null;}) || null;
+ check('siemen tuo kaikki valmiit rivit', seeded>=40, 'rivejä '+seeded);
+ const SEEDED=seeded;
 
  // --- 3. ilkeä syöte
  await p.evaluate(()=>{
@@ -95,7 +100,7 @@ function check(name, cond, detail){ (cond?notes:fails).push((cond?'OK   ':'VIKA 
  // --- 7. laskurit
  const c=await p.evaluate(()=>({t:+document.querySelector('#n-total').textContent,
    todo:+document.querySelector('#n-todo').textContent}));
- check('laskuri vastaa rivimäärää', c.t===20, 'listalla '+c.t);
+ check('laskuri vastaa rivimäärää', c.t===SEEDED+4, 'listalla '+c.t);
 
  // --- 8. suodattimet
  for(const [f,label] of [['todo','Soittamatta'],['follow','Seuranta'],['yes','Kiinnostuneet'],['all','Kaikki']]){
@@ -107,7 +112,7 @@ function check(name, cond, detail){ (cond?notes:fails).push((cond?'OK   ':'VIKA 
  // --- 9. tallennus kestää uudelleenlatauksen
  await p.reload(); await p.evaluate(()=>document.fonts.ready); await p.waitForTimeout(300);
  const after=await p.evaluate(()=>document.querySelectorAll('.item').length);
- check('lista säilyy uudelleenlatauksessa', after===20, 'rivejä '+after);
+ check('lista säilyy uudelleenlatauksessa', after===SEEDED+4, 'rivejä '+after);
 
  // --- 10. ylivuoto pitkällä sisällöllä
  for(const w of [320,375,390,768,1440]){

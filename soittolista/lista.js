@@ -25,9 +25,18 @@
 
   var STATUS_RANK = { callback: 0, sent: 1, talked: 2, new: 3, noanswer: 4, yes: 5, no: 6 };
 
-  // Hakukoneella vahvistetut raumalaiset yritykset. Puhelinnumerot
-  // puuttuvat tarkoituksella — ne haetaan Fonectasta, koska vaara
-  // numero puhelussa on pahempi virhe kuin tyhja kentta.
+  // Hakukoneella vahvistetut Rauman seudun yritykset, toimialoittain.
+  // Puhelinnumerot puuttuvat tarkoituksella — ne haetaan Fonectasta,
+  // koska vaara numero puhelussa on pahempi virhe kuin tyhja kentta.
+  //
+  // Valtakunnalliset ketjut ja liidisivustot on jatetty pois: ne eivat
+  // osta paikallista verkkosivua. Mukana on vain yrityksia, joilla on
+  // oma toiminta Rauman seudulla.
+  //
+  // Jokaisella naista on jo verkkosivu — siksi ne loytyivat haulla.
+  // Ne ovat siis toisen luokan liideja: tarkista jokainen puhelimella
+  // ja merkitse sivuston tila. Parhaat liidit, joilla sivustoa ei ole
+  // lainkaan, eivat nay hakukoneessa lainkaan.
   var SEED = [
     ['Rakennusliike Koskialho Oy', 'Rakennusliike'],
     ['Rakennus Jope Oy', 'Rakennusliike'],
@@ -45,6 +54,36 @@
     ['Jussin LVI-Asennus Oy', 'LVI / putki'],
     ['Eurajoen Kiinteistöpalvelu Oy', 'Kiinteistöhuolto'],
     ['Rauman Rauta- ja Putkirakenne Oy', 'LVI / putki'],
+    ['Sähkö-Rauma Oy', 'Sähköasennus'],
+    ['Vaski Sähkö Oy', 'Sähköasennus'],
+    ['Sähkömies Rauma', 'Sähköasennus'],
+    ['RA-Sähkö Ky', 'Sähköasennus'],
+    ['Sähköurakointi Simpanen Oy', 'Sähköasennus'],
+    ['Narvi-Sähkö Ky', 'Sähköasennus'],
+    ['Sorcolor', 'Maalaus'],
+    ['Maalausliike Heino Oy', 'Maalaus'],
+    ['Rauman Maalaus- ja Tapetointipalvelu Oy', 'Maalaus'],
+    ['Rauman Maalaus ja Rakennushuolto Oy', 'Maalaus'],
+    ['Maalaus Rantamäki Oy', 'Maalaus'],
+    ['Valttikate', 'Katto'],
+    ['Solarkatto', 'Katto'],
+    ['Suomen Vahva-Katto Oy', 'Katto'],
+    ['Remontti Rauma', 'Katto'],
+    ['Auto-Korsman', 'Autokorjaamo'],
+    ['Autokorjaamo Karla', 'Autokorjaamo'],
+    ['Rauman Laatuhuolto Oy', 'Autokorjaamo'],
+    ['Rauman Siivouspalvelu Oy', 'Siivous'],
+    ['TiiMa Oy', 'Siivous'],
+    ['Yrityspalvelut Rauma', 'Siivous'],
+    ['DiakonSiivous', 'Siivous'],
+    ['Apukuski Rauma', 'Kuljetus ja muutot'],
+    ['JMS-Kuljetus Oy', 'Kuljetus ja muutot'],
+    ['Nosto-Elonen Oy', 'Piha ja maanrakennus'],
+    ['Maarakennus Lammila Oy', 'Piha ja maanrakennus'],
+    ['Rauman Kaivin Oy', 'Piha ja maanrakennus'],
+    ['Rauman Rakennushuolto', 'Kiinteistöhuolto'],
+    ['Arola Group Oy', 'Piha ja maanrakennus'],
+    ['Lassi Jalonen', 'Piha ja maanrakennus'],
   ];
 
   var rows = [];
