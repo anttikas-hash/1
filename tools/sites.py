@@ -15,15 +15,15 @@ SITES = {
   name='Sähköasennus',
   title='Sähköasennukset ja sähköremontit',
   desc='Sähköasennukset, sähköremontit, keskuksen uusiminen ja vikakorjaukset.',
-  h1='Sähkötyöt tehdään kerralla oikein',
+  h1='Sähkötyön laadun näkee vasta seinän sisältä',
   lede='Sähköasennukset uudiskohteisiin, sähköremontit vanhaan ja vikakorjaukset '
        'silloin kun jokin lakkaa toimimasta. Työ tehdään määräysten mukaisesti ja '
        'siitä jää dokumentit.',
   hero='sahko-hero', band='sahko-band',
-  band_text='Sähkötyö on joko tehty oikein tai se on turvallisuusriski.',
-  facts=[('Kaikki työt','Asennukset, remontit ja vikakorjaukset saman katon alta.'),
-         ('Dokumentit','Työstä jää käyttöönottotarkastuspöytäkirja.'),
-         ('Kiinteä hinta','Sovitusta työstä annetaan kirjallinen hinta.')],
+  band_text='Piiloon jäävä työ on se, jota kukaan ei tule tarkastamaan jälkikäteen.',
+  facts=[('Asennukset','Uudiskohteet, remontit ja vikakorjaukset.'),
+         ('Käyttöönotto','Sähköasennuksista tehdään käyttöönottotarkastus ja pöytäkirja.'),
+         ('Pätevyys','<span class="tbd">sähköpätevyys ja rekisterit</span>')],
   services=[
     ('Sähköasennukset uudiskohteisiin','sahko-keskus',
      'Uuden rakennuksen koko sähköistys: keskus, ryhmäjohdot, pistorasiat, '
@@ -88,9 +88,9 @@ SITES = {
        'sitä mitä tehdään ennen kuin maalipurkki avataan.',
   hero='maalaus-hero', band='maalaus-band',
   band_text='Hyvä maalaus näkyy vasta viiden vuoden päästä.',
-  facts=[('Pohjatyö','Suojaus, tasoitus ja pohjustus kuuluvat hintaan.'),
-         ('Siisti työmaa','Suojaukset paikallaan koko työn ajan.'),
-         ('Kirjallinen hinta','Sovitusta työstä annetaan kirjallinen hinta.')],
+  facts=[('Pohjatyö','Suojaus, tasoitus ja pohjustus ratkaisevat lopputuloksen.'),
+         ('Sisä ja ulko','Asunnot, julkisivut, tasoitetyöt ja tapetointi.'),
+         ('Toimialue','<span class="tbd">toimialue</span>')],
   services=[
     ('Sisämaalaus','maalaus-sisa',
      'Asuntojen ja toimitilojen sisämaalaus. Suojaus, tasoitus ja pohjustus kuuluvat '
@@ -155,9 +155,9 @@ SITES = {
        'mutta kestävyys ratkaistaan pohjassa.',
   hero='piha-hero', band='piha-band',
   band_text='Painunut kiveys on aina pohjatyön virhe, ei kiven.',
-  facts=[('Pohjatyö','Routimaton pohja tehdään ennen näkyvää pintaa.'),
-         ('Vedet ohjataan','Sadevedet ja salaojat suunnitellaan osana pihaa.'),
-         ('Kirjallinen hinta','Sovitusta työstä annetaan kirjallinen hinta.')],
+  facts=[('Pohjatyö','Routimaton pohja ratkaisee, kestääkö kiveys.'),
+         ('Vedenpoisto','Salaojat ja kaadot ovat osa pihan rakennetta.'),
+         ('Toimialue','<span class="tbd">toimialue</span>')],
   services=[
     ('Kiveykset ja laatoitukset','piha-kivi',
      'Pihakiveykset, kulkuväylät ja autopaikat. Kiveyksen kestävyys ratkaistaan '

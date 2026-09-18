@@ -10,7 +10,7 @@ from palette import build as build_palette, verify
 from sites import SITES
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-BASE = os.path.join(ROOT, 'talosaaro')      # tyyli-, fontti- ja skriptipohja
+BASE = os.path.join(ROOT, 'talosaari')      # tyyli-, fontti- ja skriptipohja
 
 NAV = [('index.html', 'Etusivu'), ('palvelut.html', 'Palvelut'),
        ('yritys.html', 'Yritys'), ('yhteystiedot.html', 'Yhteystiedot')]
@@ -570,7 +570,7 @@ TOKEN_ORDER = ['dark-1', 'dark-2', 'light-1', 'light-2', 'accent', 'accent-dark'
                'muted', 'muted-on-dark', 'line-light', 'white']
 
 def write_css(cfg, pal, out):
-    """Pohjatyyli talosaarosta, sävy käännettynä.
+    """Pohjatyyli talosaaresta, sävy käännettynä.
 
     Tokenien vaihto ei riitä: pohjatyylissä on myös kovakoodattuja värejä
     gradienteissa ja varjoissa. Siksi jokainen väri luetaan, ja jos sen

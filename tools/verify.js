@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
-const SITES=['talosaaro','sahko','maalaus','piha'];
-const PAGES={talosaaro:['index','palvelut','kohteet','yritys','yhteystiedot'],
+const SITES=['talosaari','sahko','maalaus','piha'];
+const PAGES={talosaari:['index','palvelut','kohteet','yritys','yhteystiedot'],
  sahko:['index','palvelut','yritys','yhteystiedot'],
  maalaus:['index','palvelut','yritys','yhteystiedot'],
  piha:['index','palvelut','yritys','yhteystiedot']};

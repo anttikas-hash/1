@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Yhden sävyn paletin generaattori + WCAG-tarkistus.
 
-Tuottaa saman 12 tokenin asteikon kuin talosaaro/rrpoy, mutta mistä
+Tuottaa saman 12 tokenin asteikon kuin talosaari/rrpoy, mutta mistä
 tahansa sävykulmasta. Jokainen paletti tarkistetaan ennen käyttöä:
 jos yksikin pari alittaa rajan, generointi kaatuu.
 """
