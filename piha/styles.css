@@ -1,4 +1,4 @@
-/* Rakennus Talosaari Oy — jaettu tyylitiedosto */
+/* Piha- ja maanrakennus — mallisivuston tyylitiedosto */
 
 /* Inter, itse isännöity — ei ulkoisia riippuvuuksia */
 @font-face {
@@ -45,19 +45,19 @@
 }
 
 :root {
-  --dark-1: #14322A;
-  --dark-2: #1D4437;
-  --light-1: #F3FBF6;
-  --light-2: #E7F3EC;
-  --accent: #2F7355;
-  --accent-dark: #1F5039;
-  --accent-light: #8CC9A9;
-  --accent-brass: #4E9C75;
-  --accent-rust: #275E45;
-  --accent-ember: #368463;
-  --muted: #275E45;
-  --muted-on-dark: #B2D9C4;
-  --line-light: #CCE6D7;
+  --dark-1: #242A1E;
+  --dark-2: #313829;
+  --light-1: #F7F9F5;
+  --light-2: #EEF2E8;
+  --accent: #587433;
+  --accent-dark: #415724;
+  --accent-light: #A3C07C;
+  --accent-brass: #708F48;
+  --accent-rust: #4B622C;
+  --accent-ember: #607D3B;
+  --muted: #4B622C;
+  --muted-on-dark: #BACDA2;
+  --line-light: #DBE5CF;
   --line-dark: rgba(255, 255, 255, 0.08);
   --white: #FFFFFF;
 
@@ -200,8 +200,8 @@ section {
   position: relative;
   background-color: var(--light-1);
   background-image:
-    radial-gradient(ellipse 55% 60% at 88% 8%, rgba(47, 115, 85, 0.10), transparent 65%),
-    radial-gradient(ellipse 45% 50% at 4% 95%, rgba(78, 156, 117, 0.12), transparent 70%);
+    radial-gradient(ellipse 55% 60% at 88% 8%, rgba(87, 115, 47, 0.10), transparent 65%),
+    radial-gradient(ellipse 45% 50% at 4% 95%, rgba(129, 156, 78, 0.12), transparent 70%);
   color: var(--dark-1);
 }
 
@@ -209,8 +209,8 @@ section {
   position: relative;
   background-color: var(--light-2);
   background-image:
-    radial-gradient(ellipse 50% 55% at 10% 10%, rgba(39, 94, 69, 0.10), transparent 66%),
-    radial-gradient(ellipse 55% 60% at 92% 90%, rgba(47, 115, 85, 0.10), transparent 68%);
+    radial-gradient(ellipse 50% 55% at 10% 10%, rgba(72, 94, 39, 0.10), transparent 66%),
+    radial-gradient(ellipse 55% 60% at 92% 90%, rgba(87, 115, 47, 0.10), transparent 68%);
   color: var(--dark-1);
 }
 
@@ -269,8 +269,8 @@ section {
   z-index: -2;
   background: radial-gradient(
     ellipse 60% 50% at 78% 22%,
-    rgba(47, 115, 85, 0.18),
-    rgba(47, 115, 85, 0.08) 45%,
+    rgba(87, 115, 47, 0.18),
+    rgba(87, 115, 47, 0.08) 45%,
     transparent 70%
   );
   filter: blur(30px);
@@ -429,7 +429,7 @@ section {
 
 .header-actions .btn-primary:hover,
 .header-actions .btn-primary:focus-visible {
-  background-color: #1D4437;
+  background-color: #30441D;
 }
 
 @media (max-width: 420px) {
@@ -520,7 +520,7 @@ section {
   min-height: 640px;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(96deg, rgba(20, 50, 42, 0.96) 20%, rgba(20, 50, 42, 0.72) 46%, rgba(20, 50, 42, 0.24) 76%, rgba(20, 50, 42, 0.44) 100%),
+    linear-gradient(96deg, rgba(32, 50, 20, 0.96) 20%, rgba(32, 50, 20, 0.72) 46%, rgba(32, 50, 20, 0.24) 76%, rgba(32, 50, 20, 0.44) 100%),
     url("images/hero.jpg");
   background-size: cover;
   background-position: center right;
@@ -529,7 +529,7 @@ section {
 @media (max-width: 820px) {
   .hero {
     background-image:
-      linear-gradient(to bottom, rgba(20, 50, 42, 0.90) 30%, rgba(20, 50, 42, 0.80) 100%),
+      linear-gradient(to bottom, rgba(32, 50, 20, 0.90) 30%, rgba(32, 50, 20, 0.80) 100%),
       url("images/hero.jpg");
     background-position: center;
   }
@@ -562,7 +562,7 @@ section {
 }
 
 .hero-support {
-  color: rgba(243, 251, 246, 0.78);
+  color: rgba(249, 251, 243, 0.78);
   font-size: 18px;
   max-width: 56ch;
 }
@@ -584,7 +584,7 @@ section {
   position: relative;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(100deg, rgba(20, 50, 42, 0.95) 24%, rgba(20, 50, 42, 0.70) 50%, rgba(20, 50, 42, 0.30) 100%),
+    linear-gradient(100deg, rgba(32, 50, 20, 0.95) 24%, rgba(32, 50, 20, 0.70) 50%, rgba(32, 50, 20, 0.30) 100%),
     var(--page-img, none);
   background-size: cover;
   background-position: center right;
@@ -600,7 +600,7 @@ section {
 @media (max-width: 820px) {
   .page-header {
     background-image:
-      linear-gradient(to bottom, rgba(20, 50, 42, 0.92), rgba(20, 50, 42, 0.84)),
+      linear-gradient(to bottom, rgba(32, 50, 20, 0.92), rgba(32, 50, 20, 0.84)),
       var(--page-img, none);
     background-position: center;
   }
@@ -615,7 +615,7 @@ section {
   align-items: center;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(94deg, rgba(20, 50, 42, 0.94) 18%, rgba(20, 50, 42, 0.66) 48%, rgba(20, 50, 42, 0.22) 100%),
+    linear-gradient(94deg, rgba(32, 50, 20, 0.94) 18%, rgba(32, 50, 20, 0.66) 48%, rgba(32, 50, 20, 0.22) 100%),
     var(--band-img, none);
   background-size: cover;
   background-position: center;
@@ -626,7 +626,7 @@ section {
 }
 
 .image-band p {
-  color: rgba(243, 251, 246, 0.82);
+  color: rgba(249, 251, 243, 0.82);
   max-width: 48ch;
   margin-top: 16px;
 }
@@ -634,7 +634,7 @@ section {
 @media (max-width: 820px) {
   .image-band {
     background-image:
-      linear-gradient(to bottom, rgba(20, 50, 42, 0.92), rgba(20, 50, 42, 0.86)),
+      linear-gradient(to bottom, rgba(32, 50, 20, 0.92), rgba(32, 50, 20, 0.86)),
       var(--band-img, none);
   }
 }
@@ -933,7 +933,7 @@ section {
   font-family: var(--font-base);
   border: 1px solid var(--line-light);
   border-radius: 4px;
-  background-color: #F7FCF9;
+  background-color: #FBFCF7;
   color: var(--dark-1);
 }
 
@@ -1003,7 +1003,7 @@ section {
 .footer-col p,
 .footer-col address {
   font-style: normal;
-  color: rgba(243, 251, 246, 0.8);
+  color: rgba(249, 251, 243, 0.8);
   margin: 0 0 8px 0;
 }
 
@@ -1016,7 +1016,7 @@ section {
 }
 
 .footer-col a {
-  color: rgba(243, 251, 246, 0.85);
+  color: rgba(249, 251, 243, 0.85);
   text-decoration: none;
 }
 
@@ -1255,13 +1255,13 @@ section {
 
 .card:hover {
   transform: translateY(-3px);
-  background-color: rgba(47, 115, 85, 0.05);
+  background-color: rgba(87, 115, 47, 0.05);
 }
 
 /* Kuparihehku tummien osioiden yläreunaan */
 .built-surface {
   border-top: 1px solid transparent;
-  border-image: linear-gradient(90deg, transparent, rgba(47, 115, 85, 0.55), transparent) 1;
+  border-image: linear-gradient(90deg, transparent, rgba(87, 115, 47, 0.55), transparent) 1;
 }
 
 /* ---------- Scroll-reveal (progressiivinen parannus) ---------- */
@@ -1314,7 +1314,7 @@ section {
 .canvas {
   padding: 0;
   background-color: var(--light-1);
-  background-image: linear-gradient(178deg, #F7FCF9 0%, var(--light-1) 26%, #DCEFE4 74%, var(--light-2) 100%);
+  background-image: linear-gradient(178deg, #FBFCF7 0%, var(--light-1) 26%, #EAEFDC 74%, var(--light-2) 100%);
   color: var(--dark-1);
 }
 
@@ -1356,7 +1356,7 @@ section {
   border: 1px solid var(--line-light);
   border-radius: 4px;
   padding: 8px 28px;
-  box-shadow: 0 -1px 0 rgba(47, 115, 85, 0.5);
+  box-shadow: 0 -1px 0 rgba(87, 115, 47, 0.5);
 }
 
 .facts-overlap .facts {
@@ -1378,7 +1378,7 @@ section {
   color: var(--light-1);
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(100deg, rgba(20, 50, 42, 0.95) 24%, rgba(20, 50, 42, 0.74) 52%, rgba(20, 50, 42, 0.34) 100%),
+    linear-gradient(100deg, rgba(32, 50, 20, 0.95) 24%, rgba(32, 50, 20, 0.74) 52%, rgba(32, 50, 20, 0.34) 100%),
     var(--panel-img, none);
   background-size: cover;
   background-position: center right;
@@ -1394,7 +1394,7 @@ section {
 @media (max-width: 820px) {
   .panel-dark {
     background-image:
-      linear-gradient(to bottom, rgba(20, 50, 42, 0.93), rgba(20, 50, 42, 0.86)),
+      linear-gradient(to bottom, rgba(32, 50, 20, 0.93), rgba(32, 50, 20, 0.86)),
       var(--panel-img, none);
   }
 }
@@ -1404,7 +1404,7 @@ section {
 }
 
 .panel-dark p {
-  color: rgba(243, 251, 246, 0.86);
+  color: rgba(249, 251, 243, 0.86);
 }
 
 .panel-dark .plain-list li {
@@ -1428,8 +1428,8 @@ section {
   overflow: hidden;
   background-color: var(--dark-1);
   background-image:
-    radial-gradient(ellipse 60% 60% at 84% 18%, rgba(78, 156, 117, 0.14), transparent 66%),
-    linear-gradient(165deg, #22523C 0%, #14322A 62%);
+    radial-gradient(ellipse 60% 60% at 84% 18%, rgba(129, 156, 78, 0.14), transparent 66%),
+    linear-gradient(165deg, #3F5222 0%, #203214 62%);
   padding: 56px 0 72px;
 }
 
@@ -1468,7 +1468,7 @@ section {
 }
 
 .hero-split .hero-support {
-  color: rgba(243, 251, 246, 0.82);
+  color: rgba(249, 251, 243, 0.82);
   font-size: 18px;
   max-width: 52ch;
 }
@@ -1480,9 +1480,9 @@ section {
   align-items: center;
   gap: 10px;
   padding: 8px 16px;
-  border: 1px solid rgba(78, 156, 117, 0.45);
+  border: 1px solid rgba(129, 156, 78, 0.45);
   border-radius: 999px;
-  background-color: rgba(47, 115, 85, 0.12);
+  background-color: rgba(87, 115, 47, 0.12);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1501,8 +1501,8 @@ section {
 .on-light-2 .chip,
 .canvas .chip {
   color: var(--accent-dark);
-  border-color: rgba(31, 80, 57, 0.4);
-  background-color: rgba(47, 115, 85, 0.08);
+  border-color: rgba(61, 80, 31, 0.4);
+  background-color: rgba(87, 115, 47, 0.08);
 }
 
 /* Aksenttiviiva otsikon alla */
@@ -1526,7 +1526,7 @@ section {
 .collage img {
   position: absolute;
   border-radius: 6px;
-  border: 1px solid rgba(78, 156, 117, 0.3);
+  border: 1px solid rgba(129, 156, 78, 0.3);
   object-fit: cover;
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5);
 }
@@ -1602,19 +1602,19 @@ section {
 
 .action-primary:hover,
 .action-primary:focus-visible {
-  background-color: #1D4437;
-  border-color: #1D4437;
+  background-color: #30441D;
+  border-color: #30441D;
 }
 
 .action:hover,
 .action:focus-visible {
-  background-color: rgba(47, 115, 85, 0.16);
+  background-color: rgba(87, 115, 47, 0.16);
 }
 
 .canvas .action,
 .on-light .action {
   color: var(--accent-dark);
-  border-color: rgba(31, 80, 57, 0.55);
+  border-color: rgba(61, 80, 31, 0.55);
 }
 
 .canvas .action-primary,
@@ -1627,7 +1627,7 @@ section {
 
 .breadcrumb {
   font-size: 14px;
-  color: rgba(243, 251, 246, 0.65);
+  color: rgba(249, 251, 243, 0.65);
   margin-bottom: 20px;
 }
 
@@ -1640,7 +1640,7 @@ section {
 }
 
 .breadcrumb a {
-  color: rgba(243, 251, 246, 0.78);
+  color: rgba(249, 251, 243, 0.78);
   text-decoration: none;
 }
 
@@ -1799,7 +1799,7 @@ html {
 
 .site-header.is-scrolled {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
-  border-bottom-color: rgba(47, 115, 85, 0.45);
+  border-bottom-color: rgba(87, 115, 47, 0.45);
 }
 
 /* Liike: lyhyempi kesto ja pehmeä ylitys (design-systeemin Standard-taso) */
@@ -1848,7 +1848,7 @@ html {
 .form-field.has-error textarea {
   border-color: var(--accent-dark);
   border-width: 2px;
-  background-color: #EAF5EE;
+  background-color: #F3F5EA;
 }
 
 .required-mark {
@@ -1930,9 +1930,9 @@ html {
   align-items: center;
   gap: 12px;
   padding: 10px 18px;
-  border: 1px solid rgba(78, 156, 117, 0.42);
+  border: 1px solid rgba(129, 156, 78, 0.42);
   border-radius: 6px;
-  background-color: rgba(47, 115, 85, 0.12);
+  background-color: rgba(87, 115, 47, 0.12);
 }
 
 .rating-score {
@@ -1944,8 +1944,8 @@ html {
 
 .canvas .rating,
 .on-light .rating {
-  border-color: rgba(31, 80, 57, 0.34);
-  background-color: rgba(47, 115, 85, 0.07);
+  border-color: rgba(61, 80, 31, 0.34);
+  background-color: rgba(87, 115, 47, 0.07);
 }
 
 .canvas .rating-score,
@@ -1961,7 +1961,7 @@ html {
 
 .rating-meta {
   font-size: 14px;
-  color: rgba(243, 251, 246, 0.78);
+  color: rgba(249, 251, 243, 0.78);
   line-height: 1.3;
 }
 
@@ -2005,7 +2005,7 @@ html {
 }
 
 .panel-dark .hours .time {
-  color: rgba(243, 251, 246, 0.72);
+  color: rgba(249, 251, 243, 0.72);
 }
 
 .panel-dark .hours .closed {
@@ -2015,7 +2015,7 @@ html {
 .footer-hours {
   list-style: none;
   font-size: 15px;
-  color: rgba(243, 251, 246, 0.8);
+  color: rgba(249, 251, 243, 0.8);
 }
 
 .footer-hours li {
@@ -2348,8 +2348,8 @@ html {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(200deg, rgba(140, 201, 169, 0.10), transparent 52%),
-              linear-gradient(0deg, rgba(14, 36, 30, 0.45), transparent 58%);
+  background: linear-gradient(200deg, rgba(181, 201, 140, 0.10), transparent 52%),
+              linear-gradient(0deg, rgba(23, 36, 14, 0.45), transparent 58%);
 }
 
 .media-4-3 { aspect-ratio: 4 / 3; }
@@ -2374,7 +2374,7 @@ html {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(20, 50, 42, 0.92) 0%, rgba(20, 50, 42, 0.30) 46%, rgba(20, 50, 42, 0.72) 100%);
+  background: linear-gradient(90deg, rgba(32, 50, 20, 0.92) 0%, rgba(32, 50, 20, 0.30) 46%, rgba(32, 50, 20, 0.72) 100%);
 }
 
 .image-band .band-text {
@@ -2424,7 +2424,7 @@ a.card:hover,
 a.card:focus-visible {
   transform: translateY(-4px);
   border-color: var(--accent);
-  box-shadow: 0 20px 42px rgba(20, 50, 42, 0.16);
+  box-shadow: 0 20px 42px rgba(32, 50, 20, 0.16);
 }
 
 a.card:hover .card-media img,
@@ -2522,7 +2522,7 @@ a.card:focus-visible .card-link::after {
   display: none;
   gap: 10px;
   padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-  background: rgba(20, 50, 42, 0.97);
+  background: rgba(32, 50, 20, 0.97);
   border-top: 1px solid var(--line-dark);
   backdrop-filter: blur(8px);
 }
@@ -2580,11 +2580,11 @@ a.card:focus-visible .card-link::after {
 /* Reunavalo erottaa kuvan tummasta taustasta */
 .hero-figure .media {
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42),
-              0 0 0 1px rgba(140, 201, 169, 0.22);
+              0 0 0 1px rgba(181, 201, 140, 0.22);
 }
 
 .hero-figure .media::after {
-  background: linear-gradient(210deg, rgba(140, 201, 169, 0.12), transparent 50%);
+  background: linear-gradient(210deg, rgba(181, 201, 140, 0.12), transparent 50%);
 }
 
 /* ---------- Korjaus: faktarivin ylivuoto kapeilla näytöillä ---------- */
@@ -2772,3 +2772,19 @@ h1, h2, h3 { overflow-wrap: normal; }
     margin-inline: -6px;
   }
 }
+
+
+/* ---------- Mallisivuston tunniste ---------- */
+
+.demo-bar {
+  position: relative;
+  z-index: 70;
+  background: #FFF4CE;
+  color: #5A4300;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px 24px;
+  text-align: center;
+  border-bottom: 1px solid #E0C36B;
+}
+.demo-bar strong { color: #3D2E00; }

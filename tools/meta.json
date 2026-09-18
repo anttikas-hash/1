@@ -1,0 +1,194 @@
+[
+ {
+  "slug": "sahko",
+  "name": "Sähköasennus",
+  "hue": 38,
+  "palette": {
+   "dark-1": "#28251F",
+   "dark-2": "#36322A",
+   "light-1": "#FAF8F4",
+   "light-2": "#F4EFE7",
+   "accent": "#84632A",
+   "accent-dark": "#5F461B",
+   "muted": "#6C5123",
+   "accent-rust": "#6C5123",
+   "accent-light": "#CCAA70",
+   "muted-on-dark": "#D5BF9A",
+   "accent-brass": "#9B783B",
+   "accent-ember": "#8E6C32",
+   "line-light": "#E8DECC",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "sahko-hero",
+    1280,
+    900
+   ],
+   [
+    "sahko-band",
+    1600,
+    560
+   ],
+   [
+    "sahko-keskus",
+    1000,
+    760
+   ],
+   [
+    "sahko-kaapeli",
+    1000,
+    760
+   ],
+   [
+    "sahko-valo",
+    1000,
+    760
+   ],
+   [
+    "sahko-mittaus",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#36322A",
+   "sky2": "#28251F",
+   "sky3": "#28251F",
+   "a": "#84632A",
+   "ad": "#5F461B",
+   "ab": "#9B783B",
+   "al": "#CCAA70",
+   "d2": "#36322A",
+   "gnd": "#28251F"
+  }
+ },
+ {
+  "slug": "maalaus",
+  "name": "Maalausliike",
+  "hue": 8,
+  "palette": {
+   "dark-1": "#28201F",
+   "dark-2": "#362C2B",
+   "light-1": "#F9F5F4",
+   "light-2": "#F3E9E8",
+   "accent": "#7D3B31",
+   "accent-dark": "#5A2821",
+   "muted": "#663129",
+   "accent-rust": "#663129",
+   "accent-light": "#C7877D",
+   "muted-on-dark": "#D0A69F",
+   "accent-brass": "#A7584C",
+   "accent-ember": "#AB5548",
+   "line-light": "#E6D1CE",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "maalaus-hero",
+    1280,
+    900
+   ],
+   [
+    "maalaus-band",
+    1600,
+    560
+   ],
+   [
+    "maalaus-sisa",
+    1000,
+    760
+   ],
+   [
+    "maalaus-ulko",
+    1000,
+    760
+   ],
+   [
+    "maalaus-tasoite",
+    1000,
+    760
+   ],
+   [
+    "maalaus-suoja",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#362C2B",
+   "sky2": "#28201F",
+   "sky3": "#28201F",
+   "a": "#7D3B31",
+   "ad": "#5A2821",
+   "ab": "#A7584C",
+   "al": "#C7877D",
+   "d2": "#362C2B",
+   "gnd": "#28201F"
+  }
+ },
+ {
+  "slug": "piha",
+  "name": "Piha- ja maanrakennus",
+  "hue": 86,
+  "palette": {
+   "dark-1": "#242A1E",
+   "dark-2": "#313829",
+   "light-1": "#F7F9F5",
+   "light-2": "#EEF2E8",
+   "accent": "#587433",
+   "accent-dark": "#415724",
+   "muted": "#4B622C",
+   "accent-rust": "#4B622C",
+   "accent-light": "#A3C07C",
+   "muted-on-dark": "#BACDA2",
+   "accent-brass": "#708F48",
+   "accent-ember": "#607D3B",
+   "line-light": "#DBE5CF",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "piha-hero",
+    1280,
+    900
+   ],
+   [
+    "piha-band",
+    1600,
+    560
+   ],
+   [
+    "piha-kivi",
+    1000,
+    760
+   ],
+   [
+    "piha-terassi",
+    1000,
+    760
+   ],
+   [
+    "piha-salaoja",
+    1000,
+    760
+   ],
+   [
+    "piha-maansiirto",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#313829",
+   "sky2": "#242A1E",
+   "sky3": "#242A1E",
+   "a": "#587433",
+   "ad": "#415724",
+   "ab": "#708F48",
+   "al": "#A3C07C",
+   "d2": "#313829",
+   "gnd": "#242A1E"
+  }
+ }
+]
