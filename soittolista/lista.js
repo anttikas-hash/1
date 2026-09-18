@@ -38,52 +38,52 @@
   // ja merkitse sivuston tila. Parhaat liidit, joilla sivustoa ei ole
   // lainkaan, eivat nay hakukoneessa lainkaan.
   var SEED = [
-    ['Rakennusliike Koskialho Oy', 'Rakennusliike'],
-    ['Rakennus Jope Oy', 'Rakennusliike'],
-    ['RS-Rakennus Oy', 'Rakennusliike'],
-    ['Lännen Rakennus & Saneeraus Oy', 'Rakennusliike'],
-    ['Rakennuspalvelu Mäkelä', 'Rakennusliike'],
-    ['Veljet Mäkilä Oy', 'Rakennusliike'],
-    ['Rakennus Lappi Oy', 'Rakennusliike'],
-    ['RHA-Saneeraus', 'Rakennusliike'],
-    ['Rakennus & Saneeraus R. Vainio', 'Rakennusliike'],
-    ['Rakennus & Saneeraus M. Lomppi', 'Rakennusliike'],
-    ['Rakennus Talosaari Oy', 'Rakennusliike'],
-    ['LVT-Putki Oy', 'LVI / putki'],
-    ['Putkimies Rauma', 'LVI / putki'],
-    ['Jussin LVI-Asennus Oy', 'LVI / putki'],
-    ['Eurajoen Kiinteistöpalvelu Oy', 'Kiinteistöhuolto'],
-    ['Rauman Rauta- ja Putkirakenne Oy', 'LVI / putki'],
-    ['Sähkö-Rauma Oy', 'Sähköasennus'],
-    ['Vaski Sähkö Oy', 'Sähköasennus'],
-    ['Sähkömies Rauma', 'Sähköasennus'],
-    ['RA-Sähkö Ky', 'Sähköasennus'],
-    ['Sähköurakointi Simpanen Oy', 'Sähköasennus'],
-    ['Narvi-Sähkö Ky', 'Sähköasennus'],
-    ['Sorcolor', 'Maalaus'],
-    ['Maalausliike Heino Oy', 'Maalaus'],
-    ['Rauman Maalaus- ja Tapetointipalvelu Oy', 'Maalaus'],
-    ['Rauman Maalaus ja Rakennushuolto Oy', 'Maalaus'],
-    ['Maalaus Rantamäki Oy', 'Maalaus'],
-    ['Valttikate', 'Katto'],
-    ['Solarkatto', 'Katto'],
-    ['Suomen Vahva-Katto Oy', 'Katto'],
-    ['Remontti Rauma', 'Katto'],
-    ['Auto-Korsman', 'Autokorjaamo'],
-    ['Autokorjaamo Karla', 'Autokorjaamo'],
-    ['Rauman Laatuhuolto Oy', 'Autokorjaamo'],
-    ['Rauman Siivouspalvelu Oy', 'Siivous'],
-    ['TiiMa Oy', 'Siivous'],
-    ['Yrityspalvelut Rauma', 'Siivous'],
-    ['DiakonSiivous', 'Siivous'],
-    ['Apukuski Rauma', 'Kuljetus ja muutot'],
-    ['JMS-Kuljetus Oy', 'Kuljetus ja muutot'],
-    ['Nosto-Elonen Oy', 'Piha ja maanrakennus'],
-    ['Maarakennus Lammila Oy', 'Piha ja maanrakennus'],
-    ['Rauman Kaivin Oy', 'Piha ja maanrakennus'],
-    ['Rauman Rakennushuolto', 'Kiinteistöhuolto'],
-    ['Arola Group Oy', 'Piha ja maanrakennus'],
-    ['Lassi Jalonen', 'Piha ja maanrakennus'],
+    ['Rakennusliike Koskialho Oy', 'Rakennusliike', 'rakennus-koskialho.fi'],
+    ['Rakennus Jope Oy', 'Rakennusliike', 'rakennusjope.com'],
+    ['RS-Rakennus Oy', 'Rakennusliike', 'rs-rakennus.com'],
+    ['Lännen Rakennus & Saneeraus Oy', 'Rakennusliike', 'rakennus-saneeraus.fi'],
+    ['Rakennuspalvelu Mäkelä', 'Rakennusliike', 'rakennuspalvelumakela.fi'],
+    ['Veljet Mäkilä Oy', 'Rakennusliike', 'makila.com'],
+    ['Rakennus Lappi Oy', 'Rakennusliike', ''],
+    ['RHA-Saneeraus', 'Rakennusliike', ''],
+    ['Rakennus & Saneeraus R. Vainio', 'Rakennusliike', ''],
+    ['Rakennus & Saneeraus M. Lomppi', 'Rakennusliike', ''],
+    ['Rakennus Talosaari Oy', 'Rakennusliike', '', 'none'],
+    ['LVT-Putki Oy', 'LVI / putki', 'lvt-putki.fi'],
+    ['Putkimies Rauma', 'LVI / putki', 'putkimiesrauma.fi'],
+    ['Jussin LVI-Asennus Oy', 'LVI / putki', 'jussinlviasennus.fi'],
+    ['Eurajoen Kiinteistöpalvelu Oy', 'Kiinteistöhuolto', 'ekp.fi'],
+    ['Rauman Rauta- ja Putkirakenne Oy', 'LVI / putki', 'rrpoy.com'],
+    ['Sähkö-Rauma Oy', 'Sähköasennus', 'sahko-rauma.fi'],
+    ['Vaski Sähkö Oy', 'Sähköasennus', 'vaskisahko.fi'],
+    ['Sähkömies Rauma', 'Sähköasennus', 'sahkomiesrauma.fi'],
+    ['RA-Sähkö Ky', 'Sähköasennus', 'ra-sahko.fi'],
+    ['Sähköurakointi Simpanen Oy', 'Sähköasennus', 'sahkourakointisimpanen.fi'],
+    ['Narvi-Sähkö Ky', 'Sähköasennus', 'narvi-sahko.fi'],
+    ['Sorcolor', 'Maalaus', 'sorcolor.fi'],
+    ['Maalausliike Heino Oy', 'Maalaus', 'maalausliikeheino.fi'],
+    ['Rauman Maalaus- ja Tapetointipalvelu Oy', 'Maalaus', 'rmtp.fi'],
+    ['Rauman Maalaus ja Rakennushuolto Oy', 'Maalaus', 'raumanmaalaus.fi'],
+    ['Maalaus Rantamäki Oy', 'Maalaus', 'maalausrantamaki.com'],
+    ['Valttikate', 'Katto', 'valttikate.fi'],
+    ['Solarkatto', 'Katto', 'solarkatto.fi'],
+    ['Suomen Vahva-Katto Oy', 'Katto', 'vahvakatto.fi'],
+    ['Remontti Rauma', 'Katto', 'remonttirauma.fi'],
+    ['Auto-Korsman', 'Autokorjaamo', 'auto-korsman.fi'],
+    ['Autokorjaamo Karla', 'Autokorjaamo', 'karla.fi'],
+    ['Rauman Laatuhuolto Oy', 'Autokorjaamo', 'raumanlaatuhuolto.com'],
+    ['Rauman Siivouspalvelu Oy', 'Siivous', 'raumansiivouspalvelu.fi'],
+    ['TiiMa Oy', 'Siivous', 'siivousrauma.fi'],
+    ['Yrityspalvelut Rauma', 'Siivous', 'yrityspalvelutrauma.fi'],
+    ['DiakonSiivous', 'Siivous', ''],
+    ['Apukuski Rauma', 'Kuljetus ja muutot', 'apukuski.com'],
+    ['JMS-Kuljetus Oy', 'Kuljetus ja muutot', 'jms-kuljetus.fi'],
+    ['Nosto-Elonen Oy', 'Piha ja maanrakennus', 'nostoelonen.fi'],
+    ['Maarakennus Lammila Oy', 'Piha ja maanrakennus', 'maarakennuslammila.fi'],
+    ['Rauman Kaivin Oy', 'Piha ja maanrakennus', 'raumankaivin.fi'],
+    ['Rauman Rakennushuolto', 'Kiinteistöhuolto', 'raumanrakennushuolto.fi'],
+    ['Arola Group Oy', 'Piha ja maanrakennus', 'arolagroup.fi'],
+    ['Lassi Jalonen', 'Piha ja maanrakennus', 'lassijalonen.com'],
   ];
 
   var rows = [];
@@ -250,6 +250,10 @@
         (href
           ? '<a class="tel" href="' + href + '">' + esc(r.phone) + '</a>'
           : '<span class="nophone">Numero puuttuu</span>') +
+        (r.url
+          ? '<p class="site"><a href="https://' + esc(r.url) + '" target="_blank" rel="noopener">'
+            + esc(r.url) + ' &nearr;</a><span class="site-tip">avaa: numero ja sivuston kunto</span></p>'
+          : '') +
         (r.note ? '<p class="note">' + esc(r.note) + '</p>' : '') +
         '<div class="set">' +
           '<label class="sr-only" for="s-' + esc(r.id) + '">Tila</label>' +
@@ -390,8 +394,12 @@
         if (have[s[0].toLowerCase()]) return;
         rows.push({
           id: String(Date.now()) + String(Math.floor(Math.random() * 100000)),
-          name: s[0], phone: '', trade: s[1],
-          web: 'unknown', note: '', status: 'new'
+          name: s[0], phone: '', trade: s[1], url: s[2] || '',
+          // Osoitteen puuttuminen ei tarkoita, ettei sivustoa ole —
+          // se tarkoittaa etten loytanyt sita. Tila jaa tarkistettavaksi.
+          web: s[3] || 'unknown',
+          note: (s[2] || s[3]) ? '' : 'sivustoa ei löytynyt haulla',
+          status: 'new'
         });
         added++;
       });

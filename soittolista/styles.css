@@ -231,3 +231,17 @@ input:focus, select:focus { border-color: var(--accent); }
 /* Painikerivi kietoutuu kapealla naytolla */
 .tools { flex-wrap: wrap; }
 .bar { row-gap: 10px; }
+
+/* Verkkosivulinkki: sita kautta saa puhelinnumeron ja nakee samalla,
+   toimiiko sivusto — eli molemmat asiat, jotka rivista puuttuvat. */
+.site { margin: 8px 0 0; }
+.site a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  overflow-wrap: anywhere;
+}
+.site-tip { display: block; font-size: 13px; color: var(--ink-2); margin-top: -6px; }
