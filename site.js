@@ -125,3 +125,23 @@
     }
   });
 })();
+
+/* Kartta ladataan vasta kun kayttaja pyytaa sita. */
+(function () {
+  var box = document.querySelector('.map-ask');
+  if (!box) return;
+  var go = box.querySelector('.map-go');
+  if (!go) return;
+
+  go.addEventListener('click', function () {
+    var src = box.getAttribute('data-map');
+    if (!src) return;
+    var f = document.createElement('iframe');
+    f.src = src;
+    f.title = 'Kartta: Kairakatu 12, 26100 Rauma';
+    f.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    f.setAttribute('loading', 'lazy');
+    box.parentNode.replaceChild(f, box);
+    f.focus();
+  });
+})();

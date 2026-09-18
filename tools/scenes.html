@@ -1,4 +1,10 @@
-<!DOCTYPE html><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Kuvitusten piirtoalusta — rakennustyökalu</title>
 <style>
  body{margin:0;background:#000}
  .scene{position:relative;overflow:hidden}
@@ -6,6 +12,9 @@
  .grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
 </style>
+</head>
+<body>
+<h1 class="sr">Kuvitusten piirtoalusta</h1>
 <script>
 let P={};
 const rnd=(s)=>{let x=Math.sin(s)*10000;return x-Math.floor(x);};
@@ -387,3 +396,5 @@ window.__render=(pal,list)=>{
   document.body.appendChild(d);}
  return true;};
 </script>
+</body>
+</html>

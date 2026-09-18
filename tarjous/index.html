@@ -385,7 +385,15 @@
     gap: 6px;
   }
 
-  .contact a { color: #9CC6E4; }
+  /* Nama ovat sivun tarkeimmat linkit: asiakas painaa niita puhelimella.
+     Vahimmaiskoko 44x44 ja oma rivi, jottei viereiseen osu vahingossa. */
+  .contact a {
+    color: #9CC6E4;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-block: 10px;
+  }
 
   .contact-name {
     font-family: var(--display);

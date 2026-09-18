@@ -2228,3 +2228,86 @@ html {
 
 .phases h3 { font-size: 17px; margin-bottom: 4px; }
 .phases p { margin: 0; color: var(--muted); font-size: 16px; }
+
+/* =========================================================
+   Korjaukset — alkuperainen sivusto ei saanut naita, kun ne
+   tehtiin myohemmin talosaari-pohjaan.
+   ========================================================= */
+
+/* Vaiheen numero oli korostusvarilla tummalla pinnalla: kontrasti 2.43,
+   ja suuri teksti vaatii 3.0. Messinkisavy antaa 4.37. */
+.step-number { color: var(--accent-brass); }
+
+/* Kosketuskohteiden vahimmaiskoko 44x44 */
+
+.menu-toggle { min-width: 44px; min-height: 44px; }
+.brand { min-height: 44px; }
+
+.site-footer a,
+.footer-contact a,
+.contact-value,
+.breadcrumb a {
+  display: inline-block;
+  padding-block: 4px;
+}
+
+.faq summary,
+.help summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .breadcrumb { margin-bottom: 12px; }
+  .breadcrumb ol { gap: 4px; }
+  .breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 6px;
+    margin-inline: -6px;
+  }
+  .site-footer .footer-col ul a,
+  .footer-contact a,
+  .mobile-nav a,
+  .contact-value {
+    display: block;
+    min-height: 44px;
+    line-height: 36px;
+    padding-block: 4px;
+  }
+  .footer-contact li { align-items: center; }
+}
+
+/* CTA-kaistan yhteystietolinkit: riittava kosketusalue myos silloin,
+   kun linkki on rivitekstina eika listassa. */
+.cta-meta a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 12px;
+}
+
+/* ---------- Kartta ladataan vasta pyydettaessa ----------
+   Upotettu kartta avaa yhteyden Googleen heti sivun latauksessa, jolloin
+   jokainen kavija nakyy Googlelle. Nyt sivu ei lataa mitaan ulkopuolelta
+   ennen kuin kayttaja itse painaa nappia. Ilman JavaScriptia jaljelle jaa
+   osoite ja tavallinen linkki, joten sivu toimii silloinkin. */
+
+.map-ask {
+  padding: 40px 28px;
+  text-align: center;
+  background: var(--light-2);
+}
+.map-lead { font-size: 19px; margin: 0 0 8px; }
+.map-note { font-size: 15px; color: var(--muted); max-width: 46ch; margin: 0 auto 20px; }
+.map-alt { margin: 16px 0 0; font-size: 15px; }
+.map-alt a {
+  color: var(--accent-dark);
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 10px;
+}
+.no-js .map-go { display: none; }
