@@ -229,6 +229,7 @@
 
   @media (min-width: 680px) {
     .options { grid-template-columns: 1fr 1fr; }
+    .options.one { grid-template-columns: 1fr; max-width: 420px; }
   }
 
   .option {
@@ -578,29 +579,19 @@
 <section>
   <div class="wrap">
     <p class="eyebrow">Hinta</p>
-    <h2>Kaksi vaihtoehtoa</h2>
-    <p>Sisältö on molemmissa sama. Ero on siinä, maksatko rakentamisen erikseen — ja siitä seuraa myös se, sitooko sopimus.</p>
+    <h2>Yksi hinta, kerran</h2>
+    <p>Haemme ensimmäisiä asiakkaita kokemuksen vuoksi. Siksi hinta on näin matala — ja siksi kuukausimaksua ei ole lainkaan.</p>
 
-    <div class="options">
+    <div class="options one">
       <div class="option">
-        <p class="option-label">Vaihtoehto 1</p>
-        <h3>Kertamaksu ja ylläpito</h3>
-        <div class="price-line"><span class="big">890 &euro;</span> <span class="unit">kerran, alv 0 %</span></div>
-        <div class="price-line"><span class="big">39 &euro;</span> <span class="unit">/ kk, alv 0 %</span></div>
-        <p class="option-note">Maksat tehdyn työn kerran. Kuukausimaksu kattaa palvelintilan ja ylläpidon. <strong>Ei määräaikaa</strong> — voit lopettaa milloin tahansa.</p>
-        <p class="option-total">Ensimmäinen vuosi 1 358 &euro; · sen jälkeen 468 &euro;/vuosi</p>
-      </div>
-      <div class="option">
-        <p class="option-label">Vaihtoehto 2</p>
-        <h3>Pelkkä kuukausimaksu</h3>
-        <div class="price-line"><span class="big">99 &euro;</span> <span class="unit">/ kk, alv 0 %</span></div>
-        <div class="price-line"><span class="big">0 &euro;</span> <span class="unit">aloitusmaksu</span></div>
-        <p class="option-note">Et maksa rakentamisesta erikseen. Koska työ tehdään etukäteen, sopimus on <strong>12 kuukautta</strong>, minkä jälkeen se jatkuu kuukausi kerrallaan.</p>
-        <p class="option-total">Ensimmäinen vuosi 1 188 &euro; · sen jälkeen 1 188 &euro;/vuosi</p>
+        <h3>Kertamaksu</h3>
+        <div class="price-line"><span class="big">500 &euro;</span> <span class="unit">kerran, alv 0 %</span></div>
+        <p class="option-note">Maksat valmiista sivustosta yhden kerran. <strong>Ei kuukausimaksua, ei määräaikaa, ei jatkuvaa laskua.</strong> Palvelintila ja ylläpito sisältyvät hintaan.</p>
+        <p class="option-total">Ensimmäinen vuosi 500 &euro; · sen jälkeen 0 &euro;/vuosi</p>
       </div>
     </div>
 
-    <p class="price-sub">Hinnat ovat arvonlisäverottomia. Myyjä on alv-rekisterin ulkopuolinen vähäisen liiketoiminnan harjoittaja, joten laskulla ei ole arvonlisäveroa eikä sitä voi vähentää.</p>
+    <p class="price-sub">Hinta on arvonlisäveroton. Myyjä on alv-rekisterin ulkopuolinen vähäisen liiketoiminnan harjoittaja, joten laskulla ei ole arvonlisäveroa eikä sitä voi vähentää.</p>
   </div>
 </section>
 

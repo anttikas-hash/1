@@ -229,6 +229,7 @@
 
   @media (min-width: 680px) {
     .options { grid-template-columns: 1fr 1fr; }
+    .options.one { grid-template-columns: 1fr; max-width: 420px; }
   }
 
   .option {
@@ -470,39 +471,26 @@
 <section>
   <div class="wrap">
     <p class="eyebrow">Hinta</p>
-    <h2>Kaksi vaihtoehtoa</h2>
-    <p>Sisältö on molemmissa sama. Ero on siinä, maksatteko rakentamisen erikseen vai ette — ja siitä seuraa myös se, sitooko sopimus.</p>
+    <h2>Yksi hinta, kerran</h2>
+    <p>Haemme ensimmäisiä asiakkaita kokemuksen vuoksi. Siksi hinta on näin matala — ja siksi kuukausimaksua ei ole lainkaan.</p>
 
-    <div class="options">
-
+    <div class="options one">
       <div class="option">
-        <p class="option-label">Vaihtoehto 1</p>
-        <h3>Kertamaksu ja ylläpito</h3>
-        <div class="price-line"><span class="big">890 €</span> <span class="unit">kerran, alv 0 %</span></div>
-        <div class="price-line"><span class="big">39 €</span> <span class="unit">/ kk, alv 0 %</span></div>
-        <p class="option-note">Maksatte tehdyn työn kerran. Sen jälkeen kuukausimaksu kattaa palvelintilan ja ylläpidon. <strong>Ei määräaikaa</strong> — voitte lopettaa milloin tahansa.</p>
-        <p class="option-total">Ensimmäinen vuosi 1 358 € · sen jälkeen 468 €/vuosi</p>
+        <h3>Kertamaksu</h3>
+        <div class="price-line"><span class="big">500 €</span> <span class="unit">kerran, alv 0 %</span></div>
+        <p class="option-note">Maksatte valmiista sivustosta yhden kerran. <strong>Ei kuukausimaksua, ei määräaikaa, ei jatkuvaa laskua.</strong> Palvelintila ja ylläpito sisältyvät hintaan.</p>
+        <p class="option-total">Ensimmäinen vuosi 500 € · sen jälkeen 0 €/vuosi</p>
       </div>
-
-      <div class="option">
-        <p class="option-label">Vaihtoehto 2</p>
-        <h3>Pelkkä kuukausimaksu</h3>
-        <div class="price-line"><span class="big">99 €</span> <span class="unit">/ kk, alv 0 %</span></div>
-        <div class="price-line"><span class="big">0 €</span> <span class="unit">aloitusmaksu</span></div>
-        <p class="option-note">Ette maksa rakentamisesta erikseen. Koska työ on jo tehty, sopimus on <strong>12 kuukautta</strong>, minkä jälkeen se jatkuu kuukausi kerrallaan.</p>
-        <p class="option-total">Ensimmäinen vuosi 1 188 € · sen jälkeen 1 188 €/vuosi</p>
-      </div>
-
     </div>
 
-    <p class="price-sub" style="margin:0 0 28px;">Hinnat ovat arvonlisäverottomia. Myyjä on alv-rekisterin ulkopuolinen vähäisen liiketoiminnan harjoittaja, joten laskulla ei ole arvonlisäveroa eikä sitä voi vähentää.</p>
+    <p class="price-sub" style="margin:0 0 28px;">Hinta on arvonlisäveroton. Myyjä on alv-rekisterin ulkopuolinen vähäisen liiketoiminnan harjoittaja, joten laskulla ei ole arvonlisäveroa eikä sitä voi vähentää.</p>
 
     <div class="price-block">
-      <p class="price-sub" style="margin:0 0 20px;"><strong>Molempiin sisältyy:</strong></p>
+      <p class="price-sub" style="margin:0 0 20px;"><strong>Hintaan sisältyy:</strong></p>
       <ul class="includes">
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Valmis kuusisivuinen sivusto</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Palvelintila, verkkotunnuksen hallinta ja suojattu yhteys</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Sisältömuutokset — soitatte tai laitatte viestin, minä teen</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Sisältömuutokset 12 kuukauden ajan — soitto tai viesti riittää</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Tarjouspyyntölomake ja sen ylläpito</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Varmuuskopiot ja tietoturvapäivitykset</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12 6 6L20 6"/></svg><span>Kävijäseuranta ja raportti siitä, mistä yhteydenotot tulevat</span></li>
