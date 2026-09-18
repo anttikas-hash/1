@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fi" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soittolista</title>
+<meta name="description" content="Soittolistan hallinta: prioriteetti, tila ja seuranta.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css">
+<script>var r=document.documentElement;r.classList.remove('no-js');r.classList.add('js');</script>
+</head>
+<body>
+
+<a class="skip-link" href="#lista">Siirry listaan</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      <span>Soittolista</span>
+    </div>
+    <button class="btn btn-ghost" type="button" id="toggle-add" aria-expanded="false" aria-controls="add">+ Lisää</button>
+  </div>
+</header>
+
+<main>
+<section class="wrap">
+
+  <div class="tally" id="tally" aria-live="polite">
+    <div class="t"><b id="n-total">0</b><span>listalla</span></div>
+    <div class="t"><b id="n-todo">0</b><span>soittamatta</span></div>
+    <div class="t"><b id="n-sent">0</b><span>linkki lähetetty</span></div>
+    <div class="t"><b id="n-yes">0</b><span>kiinnostunut</span></div>
+  </div>
+
+  <form id="add" hidden>
+    <h2>Lisää yritys</h2>
+    <div class="row">
+      <div class="f">
+        <label for="f-name">Nimi <span class="req">*</span></label>
+        <input id="f-name" name="name" type="text" required autocomplete="off">
+      </div>
+      <div class="f">
+        <label for="f-phone">Puhelin</label>
+        <input id="f-phone" name="phone" type="tel" autocomplete="off" inputmode="tel">
+      </div>
+    </div>
+    <div class="row">
+      <div class="f">
+        <label for="f-trade">Toimiala</label>
+        <input id="f-trade" name="trade" type="text" list="trades" autocomplete="off">
+        <datalist id="trades">
+          <option>Rakennusliike</option><option>LVI / putki</option><option>Sähköasennus</option>
+          <option>Maalaus</option><option>Katto</option><option>Lattia ja laatoitus</option>
+          <option>Piha ja maanrakennus</option><option>Kiinteistöhuolto</option><option>Siivous</option>
+          <option>Kuljetus ja muutot</option><option>Autokorjaamo</option><option>Parturi-kampaamo</option>
+          <option>Ravintola</option>
+        </datalist>
+      </div>
+      <div class="f">
+        <label for="f-web">Sivuston tila</label>
+        <select id="f-web" name="web">
+          <option value="none">Ei sivustoa — paras</option>
+          <option value="broken">Rikki tai ei aukea</option>
+          <option value="old">Vanha, ei toimi puhelimella</option>
+          <option value="unknown" selected>En ole tarkistanut</option>
+          <option value="ok">Kunnossa — heikko liidi</option>
+        </select>
+      </div>
+    </div>
+    <div class="f">
+      <label for="f-note">Muistiinpano</label>
+      <input id="f-note" name="note" type="text" autocomplete="off" placeholder="esim. kenen kanssa puhuttava">
+    </div>
+    <div class="actions">
+      <button class="btn btn-primary" type="submit">Lisää listalle</button>
+      <button class="btn btn-ghost" type="button" id="cancel-add">Peruuta</button>
+    </div>
+  </form>
+
+  <div class="bar">
+    <div class="chips" role="group" aria-label="Suodata">
+      <button class="chip is-on" type="button" data-filter="all">Kaikki</button>
+      <button class="chip" type="button" data-filter="todo">Soittamatta</button>
+      <button class="chip" type="button" data-filter="follow">Seuranta</button>
+      <button class="chip" type="button" data-filter="yes">Kiinnostuneet</button>
+    </div>
+    <div class="tools">
+      <button class="btn btn-ghost" type="button" id="seed">Lisää valmiit</button>
+      <button class="btn btn-ghost" type="button" id="export">Kopioi lista</button>
+      <button class="btn btn-ghost" type="button" id="wipe">Tyhjennä</button>
+    </div>
+  </div>
+
+  <p class="say" id="say" role="status"></p>
+
+  <div id="lista" class="lista"></div>
+
+  <noscript>
+    <p class="notice">Tämä työkalu tarvitsee JavaScriptin. Ilman sitä käytä paperia: nimi, puhelin, onko sivustoa, toimiiko se.</p>
+  </noscript>
+
+  <details class="help">
+    <summary>Miten lista tehdään</summary>
+    <ol>
+      <li>Avaa <b>fonecta.fi</b> tai <b>luettelomedia.com</b>.</li>
+      <li>Hae toimiala ja paikkakunta, esimerkiksi <em>rakennusliike Rauma</em>.</li>
+      <li>Katso jokaisesta: onko kotisivulinkkiä? Jos <b>ei ole</b>, se on paras liidi.</li>
+      <li>Jos linkki on, klikkaa se auki puhelimella. Aukeaako? Näkyykö numero heti? Jos ei, se on toiseksi paras.</li>
+      <li>Lisää tähän listaan. Lista järjestyy automaattisesti niin, että parhaat ovat ylimpänä.</li>
+    </ol>
+    <p>Tavoite on 50 riviä. Älä jää kiinni siihen, ettei jotakin tietoa löydy — nimi ja numero riittävät.</p>
+    <p><b>Lisää valmiit</b> -painike tuo 16 raumalaista yritystä, joiden nimet on jo
+    tarkistettu. Puhelinnumerot puuttuvat: ne haetaan Fonectasta. Numeroa ei saa
+    arvata — väärään numeroon soittaminen on pahempi virhe kuin tyhjä rivi.</p>
+  </details>
+
+</section>
+</main>
+
+<script src="lista.js" defer></script>
+</body>
+</html>

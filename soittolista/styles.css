@@ -1,0 +1,209 @@
+/* Soittolista — työkalu, ei markkinointisivu.
+   Suunniteltu puhelimella käytettäväksi soittamisen aikana:
+   tiheä, nopea, isot kosketuskohteet. */
+
+@font-face { font-family:"Inter"; font-style:normal; font-weight:400; font-display:swap;
+  src:url("fonts/inter-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family:"Inter"; font-style:normal; font-weight:600; font-display:swap;
+  src:url("fonts/inter-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family:"Inter"; font-style:normal; font-weight:700; font-display:swap;
+  src:url("fonts/inter-latin-700-normal.woff2") format("woff2"); }
+
+:root {
+  --bg: #F4F7FA;
+  --card: #FFFFFF;
+  --ink: #12283D;
+  --ink-2: #3D5A73;
+  --line: #D3E0EB;
+  --line-2: #E7EFF5;
+  --accent: #1F5C8B;
+  --accent-dark: #16456A;
+  --accent-soft: #E8F1F8;
+  --on-accent: #FFFFFF;
+
+  --p1: #A8362B;   /* ei sivustoa */
+  --p2: #9A5B12;   /* rikki */
+  --p3: #6A6012;   /* vanha */
+  --p4: #3D5A73;   /* tuntematon */
+  --p5: #5A6B78;   /* kunnossa */
+
+  --ok: #1B6B45;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --r: 10px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  padding-bottom: 40px;
+}
+
+h1, h2 { margin: 0; line-height: 1.2; letter-spacing: -0.01em; }
+h2 { font-size: 18px; font-weight: 700; }
+p { margin: 0 0 12px; }
+
+.wrap { width: 100%; max-width: 860px; margin: 0 auto; padding: 0 16px; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0; background: var(--accent);
+  color: var(--on-accent); padding: 12px 18px; z-index: 100; border-radius: 0 0 var(--r) 0;
+}
+.skip-link:focus { left: 0; }
+
+/* ---------- Yläpalkki ---------- */
+
+.top {
+  position: sticky; top: 0; z-index: 30;
+  background: var(--ink); color: #EAF2F8;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.top-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; }
+.brand svg { width: 20px; height: 20px; color: #8FC0E0; flex: 0 0 20px; }
+
+/* ---------- Painikkeet ---------- */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 10px 18px; border-radius: 8px;
+  font: inherit; font-weight: 700; font-size: 15px;
+  border: 1px solid transparent; cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease;
+}
+.btn-primary { background: var(--accent); color: var(--on-accent); }
+.btn-primary:hover, .btn-primary:focus-visible { background: var(--accent-dark); }
+.btn-ghost { background: transparent; border-color: currentColor; color: inherit; }
+.top .btn-ghost { color: #CFE3F2; }
+.top .btn-ghost:hover { background: rgba(255,255,255,.1); }
+.bar .btn-ghost { color: var(--accent-dark); }
+.bar .btn-ghost:hover { background: var(--accent-soft); }
+
+/* ---------- Laskurit ---------- */
+
+.tally { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 18px 0; }
+@media (min-width: 620px) { .tally { grid-template-columns: repeat(4, 1fr); } }
+.t {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 12px 14px;
+}
+.t b { display: block; font-size: 26px; line-height: 1.1; font-weight: 700; font-variant-numeric: tabular-nums; }
+.t span { font-size: 13px; color: var(--ink-2); }
+
+/* ---------- Lomake ---------- */
+
+form {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 18px; margin: 0 0 18px;
+}
+form h2 { margin-bottom: 14px; }
+.row { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 560px) { .row { grid-template-columns: 1fr 1fr; } }
+.f { margin-bottom: 12px; }
+.f label { display: block; font-size: 13px; font-weight: 700; color: var(--ink-2); margin-bottom: 5px; }
+.req { color: var(--p1); }
+input, select {
+  width: 100%; min-height: 44px; padding: 10px 12px;
+  font: inherit; font-size: 16px; color: var(--ink);
+  background: #fff; border: 1px solid var(--line); border-radius: 8px;
+}
+input:focus, select:focus { border-color: var(--accent); }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ---------- Suodatinpalkki ---------- */
+
+.bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin: 0 0 14px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip {
+  min-height: 44px; padding: 8px 14px; border-radius: 999px;
+  font: inherit; font-size: 14px; font-weight: 700;
+  background: var(--card); color: var(--ink-2);
+  border: 1px solid var(--line); cursor: pointer;
+}
+.chip.is-on { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.tools { display: flex; gap: 8px; }
+
+.say { min-height: 22px; font-size: 14px; color: var(--ok); font-weight: 600; margin: 0 0 10px; }
+
+/* ---------- Lista ---------- */
+
+.lista { display: grid; gap: 10px; }
+
+.item {
+  background: var(--card); border: 1px solid var(--line);
+  border-left: 5px solid var(--p4); border-radius: var(--r);
+  padding: 14px 14px 12px;
+}
+.item[data-web="none"]    { border-left-color: var(--p1); }
+.item[data-web="broken"]  { border-left-color: var(--p2); }
+.item[data-web="old"]     { border-left-color: var(--p3); }
+.item[data-web="unknown"] { border-left-color: var(--p4); }
+.item[data-web="ok"]      { border-left-color: var(--p5); }
+.item[data-status="yes"]  { background: #F2FAF6; }
+.item[data-status="no"]   { opacity: .58; }
+
+.head { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.name { font-weight: 700; font-size: 17px; }
+.trade { font-size: 13px; color: var(--ink-2); }
+
+.tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0 0; }
+.tag {
+  font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent-dark);
+}
+.tag.web-none   { background: #FBEBE8; color: #86281F; }
+.tag.web-broken { background: #FBF0DF; color: #7A470C; }
+.tag.web-old    { background: #F7F5DC; color: #544B0D; }
+.tag.web-ok     { background: #EEF1F3; color: #47555F; }
+
+.tel {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: 19px; font-weight: 700; color: var(--accent-dark);
+  text-decoration: none; letter-spacing: .01em; margin-top: 6px;
+}
+.tel:hover { text-decoration: underline; }
+.nophone { font-size: 14px; color: var(--ink-2); min-height: 44px; display: inline-flex; align-items: center; }
+
+.note { font-size: 14px; color: var(--ink-2); margin: 6px 0 0; }
+
+.set { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line-2); }
+.set select { min-height: 44px; width: auto; flex: 1 1 150px; font-size: 14px; }
+.kill {
+  min-height: 44px; min-width: 44px; padding: 0 12px;
+  background: transparent; border: 1px solid var(--line); border-radius: 8px;
+  color: var(--ink-2); font: inherit; font-size: 14px; cursor: pointer;
+}
+.kill:hover { border-color: var(--p1); color: var(--p1); }
+
+.empty { text-align: center; padding: 40px 20px; color: var(--ink-2); }
+.notice { background: #FFF4CE; border: 1px solid #E0C36B; color: #5A4300; padding: 14px 16px; border-radius: var(--r); }
+
+/* ---------- Ohje ---------- */
+
+.help { margin: 22px 0 0; background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 4px 16px; }
+.help summary { min-height: 44px; display: flex; align-items: center; font-weight: 700; cursor: pointer; }
+.help ol { margin: 0 0 12px; padding-left: 22px; }
+.help li { margin-bottom: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+@media print {
+  .top, .bar, .actions, form, .help, .set, .kill, .skip-link { display: none !important; }
+  body { background: #fff; padding: 0; }
+  .item { break-inside: avoid; border: 1px solid #999; }
+}
+
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
