@@ -50,6 +50,12 @@
   var rows = [];
   var filter = 'all';
 
+  // Jarjestys lukitaan, kun se on kerran laskettu. Soittaessa edetaan
+  // ylhaalta alas, ja jos lista jarjestyisi uudelleen joka tilanvaihdon
+  // jalkeen, juuri merkitty rivi hyppaisi pois sormen alta ja paikka
+  // katoaisi. Uudelleenjarjestys tapahtuu vain pyydettaessa.
+  var order = null;
+
   var $ = function (s) { return document.querySelector(s); };
   var list = $('#lista');
   var say = $('#say');
@@ -97,7 +103,27 @@
     return 'tel:' + d;
   }
 
+  function resort() {
+    order = ranked().map(function (r) { return r.id; });
+  }
+
   function sorted() {
+    // Tyhja taulukko on totuusarvoltaan tosi, joten pelkka !order jattaisi
+    // tyhjalla listalla lasketun jarjestyksen voimaan — ja ensimmaiset
+    // rivit tulisivat lisaysjarjestyksessa paremmuusjarjestyksen sijaan.
+    if (!order || !order.length) resort();
+    var pos = {};
+    order.forEach(function (id, i) { pos[id] = i; });
+    var known = [], fresh = [];
+    rows.forEach(function (r) {
+      (pos[r.id] === undefined ? fresh : known).push(r);
+    });
+    known.sort(function (a, b) { return pos[a.id] - pos[b.id]; });
+    // Uudet rivit tulevat karkeen, jotta ne eivat katoa listan hantaan.
+    return fresh.concat(known);
+  }
+
+  function ranked() {
     return rows.slice().sort(function (a, b) {
       var sa = STATUS_RANK[a.status] != null ? STATUS_RANK[a.status] : 3;
       var sb = STATUS_RANK[b.status] != null ? STATUS_RANK[b.status] : 3;
@@ -107,6 +133,13 @@
       if (wa !== wb) return wa - wb;
       return a.name.localeCompare(b.name, 'fi');
     });
+  }
+
+  function pending() {
+    // Montako riviä olisi eri paikassa, jos lista järjestettäisiin nyt
+    var now = sorted().map(function (r) { return r.id; }).join(',');
+    var next = ranked().map(function (r) { return r.id; }).join(',');
+    return now !== next;
   }
 
   function keep(r) {
@@ -147,6 +180,11 @@
 
   function render() {
     counts();
+    var btn = $('#resort');
+    if (btn) {
+      var need = rows.length > 1 && pending();
+      btn.hidden = !need;
+    }
     var shown = sorted().filter(keep);
 
     if (!rows.length) {
@@ -259,9 +297,19 @@
     });
   });
 
+  var resortBtn = $('#resort');
+  if (resortBtn) {
+    resortBtn.addEventListener('click', function () {
+      resort();
+      render();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      tell('Lista järjestetty: parhaat liidit ylimpänä.');
+    });
+  }
+
   $('#export').addEventListener('click', function () {
     if (!rows.length) { tell('Lista on tyhjä.'); return; }
-    var txt = sorted().map(function (r) {
+    var txt = ranked().map(function (r) {
       var w = WEB[r.web] || WEB.unknown;
       return [r.name, r.phone || '-', r.trade || '-', w.label, STATUS[r.status] || '', r.note || '']
         .join('\t');

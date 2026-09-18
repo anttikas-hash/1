@@ -149,7 +149,15 @@ input:focus, select:focus { border-color: var(--accent); }
 .item[data-web="unknown"] { border-left-color: var(--p4); }
 .item[data-web="ok"]      { border-left-color: var(--p5); }
 .item[data-status="yes"]  { background: #F2FAF6; }
-.item[data-status="no"]   { opacity: .58; }
+/* "Ei kiinnosta" merkitaan taustavarilla, ei lapinakyvyydella.
+   Lapinakyvyys pudotti tekstin kontrastin 2.74:aan, mika on
+   lukukelvoton — ja rivi pitaa pystya lukemaan viela silloinkin,
+   kun siihen palataan kuukauden paasta. Tila kay ilmi merkinnasta. */
+.item[data-status="no"] {
+  background: #EDF1F4;
+  border-left-color: #8C99A4;
+}
+.item[data-status="no"] .name { font-weight: 600; }
 
 .head { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; flex-wrap: wrap; }
 .name { font-weight: 700; font-size: 17px; }
@@ -208,3 +216,18 @@ input:focus, select:focus { border-color: var(--accent); }
   position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* ---------- Pitkat suomalaiset yhdyssanat ----------
+   Yritysnimet ovat usein yhta pitkaa sanaa, joka ei katkea itsestaan.
+   Ilman tata yksi nimi levittaa koko sivun leveammaksi kuin naytto. */
+
+.name, .trade, .note, .say, .empty, .tel {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.item, .lista, .t, .bar { min-width: 0; }
+
+/* Painikerivi kietoutuu kapealla naytolla */
+.tools { flex-wrap: wrap; }
+.bar { row-gap: 10px; }
