@@ -1457,10 +1457,10 @@ section {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent-light);
+  /* --accent-light jai tummalla herolla 4.43 (vaaditaan 4.5). */
+  color: var(--muted-on-dark);
   margin-bottom: 24px;
 }
-
 .chip svg {
   width: 16px;
   height: 16px;
@@ -1624,7 +1624,7 @@ section {
 }
 
 .breadcrumb .sep {
-  opacity: 0.5;
+  /* Ei opacitya: se laskisi perityn tekstivarin kontrastia. */
 }
 
 /* ---------- Nostettu sitaatti ---------- */
@@ -2235,8 +2235,14 @@ html {
    ========================================================= */
 
 /* Vaiheen numero oli korostusvarilla tummalla pinnalla: kontrasti 2.43,
-   ja suuri teksti vaatii 3.0. Messinkisavy antaa 4.37. */
-.step-number { color: var(--accent-brass); }
+   ja suuri teksti vaatii 3.0. Messinkisavy korjasi sen, mutta savysiirron
+   jalkeen --accent-brass on vaalea sininen (2.94) — siksi tassa --accent,
+   joka antaa 5.29 vaaleaa pintaa vasten. */
+.step-number { color: var(--accent); }
+
+/* Tummalla paneelilla sama savy jai 2.43 — siella vaalea variantti. */
+.on-dark .step-number,
+.panel-dark .step-number { color: var(--accent-light); }
 
 /* Kosketuskohteiden vahimmaiskoko 44x44 */
 

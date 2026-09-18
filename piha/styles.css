@@ -1487,10 +1487,10 @@ section {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--accent-light);
+  /* --accent-light jai tummalla herolla 4.43 (vaaditaan 4.5). */
+  color: var(--muted-on-dark);
   margin-bottom: 24px;
 }
-
 .chip svg {
   width: 16px;
   height: 16px;
@@ -1654,7 +1654,7 @@ section {
 }
 
 .breadcrumb .sep {
-  opacity: 0.5;
+  /* Ei opacitya: se laskisi perityn tekstivarin kontrastia. */
 }
 
 /* ---------- Nostettu sitaatti ---------- */
@@ -2491,8 +2491,7 @@ a.card:focus-visible .card-link::after {
   font-weight: 600;
   font-size: var(--step-1);
   line-height: 1;
-  color: var(--accent);
-  opacity: 0.55;
+  color: var(--accent-dark);
   margin-bottom: 10px;
   font-variant-numeric: tabular-nums;
 }
