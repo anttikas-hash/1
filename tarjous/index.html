@@ -350,6 +350,10 @@
   }
 
   .close h2 { color: var(--on-deep); }
+  /* Tarkkuus on oltava vähintään yhtä suuri kuin
+     "section > .wrap > p", joka muuten antaa tummalle
+     osiolle vaalean taustan tekstivärin. */
+  section.close > .wrap > p,
   .close p { color: var(--on-deep-2); max-width: 56ch; margin: 16px 0 0; }
 
   .contact {
@@ -519,8 +523,8 @@
     <p>Soittakaa tai laittakaa viestiä, niin käydään sivusto kohta kohdalta. Jos se ei sovi teille, siitä ei koidu kuluja.</p>
     <div class="contact">
       <span class="contact-name">Tuukka Tähtinen</span>
-      <span><!--TUUKAN PUHELIN-->___ ___ ____</span>
-      <span><!--TUUKAN SPOSTI-->_____________</span>
+      <span><a href="tel:+358449826556">044 982 6556</a></span>
+      <span><a href="mailto:tahtituukka@gmail.com">tahtituukka@gmail.com</a></span>
       <span class="contact-name" style="margin-top:14px;">Kasper Anttila</span>
       <span><a href="tel:+358452450005">045 245 0005</a></span>
       <span><a href="mailto:kasper.j.anttila@gmail.com">kasper.j.anttila@gmail.com</a></span>
@@ -530,7 +534,7 @@
 
 <footer class="note">
   <div class="wrap">
-    Myyjä: Tuukka Tähtinen, toiminimi · Y-tunnus: <!--YTUNNUS-->_____________<br>
+    Myyjä: Tuukka Tähtinen · Yritys on perusteilla, ja Y-tunnus toimitetaan ennen sopimuksen allekirjoittamista.<br>
     Sivuston kuvat ovat toistaiseksi vapaasti lisensoituja yleiskuvia, ja ne korvataan yrityksen omilla valokuvilla ennen julkaisua.
   </div>
 </footer>
