@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Kuvitusten piirtoalusta — rakennustyökalu</title>
+<style>
+ body{margin:0;background:#000}
+ .scene{position:relative;overflow:hidden}
+ .scene svg{position:absolute;inset:0;width:100%;height:100%}
+ .grain{position:absolute;inset:0;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+</style>
+</head>
+<body>
+<h1 class="sr">Kuvitusten piirtoalusta</h1>
+<script>
+let P={};
+const rnd=(s)=>{let x=Math.sin(s)*10000;return x-Math.floor(x);};
+function sky(id,w,h){return `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1">
+ <stop offset="0%" stop-color="${P.sky1}"/><stop offset="48%" stop-color="${P.sky2}"/><stop offset="100%" stop-color="${P.sky3}"/>
+ </linearGradient></defs><rect width="${w}" height="${h}" fill="url(#${id})"/>`;}
+function grid(w,h,step,op){let p='';for(let x=0;x<=w;x+=step)p+=`M${x} 0V${h}`;for(let y=0;y<=h;y+=step)p+=`M0 ${y}H${w}`;
+ return `<path d="${p}" stroke="${P.al}" stroke-width="1" opacity="${op}" fill="none"/>`;}
+function glow(w,cx,cy,r){return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${P.ab}" opacity=".12"/>
+ <circle cx="${cx}" cy="${cy}" r="${r*0.56}" fill="${P.al}" opacity=".09"/>`;}
+function ground(w,h,y){return `<rect y="${y}" width="${w}" height="${h-y}" fill="${P.gnd}"/>
+ <rect y="${y-3}" width="${w}" height="3" fill="${P.al}" opacity=".45"/>`;}
+
+const S={};
+
+/* ---------------- SÄHKÖ ---------------- */
+S['sahko-hero']=(w,h)=>{const hz=h*0.80;
+ let poles='';for(let i=0;i<5;i++){const x=120+i*230,py=hz-300-i*8;
+  poles+=`<path d="M${x} ${hz} V${py}" stroke="${P.ab}" stroke-width="9"/>
+   <path d="M${x-52} ${py+26} H${x+52}" stroke="${P.ab}" stroke-width="7"/>
+   <path d="M${x-40} ${py+56} H${x+40}" stroke="${P.ab}" stroke-width="6" opacity=".8"/>
+   <circle cx="${x-52}" cy="${py+26}" r="7" fill="${P.al}"/><circle cx="${x+52}" cy="${py+26}" r="7" fill="${P.al}"/>`;}
+ let wires='';for(let i=0;i<4;i++){const x1=120+i*230,x2=x1+230,y1=hz-300-i*8+26,y2=hz-300-(i+1)*8+26;
+  for(const o of [-52,52]) wires+=`<path d="M${x1+o} ${y1} Q${(x1+x2)/2+o} ${(y1+y2)/2+58} ${x2+o} ${y2}" fill="none" stroke="${P.al}" stroke-width="3.5" opacity=".72"/>`;
+  for(const o of [-40,0,40]) wires+=`<path d="M${x1+o} ${y1+30} Q${(x1+x2)/2+o} ${(y1+y2)/2+92} ${x2+o} ${y2+30}" fill="none" stroke="${P.al}" stroke-width="2.5" opacity=".42"/>`;}
+ let hs='';for(let i=0;i<9;i++){const x=i*150-30,hh=110+Math.floor(rnd(i+3)*130);
+  hs+=`<rect x="${x}" y="${hz-hh}" width="120" height="${hh}" fill="${P.d2}" opacity=".5"/>`;}
+ return sky('eh',w,h)+grid(w,h,64,.05)+glow(w,w*0.80,170,160)+hs+ground(w,h,hz)+wires+poles;};
+
+S['sahko-keskus']=(w,h)=>{const bx=w*0.5-210,by=h*0.5-190;
+ let rows='';for(let r=0;r<3;r++)for(let c=0;c<8;c++){const x=bx+42+c*46,y=by+72+r*86;
+  rows+=`<rect x="${x}" y="${y}" width="34" height="62" rx="4" fill="${P.d2}" stroke="${P.al}" stroke-width="2.2"/>
+   <rect x="${x+9}" y="${y+10}" width="16" height="22" rx="2.5" fill="${P.ab}" opacity="${r===1&&c===3?1:.6}"/>
+   <path d="M${x+6} ${y+46} H${x+28}" stroke="${P.al}" stroke-width="2" opacity=".55"/>`;}
+ return sky('ek',w,h)+grid(w,h,48,.06)+glow(w,w*0.72,150,130)+
+  `<rect x="${bx}" y="${by}" width="420" height="380" rx="10" fill="${P.d2}" opacity=".85"/>
+   <rect x="${bx}" y="${by}" width="420" height="380" rx="10" fill="none" stroke="${P.al}" stroke-width="3.5"/>
+   <path d="M${bx} ${by+44} H${bx+420}" stroke="${P.al}" stroke-width="2.5" opacity=".7"/>
+   <circle cx="${bx+30}" cy="${by+22}" r="8" fill="${P.ab}"/>
+   <path d="M${bx+54} ${by+22} H${bx+180}" stroke="${P.al}" stroke-width="3" opacity=".4"/>`+rows;};
+
+S['sahko-kaapeli']=(w,h)=>{let t='';
+ for(let i=0;i<6;i++){const y=140+i*92;
+  t+=`<path d="M80 ${y} H${w-80}" stroke="${i%2?P.ab:P.a}" stroke-width="${7-i*0.4}" opacity="${.85-i*.08}" stroke-linecap="round"/>`;}
+ let ties='';for(let i=0;i<7;i++){const x=140+i*140;
+  ties+=`<rect x="${x}" y="120" width="16" height="490" rx="6" fill="none" stroke="${P.al}" stroke-width="3" opacity=".5"/>`;}
+ return sky('ec',w,h)+grid(w,h,52,.05)+glow(w,w*0.2,120,120)+ties+t;};
+
+S['sahko-valo']=(w,h)=>{let l='';
+ for(let i=0;i<5;i++){const x=110+i*190;
+  l+=`<path d="M${x-46} 150 H${x+46}" stroke="${P.al}" stroke-width="7" stroke-linecap="round"/>
+   <path d="M${x} 150 V110" stroke="${P.al}" stroke-width="3" opacity=".6"/>
+   <path d="M${x-46} 158 L${x-150} ${h-80} H${x+150} L${x+46} 158 Z" fill="${P.ab}" opacity="${.20-i*0.015}"/>
+   <circle cx="${x}" cy="152" r="11" fill="${P.al}" opacity=".95"/>`;}
+ return sky('ev',w,h)+grid(w,h,56,.05)+l+`<rect y="${h-64}" width="${w}" height="64" fill="${P.gnd}"/>`;};
+
+S['sahko-mittaus']=(w,h)=>{let wave='';const cy=h*0.5;
+ for(let k=0;k<3;k++){let d=`M60 ${cy}`;
+  for(let x=60;x<=w-60;x+=8){const y=cy+Math.sin((x/58)+k*1.1)*(96-k*26);d+=` L${x} ${y.toFixed(1)}`;}
+  wave+=`<path d="${d}" fill="none" stroke="${k?P.a:P.al}" stroke-width="${5-k}" opacity="${.9-k*.3}"/>`;}
+ return sky('em',w,h)+grid(w,h,48,.06)+glow(w,w*0.5,cy,190)+
+  `<path d="M60 ${cy} H${w-60}" stroke="${P.al}" stroke-width="1.6" opacity=".35" stroke-dasharray="7 9"/>`+wave;};
+
+S['sahko-band']=(w,h)=>{const hz=h*0.72;
+ let hs='';for(let i=0;i<12;i++){const x=i*140-30,hh=70+Math.floor(rnd(i+9)*150);
+  hs+=`<rect x="${x}" y="${hz-hh}" width="112" height="${hh}" fill="${i%2?P.d2:P.ad}" opacity=".62" stroke="${P.al}" stroke-width="1.6"/>`;}
+ let p='';for(let i=0;i<5;i++){const x=150+i*330;
+  p+=`<path d="M${x} ${hz} V90" stroke="${P.al}" stroke-width="6" opacity=".85"/>
+   <path d="M${x-44} 112 H${x+44}" stroke="${P.al}" stroke-width="5" opacity=".85"/>`;
+  if(i<4)for(const o of [-44,44])p+=`<path d="M${x+o} 112 Q${x+165+o} 178 ${x+330+o} 112" fill="none" stroke="${P.al}" stroke-width="2.6" opacity=".55"/>`;}
+ return sky('eb',w,h)+grid(w,h,64,.05)+hs+ground(w,h,hz)+p;};
+
+/* ---------------- MAALAUS ---------------- */
+S['maalaus-hero']=(w,h)=>{const sx=w*0.10,sw=w*0.80;
+ let strokes='';for(let i=0;i<6;i++){const y=160+i*88;
+  strokes+=`<rect x="${sx}" y="${y}" width="${sw*(0.42+i*0.11)}" height="64" rx="5" fill="${P.ab}" opacity="${.30+i*.09}"/>`;}
+ const rx=sx+sw*0.44;
+ return sky('mh',w,h)+grid(w,h,64,.05)+glow(w,w*0.80,170,160)+
+  `<rect x="${sx}" y="120" width="${sw}" height="${h*0.66}" rx="8" fill="${P.d2}" opacity=".55" stroke="${P.al}" stroke-width="2.5"/>`+
+  strokes+
+  `<g transform="translate(${rx} 470)">
+    <rect x="-64" y="-22" width="128" height="44" rx="20" fill="${P.a}" stroke="${P.al}" stroke-width="3.5"/>
+    <path d="M64 0 H150" stroke="${P.al}" stroke-width="8" stroke-linecap="round"/>
+    <path d="M150 0 L210 92" stroke="${P.al}" stroke-width="7" stroke-linecap="round"/>
+    <path d="M-64 22 Q0 52 64 22" fill="${P.al}" opacity=".4"/>
+   </g>`+ground(w,h,h*0.86);};
+
+S['maalaus-sisa']=(w,h)=>{let sw='';
+ for(let i=0;i<7;i++){const x=90+i*(w-180)/7;
+  sw+=`<rect x="${x}" y="130" width="${(w-180)/7-14}" height="${h-280}" rx="4" fill="${P.ab}" opacity="${.18+i*.10}"/>`;}
+ return sky('ms',w,h)+grid(w,h,52,.05)+
+  `<path d="M70 110 H${w-70} V${h-110} H70 Z" fill="${P.d2}" opacity=".5" stroke="${P.al}" stroke-width="3"/>`+sw+
+  `<path d="M70 ${h-110} H${w-70}" stroke="${P.al}" stroke-width="5"/>`;};
+
+S['maalaus-ulko']=(w,h)=>{let b='';
+ for(let i=0;i<11;i++){const y=110+i*52;
+  b+=`<rect x="80" y="${y}" width="${w-160}" height="42" rx="3" fill="${i%2?P.ad:P.d2}" opacity=".78" stroke="${P.al}" stroke-width="1.8"/>`;}
+ return sky('mu',w,h)+grid(w,h,56,.05)+glow(w,w*0.78,140,120)+b+
+  `<path d="M80 100 H${w-80}" stroke="${P.al}" stroke-width="5" opacity=".8"/>`;};
+
+S['maalaus-tasoite']=(w,h)=>{
+ let sm='';for(let i=0;i<5;i++){const y=180+i*96;
+  sm+=`<path d="M100 ${y} Q${w*0.4} ${y-42} ${w-140} ${y+16}" fill="none" stroke="${P.ab}" stroke-width="${26-i*3}" opacity="${.30+i*.10}" stroke-linecap="round"/>`;}
+ return sky('mt',w,h)+grid(w,h,48,.06)+sm+
+  `<g transform="translate(${w*0.72} ${h*0.68}) rotate(-24)">
+    <rect x="-90" y="-8" width="180" height="16" rx="4" fill="${P.al}"/>
+    <rect x="-26" y="-40" width="52" height="34" rx="6" fill="${P.a}" stroke="${P.al}" stroke-width="3"/>
+   </g>`;};
+
+S['maalaus-suoja']=(w,h)=>{
+ let tp='';for(let i=0;i<4;i++){const y=150+i*128;
+  tp+=`<rect x="70" y="${y}" width="${w-140}" height="20" rx="3" fill="${P.al}" opacity=".55"/>
+   <rect x="70" y="${y+20}" width="${w-140}" height="88" fill="${P.d2}" opacity=".42"/>`;}
+ return sky('mp',w,h)+grid(w,h,52,.05)+tp;};
+
+S['maalaus-band']=(w,h)=>{let bars='';
+ for(let i=0;i<9;i++){const x=i*(w/9);
+  bars+=`<rect x="${x}" y="0" width="${w/9}" height="${h}" fill="${P.ab}" opacity="${0.08+i*0.055}"/>`;}
+ return sky('mb',w,h)+bars+grid(w,h,64,.05)+
+  `<path d="M0 ${h*0.62} H${w}" stroke="${P.al}" stroke-width="4" opacity=".5"/>`;};
+
+/* ---------------- PIHA ---------------- */
+S['piha-hero']=(w,h)=>{const hz=h*0.40;
+ let pav='';for(let r=0;r<9;r++)for(let c=0;c<16;c++){
+  const sc=1+r*0.17,y=hz+r*(24*sc),x=w/2+(c-8)*(92*sc)+(r%2?46*sc:0);
+  pav+=`<rect x="${x}" y="${y}" width="${84*sc}" height="${20*sc}" rx="3" fill="${r%2?P.ad:P.d2}" opacity="${.5+r*.05}" stroke="${P.al}" stroke-width="1.4"/>`;}
+ let ter='';for(let i=0;i<8;i++)ter+=`<rect x="${w*0.58}" y="${hz-176+i*21}" width="${w*0.40}" height="15" rx="2" fill="${P.a}" opacity="${.45+i*.06}" stroke="${P.al}" stroke-width="1.5"/>`;
+ let fence='';for(let i=0;i<Math.ceil(w/58)+1;i++)fence+=`<rect x="${i*58}" y="${hz-236}" width="26" height="60" rx="4" fill="${P.d2}" opacity=".62" stroke="${P.al}" stroke-width="1.6"/>`;
+ let bush='';for(let i=0;i<9;i++){const x=70+i*(w-140)/8,r=32+((i*37)%26);
+  bush+=`<circle cx="${x}" cy="${hz-186}" r="${r}" fill="${P.ad}" opacity=".7"/>
+   <circle cx="${x-r*0.5}" cy="${hz-176}" r="${r*0.7}" fill="${P.a}" opacity=".45"/>`;}
+ return sky('ph',w,h)+grid(w,h,64,.05)+glow(w,w*0.20,120,150)+fence+bush+
+  `<rect y="${hz}" width="${w}" height="${h-hz}" fill="${P.gnd}"/>`+pav+ter+
+  `<path d="M0 ${hz} H${w}" stroke="${P.al}" stroke-width="3" opacity=".5"/>`;};
+
+S['piha-kivi']=(w,h)=>{let g='';
+ for(let r=0;r<9;r++)for(let c=0;c<9;c++){const x=70+c*((w-140)/9),y=90+r*((h-180)/9);
+  g+=`<rect x="${x}" y="${y}" width="${(w-140)/9-9}" height="${(h-180)/9-9}" rx="3" fill="${(r+c)%2?P.ad:P.d2}" opacity=".8" stroke="${P.al}" stroke-width="1.6"/>`;}
+ return sky('pk',w,h)+grid(w,h,48,.05)+g;};
+
+S['piha-terassi']=(w,h)=>{let d='';
+ for(let i=0;i<13;i++){const y=100+i*44;
+  d+=`<rect x="80" y="${y}" width="${w-160}" height="34" rx="4" fill="${P.a}" opacity="${.42+i*.035}" stroke="${P.al}" stroke-width="1.8"/>`;}
+ return sky('pt',w,h)+grid(w,h,52,.05)+d+
+  `<path d="M80 92 H${w-80}" stroke="${P.al}" stroke-width="5" opacity=".7"/>`;};
+
+S['piha-salaoja']=(w,h)=>{const y0=h*0.36;
+ return sky('po',w,h)+grid(w,h,52,.05)+
+  `<path d="M0 ${y0} Q${w*0.3} ${y0-40} ${w*0.6} ${y0} T${w} ${y0-16} V${h} H0 Z" fill="${P.ad}" opacity=".78"/>
+   <path d="M0 ${y0} Q${w*0.3} ${y0-40} ${w*0.6} ${y0} T${w} ${y0-16}" fill="none" stroke="${P.al}" stroke-width="4"/>
+   <path d="M0 ${y0+120} Q${w*0.35} ${y0+78} ${w*0.65} ${y0+126} T${w} ${y0+104}" fill="none" stroke="${P.ab}" stroke-width="3" opacity=".6"/>`+
+  `<g>${[...Array(10)].map((_,i)=>`<rect x="${60+i*94}" y="${h*0.70}" width="74" height="30" rx="15" fill="${P.a}" opacity=".6" stroke="${P.al}" stroke-width="2.4"/>
+   <path d="M${74+i*94} ${h*0.70} v-10 M${100+i*94} ${h*0.70} v-10" stroke="${P.al}" stroke-width="2.4" opacity=".7"/>`).join('')}</g>`;};
+
+S['piha-maansiirto']=(w,h)=>{const by=h*0.72;
+ return sky('pm',w,h)+grid(w,h,56,.05)+glow(w,w*0.78,130,130)+ground(w,h,by)+
+  `<g transform="translate(${w*0.30} ${by})">
+    <rect x="-130" y="-120" width="210" height="110" rx="12" fill="${P.d2}" stroke="${P.al}" stroke-width="3.5"/>
+    <rect x="-96" y="-102" width="80" height="58" rx="6" fill="${P.ab}" opacity=".6"/>
+    <path d="M80 -84 L250 -196" stroke="${P.al}" stroke-width="13" stroke-linecap="round"/>
+    <path d="M250 -196 L310 -96" stroke="${P.al}" stroke-width="11" stroke-linecap="round"/>
+    <path d="M292 -84 q38 30 12 62 l-72 -16 z" fill="${P.a}" stroke="${P.al}" stroke-width="3.5" stroke-linejoin="round"/>
+    <rect x="-140" y="-14" width="230" height="30" rx="15" fill="${P.ad}" stroke="${P.al}" stroke-width="3"/>
+   </g>`;};
+
+S['piha-band']=(w,h)=>{const hz=h*0.60;
+ let pav='';for(let r=0;r<5;r++)for(let c=0;c<20;c++){const sc=1+r*0.22,y=hz+r*(26*sc),x=(c-2)*(92*sc)+(r%2?46*sc:0);
+  pav+=`<rect x="${x}" y="${y}" width="${84*sc}" height="${20*sc}" rx="3" fill="${r%2?P.ad:P.d2}" opacity="${.5+r*.07}" stroke="${P.al}" stroke-width="1.3"/>`;}
+ return sky('pb',w,h)+grid(w,h,64,.05)+`<rect y="${hz}" width="${w}" height="${h-hz}" fill="${P.gnd}"/>`+pav;};
+
+
+/* ---------------- KATTO ---------------- */
+S['katto-hero']=(w,h)=>{const ry=h*0.30, ey=h*0.70;
+ let tiles='';for(let r=0;r<7;r++)for(let c=0;c<26;c++){
+  const y=ry+18+r*((ey-ry-18)/7), x=c*(w/24)+(r%2?w/48:0);
+  tiles+=`<rect x="${x}" y="${y}" width="${w/24-6}" height="${(ey-ry)/7-7}" rx="4" fill="${r%2?P.ad:P.d2}" opacity="${.55+r*.05}" stroke="${P.al}" stroke-width="1.5"/>`;}
+ return sky('kh',w,h)+grid(w,h,64,.05)+glow(w,w*0.78,150,150)+
+  `<path d="M-20 ${ry} H${w+20}" stroke="${P.al}" stroke-width="6"/>`+tiles+
+  `<path d="M-20 ${ey} H${w+20}" stroke="${P.al}" stroke-width="7"/>
+   <rect x="${w*0.66}" y="${ry-150}" width="98" height="150" rx="5" fill="${P.d2}" stroke="${P.al}" stroke-width="3.5"/>
+   <rect x="${w*0.66-12}" y="${ry-166}" width="122" height="22" rx="5" fill="${P.a}" stroke="${P.al}" stroke-width="3"/>
+   <rect y="${ey}" width="${w}" height="${h-ey}" fill="${P.gnd}"/>
+   <path d="M60 ${ey} V${h-40} M${w-60} ${ey} V${h-40}" stroke="${P.al}" stroke-width="5" opacity=".55"/>`;};
+
+S['katto-tiili']=(w,h)=>{let t='';
+ for(let r=0;r<10;r++)for(let c=0;c<12;c++){const y=70+r*((h-140)/10),x=c*(w/11)+(r%2?w/22:0);
+  t+=`<rect x="${x}" y="${y}" width="${w/11-8}" height="${(h-140)/10-8}" rx="5" fill="${(r+c)%2?P.ad:P.d2}" opacity=".82" stroke="${P.al}" stroke-width="1.6"/>`;}
+ return sky('kt',w,h)+grid(w,h,48,.05)+t;};
+
+S['katto-pelti']=(w,h)=>{let sm='';
+ for(let i=0;i<12;i++){const x=70+i*((w-140)/12);
+  sm+=`<rect x="${x}" y="80" width="${(w-140)/12-10}" height="${h-160}" rx="4" fill="${i%2?P.a:P.d2}" opacity="${.5+((i*7)%5)*.08}" stroke="${P.al}" stroke-width="1.8"/>`;}
+ return sky('kp',w,h)+grid(w,h,52,.05)+sm+
+  `<path d="M60 80 H${w-60} M60 ${h-80} H${w-60}" stroke="${P.al}" stroke-width="5" opacity=".75"/>`;};
+
+S['katto-raystas']=(w,h)=>{const y=h*0.40;
+ return sky('kr',w,h)+grid(w,h,52,.05)+
+  `<path d="M0 ${y-90} L${w} ${y-190}" stroke="${P.al}" stroke-width="8"/>
+   <path d="M0 ${y} H${w*0.82}" stroke="${P.a}" stroke-width="26" stroke-linecap="round"/>
+   <path d="M0 ${y} H${w*0.82}" stroke="${P.al}" stroke-width="3" opacity=".8"/>
+   <path d="M${w*0.80} ${y} V${h-60}" stroke="${P.a}" stroke-width="22" stroke-linecap="round"/>
+   <path d="M${w*0.80} ${y} V${h-60}" stroke="${P.al}" stroke-width="3" opacity=".7"/>
+   <g opacity=".5">${[...Array(7)].map((_,i)=>`<path d="M${90+i*120} ${y-70} V${y-16}" stroke="${P.al}" stroke-width="3"/>`).join('')}</g>
+   <rect y="${h-60}" width="${w}" height="60" fill="${P.gnd}"/>`;};
+
+/* ---------------- LATTIA ---------------- */
+S['lattia-hero']=(w,h)=>{const hz=h*0.34;
+ let pl='';for(let r=0;r<10;r++){const sc=1+r*0.18,y=hz+r*(26*sc);
+  for(let c=0;c<9;c++){const bw=(w/6)*sc,x=(c-1)*bw+(r%2?bw/2:0);
+   pl+=`<rect x="${x}" y="${y}" width="${bw-8}" height="${22*sc}" rx="3" fill="${(r+c)%2?P.ad:P.d2}" opacity="${.5+r*.05}" stroke="${P.al}" stroke-width="1.4"/>`;}}
+ return sky('lh',w,h)+grid(w,h,64,.05)+glow(w,w*0.7,120,140)+
+  `<rect y="${hz}" width="${w}" height="${h-hz}" fill="${P.gnd}"/>`+pl+
+  `<path d="M0 ${hz} H${w}" stroke="${P.al}" stroke-width="4" opacity=".6"/>`;};
+
+S['lattia-laatta']=(w,h)=>{let t='';
+ for(let r=0;r<8;r++)for(let c=0;c<8;c++){const x=70+c*((w-140)/8),y=70+r*((h-140)/8);
+  t+=`<rect x="${x}" y="${y}" width="${(w-140)/8-10}" height="${(h-140)/8-10}" rx="3" fill="${(r+c)%2?P.d2:P.ad}" opacity=".85" stroke="${P.al}" stroke-width="1.8"/>`;}
+ return sky('ll',w,h)+grid(w,h,48,.05)+t;};
+
+/* ---------------- KIINTEISTÖ / SIIVOUS ---------------- */
+S['kiinteisto-hero']=(w,h)=>{const hz=h*0.78;
+ let win='';for(let r=0;r<6;r++)for(let c=0;c<7;c++){
+  win+=`<rect x="${w*0.30+c*58}" y="${hz-420+r*64}" width="42" height="46" rx="4" fill="${P.a}" opacity="${.25+((r*3+c)%5)*.15}" stroke="${P.al}" stroke-width="1.6"/>`;}
+ return sky('ih',w,h)+grid(w,h,64,.05)+glow(w,w*0.20,150,150)+
+  `<rect x="${w*0.26}" y="${hz-450}" width="${w*0.46}" height="450" rx="6" fill="${P.d2}" opacity=".85" stroke="${P.al}" stroke-width="3.5"/>`+win+
+  `<rect x="${w*0.44}" y="${hz-96}" width="76" height="96" rx="4" fill="${P.ad}" stroke="${P.al}" stroke-width="3"/>`+
+  ground(w,h,hz)+
+  `<g transform="translate(${w*0.80} ${hz-150})">
+    <circle r="54" fill="none" stroke="${P.al}" stroke-width="5"/>
+    <path d="M-24 4 l18 18 l34 -38" fill="none" stroke="${P.al}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+   </g>`;};
+
+S['siivous-hero']=(w,h)=>{
+ let bub='';for(let i=0;i<16;i++){const x=90+((i*137)%(w-180)),y=90+((i*211)%(h-260)),r=14+((i*53)%40);
+  bub+=`<circle cx="${x}" cy="${y}" r="${r}" fill="none" stroke="${P.al}" stroke-width="2.4" opacity="${.25+(i%5)*.11}"/>`;}
+ return sky('sh',w,h)+grid(w,h,56,.05)+glow(w,w*0.72,150,150)+bub+
+  `<rect x="70" y="${h*0.62}" width="${w-140}" height="${h*0.24}" rx="8" fill="${P.a}" opacity=".35" stroke="${P.al}" stroke-width="3"/>
+   <path d="M${w*0.22} ${h*0.62} L${w*0.34} ${h*0.20}" stroke="${P.al}" stroke-width="9" stroke-linecap="round"/>
+   <rect x="${w*0.30}" y="${h*0.13}" width="72" height="34" rx="8" fill="${P.a}" stroke="${P.al}" stroke-width="3" transform="rotate(-16 ${w*0.34} ${h*0.16})"/>`;};
+
+/* ---------------- KULJETUS / AUTO ---------------- */
+S['auto-hero']=(w,h)=>{const by=h*0.70;
+ return sky('ah',w,h)+grid(w,h,64,.05)+glow(w,w*0.76,150,150)+ground(w,h,by)+
+  `<g transform="translate(${w*0.5} ${by})">
+    <path d="M-290 0 V-96 h190 l58 -74 h132 V0 Z" fill="${P.d2}" opacity=".9" stroke="${P.al}" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M-92 -96 l52 -66 h96 v66 Z" fill="${P.a}" opacity=".55" stroke="${P.al}" stroke-width="3"/>
+    <circle cx="-180" cy="6" r="48" fill="${P.ad}" stroke="${P.al}" stroke-width="5"/>
+    <circle cx="-180" cy="6" r="18" fill="${P.al}" opacity=".55"/>
+    <circle cx="150" cy="6" r="48" fill="${P.ad}" stroke="${P.al}" stroke-width="5"/>
+    <circle cx="150" cy="6" r="18" fill="${P.al}" opacity=".55"/>
+   </g>
+   <path d="M0 ${by+70} H${w}" stroke="${P.al}" stroke-width="3" stroke-dasharray="46 34" opacity=".5"/>`;};
+
+S['auto-nosturi']=(w,h)=>{const by=h*0.62;
+ return sky('an',w,h)+grid(w,h,52,.06)+
+  `<g transform="translate(${w*0.5} ${by})">
+    <path d="M-250 0 V-70 h150 l50 -56 h120 V0 Z" fill="${P.d2}" opacity=".9" stroke="${P.al}" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="-150" cy="4" r="38" fill="${P.ad}" stroke="${P.al}" stroke-width="4"/>
+    <circle cx="120" cy="4" r="38" fill="${P.ad}" stroke="${P.al}" stroke-width="4"/>
+   </g>
+   <path d="M${w*0.5-280} ${by+56} H${w*0.5+220}" stroke="${P.a}" stroke-width="20" stroke-linecap="round"/>
+   <path d="M${w*0.5-30} ${by+56} V${h-60}" stroke="${P.al}" stroke-width="16"/>
+   <rect x="${w*0.5-140}" y="${h-70}" width="220" height="22" rx="8" fill="${P.ad}" stroke="${P.al}" stroke-width="3"/>`;};
+
+/* ---------------- PALVELUT: KAMPAAMO / RAVINTOLA / HYVINVOINTI ---------------- */
+S['kampaamo-hero']=(w,h)=>{
+ return sky('ch',w,h)+grid(w,h,56,.05)+glow(w,w*0.74,150,150)+
+  `<ellipse cx="${w*0.36}" cy="${h*0.42}" rx="170" ry="210" fill="none" stroke="${P.al}" stroke-width="6"/>
+   <ellipse cx="${w*0.36}" cy="${h*0.42}" rx="140" ry="180" fill="${P.a}" opacity=".24"/>
+   <path d="M${w*0.36} ${h*0.63} V${h-90}" stroke="${P.al}" stroke-width="8"/>
+   <path d="M${w*0.30} ${h-90} H${w*0.42}" stroke="${P.al}" stroke-width="8" stroke-linecap="round"/>
+   <g transform="translate(${w*0.72} ${h*0.44}) rotate(-18)">
+     <circle cx="-26" cy="46" r="20" fill="none" stroke="${P.al}" stroke-width="6"/>
+     <circle cx="26" cy="46" r="20" fill="none" stroke="${P.al}" stroke-width="6"/>
+     <path d="M-18 30 L34 -74 M18 30 L-34 -74" stroke="${P.al}" stroke-width="7" stroke-linecap="round"/>
+   </g>`;};
+
+S['ravintola-hero']=(w,h)=>{
+ return sky('rh',w,h)+grid(w,h,56,.05)+glow(w,w*0.24,140,150)+
+  `<circle cx="${w*0.48}" cy="${h*0.52}" r="200" fill="${P.d2}" opacity=".85" stroke="${P.al}" stroke-width="5"/>
+   <circle cx="${w*0.48}" cy="${h*0.52}" r="146" fill="none" stroke="${P.al}" stroke-width="2.6" opacity=".6"/>
+   <circle cx="${w*0.48}" cy="${h*0.52}" r="92" fill="${P.a}" opacity=".4"/>
+   <g stroke="${P.al}" stroke-width="7" stroke-linecap="round">
+     <path d="M${w*0.20} ${h*0.32} V${h*0.72}"/>
+     <path d="M${w*0.165} ${h*0.32} V${h*0.44} M${w*0.20} ${h*0.32} V${h*0.44} M${w*0.235} ${h*0.32} V${h*0.44}"/>
+     <path d="M${w*0.79} ${h*0.32} V${h*0.72}"/>
+   </g>
+   <path d="M${w*0.755} ${h*0.32} q34 0 34 46 q0 34 -34 34" fill="none" stroke="${P.al}" stroke-width="7" stroke-linecap="round"/>`;};
+
+S['hyvinvointi-hero']=(w,h)=>{
+ let tw='';for(let i=0;i<4;i++)tw+=`<rect x="${w*0.62}" y="${h*0.30+i*34}" width="200" height="24" rx="12" fill="${P.a}" opacity="${.35+i*.13}" stroke="${P.al}" stroke-width="2.4"/>`;
+ return sky('hh',w,h)+grid(w,h,56,.05)+glow(w,w*0.26,150,150)+
+  `<rect x="${w*0.10}" y="${h*0.46}" width="${w*0.44}" height="52" rx="16" fill="${P.d2}" stroke="${P.al}" stroke-width="4"/>
+   <rect x="${w*0.10}" y="${h*0.40}" width="${w*0.14}" height="58" rx="16" fill="${P.a}" opacity=".6" stroke="${P.al}" stroke-width="3"/>
+   <path d="M${w*0.14} ${h*0.52} V${h-70} M${w*0.50} ${h*0.52} V${h-70}" stroke="${P.al}" stroke-width="7"/>`+tw;};
+
+/* ---------------- METALLI ---------------- */
+S['metalli-hero']=(w,h)=>{const by=h*0.66;
+ let sp='';for(let i=0;i<26;i++){const a=(i/26)*Math.PI*1.2+0.6,d=40+((i*61)%150);
+  sp+=`<path d="M${w*0.46} ${by} l${Math.cos(a)*d} ${Math.sin(a)*d*0.7}" stroke="${P.al}" stroke-width="${3-(i%3)}" opacity="${.9-(i%5)*.14}" stroke-linecap="round"/>`;}
+ return sky('mh',w,h)+grid(w,h,60,.05)+glow(w,w*0.46,by-40,170)+
+  `<rect x="90" y="${by}" width="${w-180}" height="26" rx="6" fill="${P.ad}" stroke="${P.al}" stroke-width="3"/>
+   <rect x="${w*0.20}" y="${by-28}" width="${w*0.52}" height="28" rx="4" fill="${P.d2}" stroke="${P.al}" stroke-width="3"/>`+sp+
+  `<g transform="translate(${w*0.62} ${by-150}) rotate(34)">
+     <rect x="-20" y="-96" width="40" height="130" rx="10" fill="${P.d2}" stroke="${P.al}" stroke-width="4"/>
+     <path d="M0 34 V92" stroke="${P.al}" stroke-width="8" stroke-linecap="round"/>
+   </g>
+   <rect y="${h-52}" width="${w}" height="52" fill="${P.gnd}"/>`;};
+
+/* ---------------- YLEISKÄYTTÖ ---------------- */
+S['tyokalut']=(w,h)=>{
+ return sky('tk',w,h)+grid(w,h,48,.06)+
+  `<rect x="80" y="${h*0.26}" width="${w-160}" height="14" rx="7" fill="${P.ad}" stroke="${P.al}" stroke-width="2.4"/>
+   <rect x="80" y="${h*0.62}" width="${w-160}" height="14" rx="7" fill="${P.ad}" stroke="${P.al}" stroke-width="2.4"/>
+   ${[...Array(6)].map((_,i)=>{const x=140+i*((w-280)/5);
+     return `<rect x="${x-16}" y="${h*0.30}" width="32" height="${h*0.28}" rx="8" fill="${i%2?P.a:P.d2}" opacity=".8" stroke="${P.al}" stroke-width="2.4"/>
+             <circle cx="${x}" cy="${h*0.30}" r="13" fill="${P.al}" opacity=".7"/>`;}).join('')}`;};
+
+S['liiketila']=(w,h)=>{const hz=h*0.80;
+ return sky('lt',w,h)+grid(w,h,60,.05)+glow(w,w*0.76,150,140)+
+  `<rect x="${w*0.14}" y="${hz-400}" width="${w*0.72}" height="400" rx="8" fill="${P.d2}" opacity=".88" stroke="${P.al}" stroke-width="4"/>
+   <rect x="${w*0.14}" y="${hz-400}" width="${w*0.72}" height="86" rx="8" fill="${P.a}" opacity=".5" stroke="${P.al}" stroke-width="3"/>
+   ${[...Array(4)].map((_,i)=>`<rect x="${w*0.18+i*(w*0.17)}" y="${hz-274}" width="${w*0.12}" height="170" rx="5" fill="${P.a}" opacity=".3" stroke="${P.al}" stroke-width="2.4"/>`).join('')}
+   <rect x="${w*0.46}" y="${hz-118}" width="${w*0.09}" height="118" rx="4" fill="${P.ad}" stroke="${P.al}" stroke-width="3"/>`+
+  ground(w,h,hz);};
+
+S['kaista']=(w,h)=>{const hz=h*0.70;
+ let hs='';for(let i=0;i<13;i++){const x=i*(w/12)-20,hh=70+((i*83)%160);
+  hs+=`<rect x="${x}" y="${hz-hh}" width="${w/12-14}" height="${hh}" fill="${i%2?P.d2:P.ad}" opacity=".62" stroke="${P.al}" stroke-width="1.6"/>`;}
+ return sky('kb',w,h)+grid(w,h,64,.05)+hs+ground(w,h,hz);};
+
+
+/* ---------------- ABSTRAKTIT (palveluliikkeille) ---------------- */
+S['ruudukko']=(w,h)=>{let g='';
+ for(let r=0;r<5;r++)for(let c=0;c<7;c++){const x=80+c*((w-160)/7),y=90+r*((h-180)/5);
+  g+=`<rect x="${x}" y="${y}" width="${(w-160)/7-14}" height="${(h-180)/5-14}" rx="8" fill="${P.a}" opacity="${.14+((r*7+c*3)%9)*.08}" stroke="${P.al}" stroke-width="2"/>`;}
+ return sky('g1',w,h)+grid(w,h,48,.05)+g;};
+
+S['aallot']=(w,h)=>{let a='';
+ for(let i=0;i<7;i++){const y=110+i*((h-220)/6);let d=`M60 ${y}`;
+  for(let x=60;x<=w-60;x+=10)d+=` L${x} ${(y+Math.sin((x/70)+i*0.8)*(26+i*5)).toFixed(1)}`;
+  a+=`<path d="${d}" fill="none" stroke="${i%2?P.al:P.a}" stroke-width="${6-i*0.5}" opacity="${.85-i*.09}" stroke-linecap="round"/>`;}
+ return sky('g2',w,h)+grid(w,h,52,.05)+glow(w,w*0.74,140,140)+a;};
+
+S['kehat']=(w,h)=>{let c='';
+ for(let i=6;i>=0;i--)c+=`<circle cx="${w*0.5}" cy="${h*0.5}" r="${60+i*46}" fill="none" stroke="${i%2?P.al:P.a}" stroke-width="${5-i*0.4}" opacity="${.78-i*.09}"/>`;
+ return sky('g3',w,h)+grid(w,h,48,.05)+c+
+  `<circle cx="${w*0.5}" cy="${h*0.5}" r="34" fill="${P.a}" opacity=".7" stroke="${P.al}" stroke-width="3"/>`;};
+
+S['pinot']=(w,h)=>{let b='';
+ for(let c=0;c<5;c++){const n=2+((c*3)%4),bw=(w-200)/5;
+  for(let i=0;i<n;i++){const x=90+c*bw,y=h-110-i*72;
+   b+=`<rect x="${x}" y="${y}" width="${bw-26}" height="62" rx="6" fill="${(c+i)%2?P.ad:P.d2}" opacity=".82" stroke="${P.al}" stroke-width="2.2"/>
+       <path d="M${x+14} ${y+31} H${x+bw-40}" stroke="${P.al}" stroke-width="2" opacity=".45"/>`;}}
+ return sky('g4',w,h)+grid(w,h,52,.05)+b+`<path d="M60 ${h-106} H${w-60}" stroke="${P.al}" stroke-width="5"/>`;};
+
+S['kello']=(w,h)=>{const cx=w*0.5,cy=h*0.48,r=Math.min(w,h)*0.30;let t='';
+ for(let i=0;i<12;i++){const a=i*Math.PI/6;
+  t+=`<path d="M${cx+Math.sin(a)*(r-26)} ${cy-Math.cos(a)*(r-26)} L${cx+Math.sin(a)*r} ${cy-Math.cos(a)*r}" stroke="${P.al}" stroke-width="${i%3?3:6}" opacity="${i%3?.55:.9}" stroke-linecap="round"/>`;}
+ return sky('g5',w,h)+grid(w,h,48,.05)+glow(w,cx,cy,r*1.5)+
+  `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${P.d2}" opacity=".7" stroke="${P.al}" stroke-width="5"/>`+t+
+  `<path d="M${cx} ${cy} V${cy-r*0.56}" stroke="${P.al}" stroke-width="8" stroke-linecap="round"/>
+   <path d="M${cx} ${cy} L${cx+r*0.42} ${cy+r*0.22}" stroke="${P.a}" stroke-width="7" stroke-linecap="round"/>
+   <circle cx="${cx}" cy="${cy}" r="11" fill="${P.al}"/>`;};
+
+S['lista']=(w,h)=>{let l='';
+ for(let i=0;i<6;i++){const y=110+i*((h-220)/6);
+  l+=`<rect x="90" y="${y}" width="44" height="44" rx="9" fill="none" stroke="${P.al}" stroke-width="3.4"/>
+      <path d="M100 ${y+22} l12 12 l22 -26" fill="none" stroke="${P.a}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity="${i<4?1:.28}"/>
+      <rect x="164" y="${y+12}" width="${(w-300)*(0.45+((i*5)%6)*0.09)}" height="20" rx="10" fill="${P.a}" opacity="${.30+i*.08}"/>`;}
+ return sky('g6',w,h)+grid(w,h,52,.05)+l;};
+
+window.__render=(pal,list)=>{
+ P=pal; document.body.innerHTML='';
+ for(const [id,w,h] of list){
+  const d=document.createElement('div');d.className='scene';d.id=id;
+  d.style.width=w+'px';d.style.height=h+'px';d.style.background=P.sky2;
+  d.innerHTML=`<svg viewBox="0 0 ${w} ${h}">${S[id](w,h)}</svg><div class="grain"></div>`;
+  document.body.appendChild(d);}
+ return true;};
+</script>
+</body>
+</html>

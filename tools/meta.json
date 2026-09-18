@@ -1,0 +1,706 @@
+[
+ {
+  "slug": "sahko",
+  "name": "Sähköasennus",
+  "hue": 38,
+  "palette": {
+   "dark-1": "#28251F",
+   "dark-2": "#36322A",
+   "light-1": "#FAF8F4",
+   "light-2": "#F4EFE7",
+   "accent": "#84632A",
+   "accent-dark": "#5F461B",
+   "muted": "#6C5123",
+   "accent-rust": "#6C5123",
+   "accent-light": "#CCAA70",
+   "muted-on-dark": "#D5BF9A",
+   "accent-brass": "#9B783B",
+   "accent-ember": "#8E6C32",
+   "line-light": "#E8DECC",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "sahko-hero",
+    1280,
+    900
+   ],
+   [
+    "sahko-band",
+    1600,
+    560
+   ],
+   [
+    "sahko-keskus",
+    1000,
+    760
+   ],
+   [
+    "sahko-kaapeli",
+    1000,
+    760
+   ],
+   [
+    "sahko-valo",
+    1000,
+    760
+   ],
+   [
+    "sahko-mittaus",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#36322A",
+   "sky2": "#28251F",
+   "sky3": "#28251F",
+   "a": "#84632A",
+   "ad": "#5F461B",
+   "ab": "#9B783B",
+   "al": "#CCAA70",
+   "d2": "#36322A",
+   "gnd": "#28251F"
+  }
+ },
+ {
+  "slug": "maalaus",
+  "name": "Maalausliike",
+  "hue": 8,
+  "palette": {
+   "dark-1": "#28201F",
+   "dark-2": "#362C2B",
+   "light-1": "#F9F5F4",
+   "light-2": "#F3E9E8",
+   "accent": "#7D3B31",
+   "accent-dark": "#5A2821",
+   "muted": "#663129",
+   "accent-rust": "#663129",
+   "accent-light": "#C7877D",
+   "muted-on-dark": "#D0A69F",
+   "accent-brass": "#A7584C",
+   "accent-ember": "#AB5548",
+   "line-light": "#E6D1CE",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "maalaus-hero",
+    1280,
+    900
+   ],
+   [
+    "maalaus-band",
+    1600,
+    560
+   ],
+   [
+    "maalaus-sisa",
+    1000,
+    760
+   ],
+   [
+    "maalaus-ulko",
+    1000,
+    760
+   ],
+   [
+    "maalaus-tasoite",
+    1000,
+    760
+   ],
+   [
+    "maalaus-suoja",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#362C2B",
+   "sky2": "#28201F",
+   "sky3": "#28201F",
+   "a": "#7D3B31",
+   "ad": "#5A2821",
+   "ab": "#A7584C",
+   "al": "#C7877D",
+   "d2": "#362C2B",
+   "gnd": "#28201F"
+  }
+ },
+ {
+  "slug": "piha",
+  "name": "Piha- ja maanrakennus",
+  "hue": 86,
+  "palette": {
+   "dark-1": "#242A1E",
+   "dark-2": "#313829",
+   "light-1": "#F7F9F5",
+   "light-2": "#EEF2E8",
+   "accent": "#587433",
+   "accent-dark": "#415724",
+   "muted": "#4B622C",
+   "accent-rust": "#4B622C",
+   "accent-light": "#A3C07C",
+   "muted-on-dark": "#BACDA2",
+   "accent-brass": "#708F48",
+   "accent-ember": "#607D3B",
+   "line-light": "#DBE5CF",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "piha-hero",
+    1280,
+    900
+   ],
+   [
+    "piha-band",
+    1600,
+    560
+   ],
+   [
+    "piha-kivi",
+    1000,
+    760
+   ],
+   [
+    "piha-terassi",
+    1000,
+    760
+   ],
+   [
+    "piha-salaoja",
+    1000,
+    760
+   ],
+   [
+    "piha-maansiirto",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#313829",
+   "sky2": "#242A1E",
+   "sky3": "#242A1E",
+   "a": "#587433",
+   "ad": "#415724",
+   "ab": "#708F48",
+   "al": "#A3C07C",
+   "d2": "#313829",
+   "gnd": "#242A1E"
+  }
+ },
+ {
+  "slug": "katto",
+  "name": "Kattoasennus",
+  "hue": 205,
+  "palette": {
+   "dark-1": "#1B252C",
+   "dark-2": "#25323C",
+   "light-1": "#F5F7F9",
+   "light-2": "#E9EEF2",
+   "accent": "#375C77",
+   "accent-dark": "#254155",
+   "muted": "#2E4C61",
+   "accent-rust": "#2E4C61",
+   "accent-light": "#7EA4BF",
+   "muted-on-dark": "#A3BBCC",
+   "accent-brass": "#4B7491",
+   "accent-ember": "#497695",
+   "line-light": "#D0DCE4",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "katto-hero",
+    1280,
+    900
+   ],
+   [
+    "kaista",
+    1600,
+    560
+   ],
+   [
+    "katto-tiili",
+    1000,
+    760
+   ],
+   [
+    "katto-pelti",
+    1000,
+    760
+   ],
+   [
+    "katto-raystas",
+    1000,
+    760
+   ],
+   [
+    "lista",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#25323C",
+   "sky2": "#1B252C",
+   "sky3": "#1B252C",
+   "a": "#375C77",
+   "ad": "#254155",
+   "ab": "#4B7491",
+   "al": "#7EA4BF",
+   "d2": "#25323C",
+   "gnd": "#1B252C"
+  }
+ },
+ {
+  "slug": "lattia",
+  "name": "Lattia-asennus",
+  "hue": 26,
+  "palette": {
+   "dark-1": "#29231F",
+   "dark-2": "#37302A",
+   "light-1": "#F9F7F5",
+   "light-2": "#F1EDE9",
+   "accent": "#74533A",
+   "accent-dark": "#533A27",
+   "muted": "#5F4430",
+   "accent-rust": "#5F4430",
+   "accent-light": "#BC9A81",
+   "muted-on-dark": "#CAB5A5",
+   "accent-brass": "#8D694E",
+   "accent-ember": "#8E684A",
+   "line-light": "#E3D9D1",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "lattia-hero",
+    1280,
+    900
+   ],
+   [
+    "kaista",
+    1600,
+    560
+   ],
+   [
+    "ruudukko",
+    1000,
+    760
+   ],
+   [
+    "lattia-laatta",
+    1000,
+    760
+   ],
+   [
+    "aallot",
+    1000,
+    760
+   ],
+   [
+    "kehat",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#37302A",
+   "sky2": "#29231F",
+   "sky3": "#29231F",
+   "a": "#74533A",
+   "ad": "#533A27",
+   "ab": "#8D694E",
+   "al": "#BC9A81",
+   "d2": "#37302A",
+   "gnd": "#29231F"
+  }
+ },
+ {
+  "slug": "kiinteisto",
+  "name": "Kiinteistöhuolto",
+  "hue": 228,
+  "palette": {
+   "dark-1": "#1C1F2B",
+   "dark-2": "#272B3A",
+   "light-1": "#F5F6F9",
+   "light-2": "#E9EBF1",
+   "accent": "#3B4672",
+   "accent-dark": "#283152",
+   "muted": "#313A5E",
+   "accent-rust": "#313A5E",
+   "accent-light": "#8993BE",
+   "muted-on-dark": "#A6ADCA",
+   "accent-brass": "#5C6AA1",
+   "accent-ember": "#5A69A5",
+   "line-light": "#D1D5E3",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "kiinteisto-hero",
+    1280,
+    900
+   ],
+   [
+    "kaista",
+    1600,
+    560
+   ],
+   [
+    "lista",
+    1000,
+    760
+   ],
+   [
+    "ruudukko",
+    1000,
+    760
+   ],
+   [
+    "tyokalut",
+    1000,
+    760
+   ],
+   [
+    "kello",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#272B3A",
+   "sky2": "#1C1F2B",
+   "sky3": "#1C1F2B",
+   "a": "#3B4672",
+   "ad": "#283152",
+   "ab": "#5C6AA1",
+   "al": "#8993BE",
+   "d2": "#272B3A",
+   "gnd": "#1C1F2B"
+  }
+ },
+ {
+  "slug": "siivous",
+  "name": "Siivouspalvelu",
+  "hue": 178,
+  "palette": {
+   "dark-1": "#1D2B2A",
+   "dark-2": "#273A39",
+   "light-1": "#F5F9F9",
+   "light-2": "#E9F2F1",
+   "accent": "#367573",
+   "accent-dark": "#255554",
+   "muted": "#2E615F",
+   "accent-rust": "#2E615F",
+   "accent-light": "#7EBFBC",
+   "muted-on-dark": "#A3CCCB",
+   "accent-brass": "#498D8B",
+   "accent-ember": "#3E7E7C",
+   "line-light": "#D0E4E3",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "siivous-hero",
+    1280,
+    900
+   ],
+   [
+    "kaista",
+    1600,
+    560
+   ],
+   [
+    "kehat",
+    1000,
+    760
+   ],
+   [
+    "liiketila",
+    1000,
+    760
+   ],
+   [
+    "pinot",
+    1000,
+    760
+   ],
+   [
+    "tyokalut",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#273A39",
+   "sky2": "#1D2B2A",
+   "sky3": "#1D2B2A",
+   "a": "#367573",
+   "ad": "#255554",
+   "ab": "#498D8B",
+   "al": "#7EBFBC",
+   "d2": "#273A39",
+   "gnd": "#1D2B2A"
+  }
+ },
+ {
+  "slug": "kuljetus",
+  "name": "Kuljetus ja muutot",
+  "hue": 340,
+  "palette": {
+   "dark-1": "#291E22",
+   "dark-2": "#372A2E",
+   "light-1": "#F9F5F6",
+   "light-2": "#F1E9EC",
+   "accent": "#75384D",
+   "accent-dark": "#542635",
+   "muted": "#602F3F",
+   "accent-rust": "#602F3F",
+   "accent-light": "#C18699",
+   "muted-on-dark": "#CBA4B1",
+   "accent-brass": "#A1566F",
+   "accent-ember": "#A5546F",
+   "line-light": "#E4D0D7",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "auto-hero",
+    1280,
+    900
+   ],
+   [
+    "kaista",
+    1600,
+    560
+   ],
+   [
+    "ruudukko",
+    1000,
+    760
+   ],
+   [
+    "liiketila",
+    1000,
+    760
+   ],
+   [
+    "auto-nosturi",
+    1000,
+    760
+   ],
+   [
+    "pinot",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#372A2E",
+   "sky2": "#291E22",
+   "sky3": "#291E22",
+   "a": "#75384D",
+   "ad": "#542635",
+   "ab": "#A1566F",
+   "al": "#C18699",
+   "d2": "#372A2E",
+   "gnd": "#291E22"
+  }
+ },
+ {
+  "slug": "autokorjaamo",
+  "name": "Autokorjaamo",
+  "hue": 258,
+  "palette": {
+   "dark-1": "#211E2A",
+   "dark-2": "#2D2938",
+   "light-1": "#F6F5F9",
+   "light-2": "#ECE9F1",
+   "accent": "#4C3C71",
+   "accent-dark": "#352951",
+   "muted": "#3F325C",
+   "accent-rust": "#3F325C",
+   "accent-light": "#9B8DBE",
+   "muted-on-dark": "#B1A7C9",
+   "accent-brass": "#7662A3",
+   "accent-ember": "#7661A6",
+   "line-light": "#D7D2E2",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "auto-nosturi",
+    1280,
+    900
+   ],
+   [
+    "kaista",
+    1600,
+    560
+   ],
+   [
+    "kello",
+    1000,
+    760
+   ],
+   [
+    "tyokalut",
+    1000,
+    760
+   ],
+   [
+    "auto-hero",
+    1000,
+    760
+   ],
+   [
+    "lista",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#2D2938",
+   "sky2": "#211E2A",
+   "sky3": "#211E2A",
+   "a": "#4C3C71",
+   "ad": "#352951",
+   "ab": "#7662A3",
+   "al": "#9B8DBE",
+   "d2": "#2D2938",
+   "gnd": "#211E2A"
+  }
+ },
+ {
+  "slug": "kampaamo",
+  "name": "Parturi-kampaamo",
+  "hue": 318,
+  "palette": {
+   "dark-1": "#281F26",
+   "dark-2": "#362A33",
+   "light-1": "#F9F5F8",
+   "light-2": "#F1EAEF",
+   "accent": "#6F3E61",
+   "accent-dark": "#502A45",
+   "muted": "#5B334F",
+   "accent-rust": "#5B334F",
+   "accent-light": "#B988AA",
+   "muted-on-dark": "#C8A8BE",
+   "accent-brass": "#965B84",
+   "accent-ember": "#9A5986",
+   "line-light": "#E2D2DD",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "kampaamo-hero",
+    1280,
+    900
+   ],
+   [
+    "kaista",
+    1600,
+    560
+   ],
+   [
+    "lista",
+    1000,
+    760
+   ],
+   [
+    "aallot",
+    1000,
+    760
+   ],
+   [
+    "kehat",
+    1000,
+    760
+   ],
+   [
+    "ruudukko",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#362A33",
+   "sky2": "#281F26",
+   "sky3": "#281F26",
+   "a": "#6F3E61",
+   "ad": "#502A45",
+   "ab": "#965B84",
+   "al": "#B988AA",
+   "d2": "#362A33",
+   "gnd": "#281F26"
+  }
+ },
+ {
+  "slug": "ravintola",
+  "name": "Ravintola",
+  "hue": 96,
+  "palette": {
+   "dark-1": "#232A1E",
+   "dark-2": "#2F3829",
+   "light-1": "#F6F9F5",
+   "light-2": "#ECF1E9",
+   "accent": "#51743A",
+   "accent-dark": "#395327",
+   "muted": "#435F30",
+   "accent-rust": "#435F30",
+   "accent-light": "#98BC81",
+   "muted-on-dark": "#B4CAA5",
+   "accent-brass": "#658A4C",
+   "accent-ember": "#5A7E42",
+   "line-light": "#D8E3D1",
+   "white": "#FFFFFF"
+  },
+  "scenes": [
+   [
+    "ravintola-hero",
+    1280,
+    900
+   ],
+   [
+    "kaista",
+    1600,
+    560
+   ],
+   [
+    "ruudukko",
+    1000,
+    760
+   ],
+   [
+    "pinot",
+    1000,
+    760
+   ],
+   [
+    "kello",
+    1000,
+    760
+   ],
+   [
+    "liiketila",
+    1000,
+    760
+   ]
+  ],
+  "sky": {
+   "sky1": "#2F3829",
+   "sky2": "#232A1E",
+   "sky3": "#232A1E",
+   "a": "#51743A",
+   "ad": "#395327",
+   "ab": "#658A4C",
+   "al": "#98BC81",
+   "d2": "#2F3829",
+   "gnd": "#232A1E"
+  }
+ }
+]
