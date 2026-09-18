@@ -18,19 +18,40 @@ NAV = [('index.html', 'Etusivu'), ('palvelut.html', 'Palvelut'),
 def tbd(t):
     return '<span class="tbd">%s</span>' % t
 
-def mark(pal, gid):
+GLYPH = {
+ # Tunnuskuvio toimialan mukaan. Talo ei sovi kampaamolle eika korjaamolle.
+ 'talo':   '<path d="M9 25.5 24 12.5l15 13" fill="none" stroke="url(#%s)" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round"/>'
+           '<path d="M14.5 26v11.5h19V26" fill="none" stroke="url(#%s)" stroke-width="3.6" stroke-linejoin="round"/>'
+           '<rect x="21" y="29.5" width="6" height="8" rx="1.2" fill="%s"/>',
+ 'salama': '<path d="M26.5 10 15 25.5h7.5L20.5 38 33 21.5h-8z" fill="url(#%s)" stroke="url(#%s)" stroke-width="2.2" stroke-linejoin="round"/><rect x="0" y="0" width="0" height="0" fill="%s"/>',
+ 'tela':   '<rect x="11" y="14" width="17" height="8" rx="4" fill="url(#%s)"/>'
+           '<path d="M28 18h6l0 8" fill="none" stroke="url(#%s)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
+           '<rect x="31" y="26" width="6" height="12" rx="2" fill="%s"/>',
+ 'pisara': '<path d="M24 11c6 8 9 12 9 16a9 9 0 0 1-18 0c0-4 3-8 9-16z" fill="none" stroke="url(#%s)" stroke-width="3.4" stroke-linejoin="round"/>'
+           '<circle cx="21" cy="28" r="3" fill="url(#%s)"/><rect x="0" y="0" width="0" height="0" fill="%s"/>',
+ 'auto':   '<path d="M10 30v-7l4-7h14l5 7h5v7z" fill="none" stroke="url(#%s)" stroke-width="3.2" stroke-linejoin="round"/>'
+           '<circle cx="17" cy="32" r="3.4" fill="url(#%s)"/><circle cx="32" cy="32" r="3.4" fill="%s"/>',
+ 'avain':  '<path d="M30 14a7 7 0 1 0-6.4 10.1L14 33.7V38h4.3l1.8-1.8v-3h3v-3h3l1.4-1.4A7 7 0 0 0 30 14z" fill="none" stroke="url(#%s)" stroke-width="3.2" stroke-linejoin="round"/>'
+           '<circle cx="30.5" cy="19.5" r="2.4" fill="url(#%s)"/><rect x="0" y="0" width="0" height="0" fill="%s"/>',
+ 'sakset': '<circle cx="16" cy="33" r="4.2" fill="none" stroke="url(#%s)" stroke-width="3"/>'
+           '<circle cx="31" cy="33" r="4.2" fill="none" stroke="url(#%s)" stroke-width="3"/>'
+           '<path d="M19 30 33 11M28 30 14 11" stroke="%s" stroke-width="3" stroke-linecap="round"/>',
+ 'lautanen':'<circle cx="20" cy="24" r="11" fill="none" stroke="url(#%s)" stroke-width="4"/>'
+           '<path d="M33 12v24" stroke="url(#%s)" stroke-width="4" stroke-linecap="round"/>'
+           '<circle cx="20" cy="24" r="4.5" fill="%s"/>',
+}
+
+def mark(pal, gid, glyph='talo'):
+    body = GLYPH.get(glyph, GLYPH['talo'])
+    fills = (gid, gid, pal['light-1'])
     return ('<svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">'
       '<defs><linearGradient id="%s" x1="0" y1="0" x2="1" y2="1">'
       '<stop offset="0%%" stop-color="%s"/><stop offset="48%%" stop-color="%s"/>'
       '<stop offset="100%%" stop-color="%s"/></linearGradient></defs>'
       '<rect x="1.6" y="1.6" width="44.8" height="44.8" rx="9" fill="%s"/>'
       '<rect x="1.6" y="1.6" width="44.8" height="44.8" rx="9" fill="none" stroke="url(#%s)" stroke-width="2.6"/>'
-      '<path d="M9 25.5 24 12.5l15 13" fill="none" stroke="url(#%s)" stroke-width="4.6" '
-      'stroke-linecap="round" stroke-linejoin="round"/>'
-      '<path d="M14.5 26v11.5h19V26" fill="none" stroke="url(#%s)" stroke-width="3.6" stroke-linejoin="round"/>'
-      '<rect x="21" y="29.5" width="6" height="8" rx="1.2" fill="%s"/></svg>'
       % (gid, pal['accent-light'], pal['accent'], pal['accent-dark'],
-         pal['dark-1'], gid, gid, gid, pal['light-1']))
+         pal['dark-1'], gid)) + (body % fills) + '</svg>'
 
 ICON = {
  'phone': '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
@@ -78,7 +99,7 @@ def header(cfg, pal, cur):
       </ul>
     </nav>
     <div class="header-actions">
-      <a class="btn btn-primary" href="yhteystiedot.html">Pyydä tarjous</a>
+      <a class="btn btn-primary" href="yhteystiedot.html">%s</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" id="menu-toggle">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -93,7 +114,8 @@ def header(cfg, pal, cur):
     </ul>
   </nav>
 </header>
-''' % (mark(pal, 'hm'), brand, items, items))
+''' % (mark(pal, 'hm', cfg.get('glyph', 'talo')), brand, items,
+       cfg.get('cta', 'Pyydä tarjous'), items))
 
 def footer(cfg, pal):
     brand = ('<span class="brand-text"><span class="brand-line-1">%s</span>'
@@ -135,16 +157,16 @@ def footer(cfg, pal):
 </footer>
 
 <div class="mobile-cta">
-  <a class="btn btn-primary" href="yhteystiedot.html">Pyydä tarjous</a>
+  <a class="btn btn-primary" href="yhteystiedot.html">%s</a>
 </div>
 
 <script src="site.js" defer></script>
 
 </body>
 </html>
-''' % (mark(pal, 'fm'), brand, tbd('katuosoite'), tbd('postinumero ja kaupunki'),
+''' % (mark(pal, 'fm', cfg.get('glyph', 'talo')), brand, tbd('katuosoite'), tbd('postinumero ja kaupunki'),
        ic('phone'), tbd('puhelinnumero'), ic('mail'), tbd('sähköposti'),
-       svc, sitemap, cfg['name']))
+       svc, sitemap, cfg['name'], cfg.get('cta', 'Pyydä tarjous')))
 
 def crumb(label):
     return ('<nav class="breadcrumb" aria-label="Murupolku">\n        <ol>\n'
@@ -161,14 +183,15 @@ def cta(cfg):
       <p style="margin-top:16px;max-width:56ch;">Soita tai lähetä tarjouspyyntö. Käydään kohde läpi ja katsotaan, miten se kannattaa tehdä.</p>
       <div class="action-stack" style="margin-top:28px;">
         <a class="action action-primary" href="yhteystiedot.html">
-          <span>Pyydä tarjous lomakkeella</span>%s
+          <span>%s lomakkeella</span>%s
         </a>
         <span class="action"><span>Puhelin: %s</span>%s</span>
         <span class="action"><span>%s</span>%s</span>
       </div>
     </div>
   </section>
-''' % (ic('doc'), tbd('puhelinnumero'), ic('phone'), tbd('sähköpostiosoite'), ic('mail')))
+''' % (cfg.get('cta', 'Pyydä tarjous'), ic('doc'), tbd('puhelinnumero'),
+       ic('phone'), tbd('sähköpostiosoite'), ic('mail')))
 
 
 # ---------------------------------------------------------------- SIVUT
@@ -219,7 +242,7 @@ def page_index(cfg, pal):
 
           <div class="action-stack" style="margin-top:30px;">
             <a class="action action-primary" href="yhteystiedot.html">
-              <span>Pyydä tarjous</span>%s
+              <span>%s</span>%s
             </a>
             <a class="action" href="palvelut.html">
               <span>Katso mitä teemme</span>%s
@@ -322,7 +345,8 @@ def page_index(cfg, pal):
   </section>
 %s
 </main>
-''' % (ic('check'), cfg['name'], cfg['h1'], cfg['lede'], ic('doc'), ic('doc'),
+''' % (ic('check'), cfg['name'], cfg['h1'], cfg['lede'],
+       cfg.get('cta', 'Pyydä tarjous'), ic('doc'), ic('doc'),
        cfg['hero'], facts, '\n'.join(cards), cust, prom,
        cfg['band'], cfg['band_text'], cta(cfg))
     return s + footer(cfg, pal)
@@ -494,7 +518,7 @@ def page_yhteystiedot(cfg, pal):
     <div class="container reveal">
       %s
       <span class="eyebrow">YHTEYSTIEDOT</span>
-      <h1>Pyydä tarjous</h1>
+      <h1>%s</h1>
       <p class="lede">Kerro lyhyesti millainen kohde on ja mitä tarvitset. Vastaamme ja sovitaan katselmus.</p>
     </div>
   </section>
@@ -544,7 +568,7 @@ def page_yhteystiedot(cfg, pal):
                 <textarea id="viesti" name="viesti" rows="6" aria-describedby="viesti-error" required></textarea>
                 %s
               </div>
-              <button class="btn btn-primary" type="submit">Lähetä tarjouspyyntö</button>
+              <button class="btn btn-primary" type="submit">Lähetä viesti</button>
               <p class="form-note">Lomakkeen vastaanottava osoite %s. Lomake toimii myös ilman JavaScriptiä.</p>
             </form>
           </div>
@@ -553,7 +577,7 @@ def page_yhteystiedot(cfg, pal):
     </div>
   </section>
 </main>
-''' % (crumb('Yhteystiedot'),
+''' % (crumb('Yhteystiedot'), cfg.get('cta', 'Pyydä tarjous'),
        ic('phone', 'contact-ic'), tbd('puhelinnumero'),
        ic('mail', 'contact-ic'), tbd('sähköpostiosoite'),
        ic('pin', 'contact-ic'), tbd('katuosoite, postinumero ja kaupunki'),
@@ -650,10 +674,21 @@ def write_favicon(pal, out):
       % (pal['accent-light'], pal['accent'], pal['accent-dark'], pal['dark-1'], pal['light-1']))
 
 def scene_list(cfg):
+    """Kohtaukset renderöintiä varten, kaksoiskappaleet poistettuna.
+
+    Sama kohtaus voi esiintyä sivustolla useassa paikassa (esim. hero myös
+    palvelukuvana). Renderöijä piirtää listasta yhden elementin per rivi,
+    joten duplikaatti tuottaisi kaksi samaa tunnistetta."""
     out = [(cfg['hero'], 1280, 900), (cfg['band'], 1600, 560)]
     for _, scene, _, _ in cfg['services']:
         out.append((scene, 1000, 760))
-    return out
+    seen, uniq = set(), []
+    for item in out:
+        if item[0] in seen:
+            continue
+        seen.add(item[0])
+        uniq.append(item)
+    return uniq
 
 def build_site(key):
     cfg = SITES[key]

@@ -1,9 +1,9 @@
 const { chromium } = require('playwright');
-const SITES=['talosaari','sahko','maalaus','piha'];
-const PAGES={talosaari:['index','palvelut','kohteet','yritys','yhteystiedot'],
- sahko:['index','palvelut','yritys','yhteystiedot'],
- maalaus:['index','palvelut','yritys','yhteystiedot'],
- piha:['index','palvelut','yritys','yhteystiedot']};
+const GEN=['sahko','maalaus','piha','katto','lattia','kiinteisto','siivous',
+ 'kuljetus','autokorjaamo','kampaamo','ravintola'];
+const SITES=['talosaari',...GEN];
+const PAGES={talosaari:['index','palvelut','kohteet','yritys','yhteystiedot']};
+GEN.forEach(g=>PAGES[g]=['index','palvelut','yritys','yhteystiedot']);
 function lin(c){c/=255;return c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4);}
 function L(r,g,b){return 0.2126*lin(r)+0.7152*lin(g)+0.0722*lin(b);}
 function parse(s){const m=s.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?\)/);
@@ -78,6 +78,6 @@ function parse(s){const m=s.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s
   await mc.close();
   console.log('tarkistettu:', site);
  }
- console.log('\n'+(issues.length?issues.join('\n'):'KAIKKI NELJÄ SIVUSTOA LÄPÄISEVÄT'));
+ console.log('\n'+(issues.length?issues.join('\n'):`KAIKKI ${SITES.length} SIVUSTOA LÄPÄISEVÄT`));
  await b.close();
 })();
