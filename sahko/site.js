@@ -122,6 +122,20 @@
     if (firstInvalid) {
       event.preventDefault();
       firstInvalid.focus();
+      return;
+    }
+
+    // Mallisivustolla lomakkeella ei ole vastaanottajaa. Ilman tata
+    // lahetys lataisi sivun tyhjana uudelleen, ja kayttaja luulisi
+    // viestin menneen perille.
+    if (!form.getAttribute('action')) {
+      event.preventDefault();
+      var note = form.querySelector('.form-note');
+      if (note) {
+        note.textContent = 'Viestiä ei lähetetty: lomakkeen vastaanottava '
+          + 'sähköpostiosoite kytketään ennen julkaisua.';
+        note.setAttribute('role', 'status');
+      }
     }
   });
 })();

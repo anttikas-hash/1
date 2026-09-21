@@ -609,7 +609,7 @@ def page_yhteystiedot(cfg, pal):
                 %s
               </div>
               <button class="btn btn-primary" type="submit">Lähetä viesti</button>
-              <p class="form-note">Lomakkeen vastaanottava osoite %s. Lomake toimii myös ilman JavaScriptiä.</p>
+              <p class="form-note">Mallisivustolla lomake ei lähetä viestiä. Valmiissa sivustossa viestit tulevat yrityksen omaan sähköpostiin.</p>
             </form>
           </div>
         </div>
@@ -626,7 +626,7 @@ def page_yhteystiedot(cfg, pal):
        ic('pin', 'contact-ic'), tbd('katuosoite, postinumero ja kaupunki'),
        fe('nimi'), fe('puhelin'), fe('sahkoposti'),
        '\n'.join('                  <option>%s</option>' % x[0] for x in cfg['services']),
-       fe('viesti'), tbd('kytketään ennen julkaisua'))
+       fe('viesti'))
     return s + footer(cfg, pal)
 
 
