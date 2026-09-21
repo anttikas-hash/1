@@ -691,9 +691,9 @@ def write_css(cfg, pal, out):
   z-index: 70;
   background: #FFF4CE;
   color: #5A4300;
-  font-size: 14px;
-  line-height: 1.5;
-  padding: 10px 24px;
+  font-size: 17px;
+  line-height: 1.55;
+  padding: 14px 24px;
   text-align: center;
   border-bottom: 1px solid #E0C36B;
 }
