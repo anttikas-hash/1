@@ -84,6 +84,21 @@
     ['Rauman Rakennushuolto', 'Kiinteistöhuolto', 'raumanrakennushuolto.fi', '0400 516 041', '', ''],
     ['Arola Group Oy', 'Piha ja maanrakennus', 'arolagroup.fi', '045 111 3383', '', ''],
     ['Lassi Jalonen', 'Piha ja maanrakennus', 'lassijalonen.com', '', '', ''],
+
+    // --- LVI-yritykset, joilta ei loytynyt omaa verkkosivua (haettu 21.9.) ---
+    // Nama EIVAT ole Rauman seudulta. Paikkakunta on huomio-sarakkeessa,
+    // koska matka ratkaisee sen, kannattaako soittaa.
+    ['Oljypoltinhuolto Veijalainen', 'LVI', '', '040 042 4433', 'none', 'Turku \u00b7 vain hakemistoissa \u00b7 tarkista numero'],
+    ['Vesijohtoliike Harri Laaksonen Oy', 'LVI', '', '02 731 5719', 'none', 'Salo \u00b7 1 hlo, 244 k\u20ac \u00b7 tarkista numero'],
+    ['Putki Sipponen Oy', 'LVI', '', '', 'none', 'Salo \u00b7 perustettu 2023 \u00b7 numero puuttuu'],
+    ['LVI Asennus Rauno Tamm', 'LVI', '', '', 'none', 'Espoo \u00b7 yksinyrittaja \u00b7 numero puuttuu'],
+    ['LVI-Litsila Oy', 'LVI', '', '', 'none', 'Espoo \u00b7 232 k\u20ac \u00b7 numero puuttuu'],
+    ['Putkiliike Salovaara Oy', 'LVI', '', '0400 559 981', 'none', 'Mantsala \u00b7 5 hlo \u00b7 tarkista numero'],
+    ['LVI-Niemiset Oy', 'LVI', '', '09 896 345', 'none', 'Vantaa \u00b7 tarkista numero'],
+    ['Jarmon Eristyspalvelu JEP Oy', 'LVI', '', '', 'none', 'Vantaa \u00b7 1,1 M\u20ac, 11 hlo \u00b7 numero puuttuu'],
+    ['Tmi Severin LVI', 'LVI', '', '044 588 4273', 'none', 'Lahti \u00b7 tarkista numero'],
+    ['LP Saneeraus', 'LVI', '', '', 'none', 'Loviisa \u00b7 numero puuttuu'],
+    ['Putkityo Mankarla Oy', 'LVI', '', '', 'none', 'Turku \u00b7 383 k\u20ac, 3 hlo \u00b7 numero puuttuu'],
   ];
 
   var rows = [];
