@@ -373,23 +373,14 @@ def page_index(cfg, pal):
       <div class="block">
         <div class="section-head reveal">
           <span class="section-index">%s</span>
-          <span class="eyebrow">MIKSI ME</span>
-          <h2>Kolme asiaa, jotka lupaamme</h2>
+          <span class="eyebrow">KÄYTÄNNÖT</span>
+          <h2>Näin työ tehdään</h2>
         </div>
         <div class="grid grid-4" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
 %s
         </div>
       </div>
 
-    </div>
-  </section>
-
-  <section class="image-band">
-    <img src="images/%s.jpg" width="1920" height="672" alt="Kuvitus alan työstä." loading="lazy" decoding="async">
-    <div class="band-text">
-      <div class="container">
-        <p>%s</p>
-      </div>
     </div>
   </section>
 %s
@@ -401,7 +392,7 @@ def page_index(cfg, pal):
        cfg.get('services_title', 'Mitä teemme'), '\n'.join(cards),
        cfg.get('customers_title', 'Kenelle teemme'), cust, steps_block(cfg),
        '04' if cfg.get('steps', DEFAULT_STEPS) else '03', prom,
-       cfg['band'], cfg['band_text'], cta(cfg))
+       cta(cfg))
     return s + footer(cfg, pal)
 
 
@@ -731,7 +722,7 @@ def scene_list(cfg):
     Sama kohtaus voi esiintyä sivustolla useassa paikassa (esim. hero myös
     palvelukuvana). Renderöijä piirtää listasta yhden elementin per rivi,
     joten duplikaatti tuottaisi kaksi samaa tunnistetta."""
-    out = [(cfg['hero'], 1280, 900), (cfg['band'], 1600, 560)]
+    out = [(cfg['hero'], 1280, 900)]   # kuvakaista poistettu: siina oli vain iskulause
     for _, scene, _, _ in cfg['services']:
         out.append((scene, 1000, 760))
     seen, uniq = set(), []
