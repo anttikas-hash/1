@@ -174,13 +174,86 @@ def crumb(label):
             '          <li class="sep" aria-hidden="true">/</li>\n'
             '          <li aria-current="page">%s</li>\n        </ol>\n      </nav>' % label)
 
+DEFAULT_STEPS = (
+  ('Yhteydenotto',
+   'Kerrot mitä tarvitset. Vastaamme kysymyksiin ja arvioimme, onko kohde meille sopiva.'),
+  ('Katselmus ja tarjous',
+   'Käymme kohteessa ja katsotaan lähtötilanne. Saat kirjallisen tarjouksen, jossa '
+   'työn laajuus on eritelty.'),
+  ('Sopimus ja aikataulu',
+   'Sovitaan työn sisältö, aikataulu ja maksuerät kirjallisesti ennen kuin työt alkavat.'),
+  ('Työ ja luovutus',
+   'Työ tehdään sovitussa laajuudessa. Lopuksi käydään kohde yhdessä läpi ja kirjataan huomiot.'),
+)
+
+NUM = {2: 'Kaksi', 3: 'Kolme', 4: 'Neljä', 5: 'Viisi'}
+
+
+def steps_block(cfg):
+    '''Vaiheiden esittely.
+
+    Kaikilla aloilla ei ole vaiheita. Ravintolassa asiakas tilaa, syo ja maksaa
+    — sen selittaminen neljana vaiheena on tyhmaa. Silloin cfg['steps'] on None
+    ja koko osio jaa pois.
+    '''
+    steps = cfg.get('steps', DEFAULT_STEPS)
+    if not steps:
+        return ''
+    items = []
+    for i, (title, text) in enumerate(steps, 1):
+        delay = '' if i == 1 else ' reveal-delay-%d' % (i - 1)
+        items.append(
+            '          <div class="step reveal' + delay + '">\n'
+            '            <div class="step-number">%02d</div>\n'
+            '            <h3>%s</h3>\n'
+            '            <p>%s</p>\n'
+            '          </div>' % (i, title, text))
+    head_ = (
+        '\n      <div class="block">\n'
+        '        <div class="section-head reveal">\n'
+        '          <span class="section-index">03</span>\n'
+        '          <span class="eyebrow">%s</span>\n'
+        '          <h2>%s vaihetta</h2>\n'
+        '        </div>\n'
+        '        <div class="steps">\n'
+        '%s\n'
+        '        </div>\n'
+        '      </div>\n')
+    return head_ % (cfg.get('steps_eyebrow', 'NÄIN SE ETENEE'),
+                    NUM.get(len(steps), str(len(steps))), '\n'.join(items))
+
+
+DEFAULT_WAY = (
+  ('Kohde katsotaan ennen tarjousta',
+   'Emme anna hintaa puhelimessa näkemättä kohdetta. Se on ainoa tapa antaa hinta, joka pitää.'),
+  ('Tarjous on kirjallinen ja eritelty',
+   'Tarjouksesta näkee mitä hintaan kuuluu ja mitä ei. Epäselvä tarjous johtaa riitaan.'),
+  ('Muutokset kirjataan',
+   'Jos työn aikana löytyy jotain, mitä ei voinut etukäteen nähdä, siitä sovitaan '
+   'erikseen ennen kuin sitä tehdään.'),
+  ('Työ luovutetaan yhdessä',
+   'Lopuksi käydään työ läpi yhdessä ja kirjataan huomiot. Puutteet korjataan ennen '
+   'kuin työ katsotaan valmiiksi.'),
+)
+
+
+def way_list(cfg):
+    '''Toimintatapa. Oletus on urakka-alan; muilla aloilla oma lista.'''
+    return '\n'.join(
+        '            <li>\n'
+        '              <h3>%s</h3>\n'
+        '              <p>%s</p>\n'
+        '            </li>' % (t, b)
+        for t, b in cfg.get('way', DEFAULT_WAY))
+
+
 def cta(cfg):
     return ('''
   <section class="on-dark built-surface arcs">
     <div class="container cta-strip reveal">
       <span class="eyebrow">YHTEYDENOTTO</span>
-      <h2>Kerro mitä tarvitset</h2>
-      <p style="margin-top:16px;max-width:56ch;">Soita tai lähetä tarjouspyyntö. Käydään kohde läpi ja katsotaan, miten se kannattaa tehdä.</p>
+      <h2>%s</h2>
+      <p style="margin-top:16px;max-width:56ch;">%s</p>
       <div class="action-stack" style="margin-top:28px;">
         <a class="action action-primary" href="yhteystiedot.html">
           <span>%s lomakkeella</span>%s
@@ -190,7 +263,11 @@ def cta(cfg):
       </div>
     </div>
   </section>
-''' % (cfg.get('cta', 'Pyydä tarjous'), ic('doc'), tbd('puhelinnumero'),
+''' % (cfg.get('cta_title', 'Kerro mitä tarvitset'),
+       cfg.get('cta_text',
+               'Soita tai lähetä tarjouspyyntö. Käydään kohde läpi ja '
+               'katsotaan, miten se kannattaa tehdä.'),
+       cfg.get('cta', 'Pyydä tarjous'), ic('doc'), tbd('puhelinnumero'),
        ic('phone'), tbd('sähköpostiosoite'), ic('mail')))
 
 
@@ -245,7 +322,7 @@ def page_index(cfg, pal):
               <span>%s</span>%s
             </a>
             <a class="action" href="palvelut.html">
-              <span>Katso mitä teemme</span>%s
+              <span>%s</span>%s
             </a>
           </div>
         </div>
@@ -273,7 +350,7 @@ def page_index(cfg, pal):
         <div class="section-head reveal">
           <span class="section-index">01</span>
           <span class="eyebrow">PALVELUT</span>
-          <h2>Mitä teemme</h2>
+          <h2>%s</h2>
         </div>
         <div class="grid grid-4">
 %s
@@ -284,46 +361,17 @@ def page_index(cfg, pal):
         <div class="panel-dark reveal">
           <span class="section-index">02</span>
           <span class="eyebrow">ASIAKKAAT</span>
-          <h2>Kenelle teemme</h2>
+          <h2>%s</h2>
           <ul class="plain-list" style="margin-top:32px;">
 %s
           </ul>
         </div>
       </div>
 
+%s
       <div class="block">
         <div class="section-head reveal">
-          <span class="section-index">03</span>
-          <span class="eyebrow">NÄIN SE ETENEE</span>
-          <h2>Neljä vaihetta</h2>
-        </div>
-        <div class="steps">
-          <div class="step reveal">
-            <div class="step-number">01</div>
-            <h3>Yhteydenotto</h3>
-            <p>Kerrot mitä tarvitset. Vastaamme kysymyksiin ja arvioimme, onko kohde meille sopiva.</p>
-          </div>
-          <div class="step reveal reveal-delay-1">
-            <div class="step-number">02</div>
-            <h3>Katselmus ja tarjous</h3>
-            <p>Käymme kohteessa ja katsotaan lähtötilanne. Saat kirjallisen tarjouksen, jossa työn laajuus on eritelty.</p>
-          </div>
-          <div class="step reveal reveal-delay-2">
-            <div class="step-number">03</div>
-            <h3>Sopimus ja aikataulu</h3>
-            <p>Sovitaan työn sisältö, aikataulu ja maksuerät kirjallisesti ennen kuin työt alkavat.</p>
-          </div>
-          <div class="step reveal reveal-delay-3">
-            <div class="step-number">04</div>
-            <h3>Työ ja luovutus</h3>
-            <p>Työ tehdään sovitussa laajuudessa. Lopuksi käydään kohde yhdessä läpi ja kirjataan huomiot.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="block">
-        <div class="section-head reveal">
-          <span class="section-index">04</span>
+          <span class="section-index">%s</span>
           <span class="eyebrow">MIKSI ME</span>
           <h2>Kolme asiaa, jotka lupaamme</h2>
         </div>
@@ -346,8 +394,12 @@ def page_index(cfg, pal):
 %s
 </main>
 ''' % (ic('check'), cfg['name'], cfg['h1'], cfg['lede'],
-       cfg.get('cta', 'Pyydä tarjous'), ic('doc'), ic('doc'),
-       cfg['hero'], facts, '\n'.join(cards), cust, prom,
+       cfg.get('cta', 'Pyydä tarjous'), ic('doc'),
+       cfg.get('services_link', 'Katso mitä teemme'), ic('doc'),
+       cfg['hero'], facts,
+       cfg.get('services_title', 'Mitä teemme'), '\n'.join(cards),
+       cfg.get('customers_title', 'Kenelle teemme'), cust, steps_block(cfg),
+       '04' if cfg.get('steps', DEFAULT_STEPS) else '03', prom,
        cfg['band'], cfg['band_text'], cta(cfg))
     return s + footer(cfg, pal)
 
@@ -363,14 +415,18 @@ def page_palvelut(cfg, pal):
     <div class="container reveal">
       %s
       <span class="eyebrow">PALVELUT</span>
-      <h1>Mitä teemme</h1>
-      <p class="lede">Neljä palvelukokonaisuutta. Kaikki voidaan tehdä joko erillisenä työnä tai osana suurempaa kokonaisuutta.</p>
+      <h1>%s</h1>
+      <p class="lede">%s</p>
     </div>
   </section>
 
   <section class="canvas">
     <div class="container">
-''' % crumb('Palvelut')
+''' % (crumb('Palvelut'),
+       cfg.get('services_title', 'Mitä teemme'),
+       cfg.get('services_lede',
+               'Neljä palvelukokonaisuutta. Kaikki voidaan tehdä joko '
+               'erillisenä työnä tai osana suurempaa kokonaisuutta.'))
     for i, (name, scene, body, bullets) in enumerate(cfg['services'], 1):
         s += '''
       <div class="block">
@@ -439,7 +495,7 @@ def page_yritys(cfg, pal):
           </div>
           <div>
             <p>%s %s Yritys on perustettu vuonna %s ja toimialueena on %s.</p>
-            <p>Toimintatapa on yksinkertainen: kohde katsotaan ennen tarjousta, tarjous annetaan kirjallisena, ja aikataulu kirjataan sopimukseen. Jos jokin muuttuu kesken työn, siitä kerrotaan silloin kun se tapahtuu.</p>
+            <p>%s</p>
           </div>
         </div>
       </div>
@@ -468,24 +524,9 @@ def page_yritys(cfg, pal):
       <div class="block">
         <div class="panel-dark reveal">
           <span class="eyebrow">TOIMINTATAPA</span>
-          <h2>Miten teemme työtä</h2>
+          <h2>%s</h2>
           <ul class="plain-list" style="margin-top:32px;">
-            <li>
-              <h3>Kohde katsotaan ennen tarjousta</h3>
-              <p>Emme anna hintaa puhelimessa näkemättä kohdetta. Se on ainoa tapa antaa hinta, joka pitää.</p>
-            </li>
-            <li>
-              <h3>Tarjous on kirjallinen ja eritelty</h3>
-              <p>Tarjouksesta näkee mitä hintaan kuuluu ja mitä ei. Epäselvä tarjous johtaa riitaan.</p>
-            </li>
-            <li>
-              <h3>Muutokset kirjataan</h3>
-              <p>Jos työn aikana löytyy jotain, mitä ei voinut etukäteen nähdä, siitä sovitaan erikseen ennen kuin sitä tehdään.</p>
-            </li>
-            <li>
-              <h3>Työ luovutetaan yhdessä</h3>
-              <p>Lopuksi käydään työ läpi yhdessä ja kirjataan huomiot. Puutteet korjataan ennen kuin työ katsotaan valmiiksi.</p>
-            </li>
+%s
           </ul>
         </div>
       </div>
@@ -495,9 +536,16 @@ def page_yritys(cfg, pal):
 %s
 </main>
 ''' % (crumb('Yritys'), cfg['lede'], tbd('Yrityksen nimi'), cfg['about'],
-       tbd('vuosi'), tbd('toimialue'), tbd('yrityksen nimi'), tbd('y-tunnus'),
+       tbd('vuosi'), tbd('toimialue'),
+       cfg.get('way_text',
+               'Toimintatapa on yksinkertainen: kohde katsotaan ennen tarjousta, '
+               'tarjous annetaan kirjallisena, ja aikataulu kirjataan sopimukseen. '
+               'Jos jokin muuttuu kesken työn, siitä kerrotaan silloin kun se tapahtuu.'),
+       tbd('yrityksen nimi'), tbd('y-tunnus'),
        tbd('kunnat, joissa työskentelette'),
        tbd('ennakkoperintärekisteri, alv-rekisteri ym. — vain ne, jotka pitävät paikkansa'),
+       cfg.get('way_title', 'Miten teemme työtä'),
+       way_list(cfg),
        cta(cfg))
     return s + footer(cfg, pal)
 
@@ -519,7 +567,7 @@ def page_yhteystiedot(cfg, pal):
       %s
       <span class="eyebrow">YHTEYSTIEDOT</span>
       <h1>%s</h1>
-      <p class="lede">Kerro lyhyesti millainen kohde on ja mitä tarvitset. Vastaamme ja sovitaan katselmus.</p>
+      <p class="lede">%s</p>
     </div>
   </section>
 
@@ -578,6 +626,9 @@ def page_yhteystiedot(cfg, pal):
   </section>
 </main>
 ''' % (crumb('Yhteystiedot'), cfg.get('cta', 'Pyydä tarjous'),
+       cfg.get('contact_lede',
+               'Kerro lyhyesti millainen kohde on ja mitä tarvitset. '
+               'Vastaamme ja sovitaan katselmus.'),
        ic('phone', 'contact-ic'), tbd('puhelinnumero'),
        ic('mail', 'contact-ic'), tbd('sähköpostiosoite'),
        ic('pin', 'contact-ic'), tbd('katuosoite, postinumero ja kaupunki'),

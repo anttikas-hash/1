@@ -598,6 +598,49 @@ SITES = {
     ('Työ dokumentoidaan','Tehdyt työt ja vaihdetut osat näkyvät laskussa eriteltyinä.'),
   ],
   about='tekee autojen määräaikaishuollot, korjaukset ja rengastyöt.',
+
+  # Oletusvaiheet puhuvat kohteessa kaymisesta ja urakkatarjouksesta.
+  # Korjaamolla asiakas tuo auton — vaiheet ovat toiset.
+  steps=[
+    ('Varaa aika',
+     'Soita ja kerro auton merkki, vuosimalli ja mikä vaivaa. Kerromme '
+     'milloin pääset ja mitä huolto suunnilleen maksaa.'),
+    ('Auto tarkastetaan',
+     'Vika etsitään ennen kuin mitään vaihdetaan. Kerromme mitä löytyi ja '
+     'mitä korjaus maksaa.'),
+    ('Sinä päätät',
+     'Työ tehdään vasta kun olet hyväksynyt hinnan. Jos matkalla löytyy '
+     'muuta, soitamme ennen kuin jatkamme.'),
+    ('Auto luovutetaan',
+     'Kerromme mitä tehtiin ja mitä kannattaa seurata. Vaihdetut osat saa '
+     'nähdä pyydettäessä.'),
+  ],
+  steps_eyebrow='NÄIN HUOLTO MENEE',
+  services_lede='Määräaikaishuollot, korjaukset, rengastyöt ja '
+                'katsastuspalvelu. Kaikkiin varataan aika etukäteen.',
+  cta_title='Varaa huoltoaika',
+  cta_text='Soita ja kerro auton merkki, vuosimalli ja mikä vaivaa. '
+           'Kerromme hinta-arvion ja vapaan ajan heti puhelimessa.',
+  contact_lede='Kerro auton merkki, vuosimalli ja mikä vaivaa, niin osaamme '
+               'varata oikean määrän aikaa.',
+  way_title='Miten korjaamme',
+  way_text='Vika etsitään ennen kuin osia vaihdetaan, ja hinta kerrotaan '
+           'ennen kuin työ aloitetaan. Jos työn aikana löytyy jotain muuta, '
+           'siitä soitetaan — lasku ei saa olla yllätys.',
+  way=[
+    ('Vika etsitään ensin',
+     'Emme vaihda osia arvaamalla. Se on halvempaa sinulle ja rehellisempää '
+     'meiltä.'),
+    ('Hinta ennen työtä',
+     'Kerromme arvion ennen aloitusta. Työ tehdään vasta kun olet '
+     'hyväksynyt sen.'),
+    ('Soitamme jos jotain muuttuu',
+     'Jos korjauksen aikana löytyy muuta, kysymme ennen kuin teemme. '
+     'Emme koskaan jälkeenpäin.'),
+    ('Vanhat osat näytetään',
+     'Vaihdetut osat saa nähdä pyydettäessä. Se on ainoa tapa todistaa, '
+     'että vaihto oli tarpeen.'),
+  ],
 ),
 
 'kampaamo': dict(
@@ -660,6 +703,47 @@ SITES = {
     ('Kotihoito-ohjeet','Saat ohjeet siihen, miten kampaus pysyy hyvänä kotona.'),
   ],
   about='tekee leikkaukset, värjäykset, hoidot ja juhlakampaukset.',
+
+  # Kampaamokaynti on yksi kaynti, ei nelivaiheinen urakka.
+  steps=[
+    ('Ajanvaraus',
+     'Soitat ja kerrot mitä olet ajatellut. Kerromme arvion ajasta ja hinnasta '
+     'jo puhelimessa.'),
+    ('Katsotaan yhdessä',
+     'Ennen aloitusta käydään läpi hiusten kunto ja se, mitä haluat. Sanomme '
+     'suoraan, jos toivottu tyyli ei toimi.'),
+    ('Työ ja kotihoito-ohjeet',
+     'Leikkauksen tai värjäyksen jälkeen kerromme, miten kampaus pysyy hyvänä '
+     'kotona.'),
+  ],
+  steps_eyebrow='NÄIN KÄYNTI MENEE',
+  services_title='Mitä teemme',
+  customers_title='Kenelle teemme',
+  services_lede='Leikkaukset, värjäykset, hoidot ja juhlakampaukset. '
+                'Kaikkiin varataan aika puhelimitse.',
+  cta_title='Varaa aika puhelimitse',
+  cta_text='Soita ja kerro mitä olet ajatellut, niin katsotaan sopiva aika. '
+           'Kerromme hinta-arvion jo puhelimessa.',
+  contact_lede='Ajanvaraus käy puhelimitse. Kerro mitä olet ajatellut, niin '
+               'osaamme varata riittävästi aikaa.',
+  way_title='Miten työskentelemme',
+  way_text='Jokainen käynti alkaa siitä, että katsotaan hiusten kunto ja '
+           'kuullaan mitä haluat. Hinta kerrotaan ennen aloitusta, eikä '
+           'mitään tehdä sopimatta.',
+  way=[
+    ('Sanomme suoraan, mikä sopii',
+     'Jos toivottu tyyli ei toimi hiustyypilläsi, kerromme sen ennen kuin '
+     'aloitamme — emme jälkeenpäin.'),
+    ('Hinta ennen aloitusta',
+     'Tiedät hinnan ennen kuin istut tuoliin. Jos työ laajenee, siitä '
+     'kysytään erikseen.'),
+    ('Hiusten kunto ratkaisee',
+     'Isoa värinmuutosta ei tehdä kerralla, jos hius ei kestä sitä. '
+     'Se on hiusten etu, ei myynnin este.'),
+    ('Kotihoito kuuluu hintaan',
+     'Saat ohjeet siihen, miten lopputulos pysyy hyvänä. Tuotetta ei '
+     'suositella ilman syytä.'),
+  ],
 ),
 
 'ravintola': dict(
@@ -668,7 +752,7 @@ SITES = {
   name='Ravintola',
   title='Lounasravintola ja tilausruoat',
   desc='Lounas arkisin, tilausruoat ja kokoustarjoilut.',
-  h1='Lounas ehtii syödä myös silloin kun on kiire',
+  h1='Lämmin lounas ehtii syödä kiireiselläkin tauolla',
   lede='Lounas arkisin, tilausruoat ja kokoustarjoilut. Ruokalista viikoksi '
        'kerrallaan, jotta tiedät etukäteen mitä on tarjolla.',
   hero='ravintola-hero', band='kaista',
@@ -722,6 +806,38 @@ SITES = {
     ('Sovittu aika pitää','Tilausruoka on valmis silloin kun sovittiin.'),
   ],
   about='tarjoaa arkilounaan sekä tilausruoat ja kokoustarjoilut.',
+
+  # Ravintolassa ei ole vaiheita: asiakas tulee, syo ja maksaa. Sen
+  # selittaminen neljana vaiheena olisi asiakkaan aliarviointia.
+  steps=None,
+  services_title='Mitä tarjoamme',
+  services_link='Katso mitä tarjoamme',
+  customers_title='Kenelle tarjoamme',
+  services_lede='Neljä asiaa: arkilounas, tilausruoat, kokoustarjoilut ja '
+                'tila yksityistilaisuuksiin.',
+  cta_title='Tule syömään tai tilaa ruoat',
+  cta_text='Lounaalle ei tarvitse varata pöytää. Tilausruoat ja '
+           'kokoustarjoilut sovitaan puhelimessa.',
+  contact_lede='Kysy lounaslistaa, varaa pöytä ryhmälle tai tilaa ruoat. '
+               'Vastaamme puhelimeen aukioloaikoina.',
+  way_title='Miten täällä toimitaan',
+  way_text='Ruoka tehdään itse ja lista suunnitellaan viikoksi kerrallaan. '
+           'Tilausruoat sovitaan etukäteen puhelimessa, jotta määrä ja '
+           'ajankohta ovat varmasti selvät.',
+  way=[
+    ('Lista viikoksi etukäteen',
+     'Ruokalista julkaistaan viikon alussa, ei sinä päivänä. Näin tiedät '
+     'etukäteen, milloin kannattaa tulla.'),
+    ('Ruoka tehdään itse',
+     'Lounas valmistetaan paikan päällä. Kerromme pyydettäessä, mitä ruoka '
+     'sisältää.'),
+    ('Erityisruokavaliot hoidetaan',
+     'Kerro ruokavaliosta tilatessa tai kysy paikan päällä. Se ei ole '
+     'erikoisjärjestely vaan tavallinen asia.'),
+    ('Tilaus on valmis sovittuna aikana',
+     'Kun tilausruoasta on sovittu kellonaika, se pitää. Siihen ei tarvitse '
+     'soittaa perään.'),
+  ],
 ),
 
 }
