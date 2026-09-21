@@ -226,15 +226,14 @@ def steps_block(cfg):
 
 DEFAULT_WAY = (
   ('Kohde katsotaan ennen tarjousta',
-   'Emme anna hintaa puhelimessa näkemättä kohdetta. Se on ainoa tapa antaa hinta, joka pitää.'),
+   'Hinta annetaan vasta kun kohde on käyty läpi paikan päällä.'),
   ('Tarjous on kirjallinen ja eritelty',
-   'Tarjouksesta näkee mitä hintaan kuuluu ja mitä ei. Epäselvä tarjous johtaa riitaan.'),
+   'Tarjouksesta näkee, mitä hintaan kuuluu ja mitä ei.'),
   ('Muutokset kirjataan',
    'Jos työn aikana löytyy jotain, mitä ei voinut etukäteen nähdä, siitä sovitaan '
    'erikseen ennen kuin sitä tehdään.'),
   ('Työ luovutetaan yhdessä',
-   'Lopuksi käydään työ läpi yhdessä ja kirjataan huomiot. Puutteet korjataan ennen '
-   'kuin työ katsotaan valmiiksi.'),
+   'Lopuksi työ käydään läpi yhdessä ja huomiot kirjataan.'),
 )
 
 
@@ -264,10 +263,9 @@ def cta(cfg):
       </div>
     </div>
   </section>
-''' % (cfg.get('cta_title', 'Kerro mitä tarvitset'),
+''' % (cfg.get('cta_title', 'Pyydä tarjous'),
        cfg.get('cta_text',
-               'Soita tai lähetä tarjouspyyntö. Käydään kohde läpi ja '
-               'katsotaan, miten se kannattaa tehdä.'),
+               'Soita tai lähetä tarjouspyyntö, niin sovitaan katselmus.'),
        cfg.get('cta', 'Pyydä tarjous'), ic('doc'), tbd('puhelinnumero'),
        ic('phone'), tbd('sähköpostiosoite'), ic('mail')))
 

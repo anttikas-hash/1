@@ -29,13 +29,13 @@ SITES = {
      ['Sähkökeskus ja ryhmäjohdot','Pistorasiat ja kytkimet','Valaistusasennukset',
       'Antenni- ja tietoliikennekaapelointi','Käyttöönottotarkastus ja dokumentit']),
     ('Sähköremontit ja saneeraus','sahko-kaapeli',
-     'Vanhan sähköjärjestelmän uusiminen kokonaan tai osittain. Käymme kohteen läpi '
-     'ennen tarjousta, koska vanhoissa taloissa pintojen alla on usein yllätyksiä.',
+     'Vanhan sähköjärjestelmän uusiminen kokonaan tai osittain. Kohde käydään läpi '
+     'ennen tarjousta, koska vanhan asennuksen laajuus selviää vasta paikan päällä.',
      ['Koko asunnon sähköremontti','Keskuksen uusiminen','Vanhan johdotuksen vaihto',
       'Lisäpistorasiat ja -ryhmät','Kylpyhuoneen sähköt']),
     ('Valaistus','sahko-valo',
-     'Valaistuksen suunnittelu ja asennus sisälle ja ulos. Vanhan valaistuksen '
-     'vaihto vähemmän sähköä kuluttavaan on usein nopeimmin takaisin maksava työ.',
+     'Valaistuksen suunnittelu ja asennus sisälle ja ulos. Vanhat valaisimet '
+     'voidaan vaihtaa samalla käynnillä.',
      ['Sisävalaistus ja spotit','Piha- ja julkisivuvalaistus','Ohjaukset ja himmentimet',
       'Valaistuksen uusiminen']),
     ('Vikakorjaukset ja mittaukset','sahko-mittaus',
@@ -63,13 +63,13 @@ SITES = {
      'ryhmäjohdot vaativat sähköpätevyyden. Väärin tehty asennus on paloriski ja voi vaikuttaa '
      'vakuutuskorvaukseen.'),
     ('Kuinka nopeasti pääsette liikkeelle?',
-     'Se riippuu työtilanteesta ja kohteesta. Soita, niin kerromme suoraan milloin pystymme '
-     'aloittamaan — emme lupaa aikataulua, jota emme pidä.'),
+     'Se riippuu työtilanteesta ja kohteesta. Soita ja kysy, niin kerromme '
+     'milloin pystymme aloittamaan.'),
   ],
   promises=[
-    ('Kirjallinen hinta','Saat erittelyn siitä mitä hintaan kuuluu ja mitä ei — ei suullisia arvioita.'),
-    ('Työ dokumentoidaan','Käyttöönottotarkastus tehdään ja pöytäkirja jää sinulle.'),
-    ('Kaapeloinnit merkitään','Ryhmät merkitään keskukseen, niin vika löytyy myöhemmin nopeasti.'),
+    ('Kirjallinen tarjous','Tarjouksessa on eritelty, mitä hintaan kuuluu ja mitä ei.'),
+    ('Käyttöönottotarkastus','Tarkastus tehdään ja pöytäkirja jää tilaajalle.'),
+    ('Ryhmien merkinnät','Ryhmät merkitään keskukseen asennuksen yhteydessä.'),
   ],
   about='tekee sähköasennukset, sähköremontit ja vikakorjaukset kotitalouksille, '
         'taloyhtiöille ja yrityksille.',
@@ -85,13 +85,13 @@ SITES = {
   lede='Sisä- ja ulkomaalaus, tasoitetyöt ja tapetointi. Suojaus, tasoitus ja '
        'pohjustus sisältyvät työhön.',
   hero='maalaus-hero',
-  facts=[('Pohjatyö','Suojaus, tasoitus ja pohjustus ratkaisevat lopputuloksen.'),
+  facts=[('Pohjatyö','Suojaus, tasoitus ja pohjustus kuuluvat työhön.'),
          ('Sisä ja ulko','Asunnot, julkisivut, tasoitetyöt ja tapetointi.'),
          ('Toimialue','<span class="tbd">toimialue</span>')],
   services=[
     ('Sisämaalaus','maalaus-sisa',
-     'Asuntojen ja toimitilojen sisämaalaus. Suojaus, tasoitus ja pohjustus kuuluvat '
-     'työhön — ne ovat se osa, joka ratkaisee lopputuloksen.',
+     'Asuntojen ja toimitilojen sisämaalaus. Suojaus, tasoitus ja pohjustus '
+     'kuuluvat työhön.',
      ['Seinien ja kattojen maalaus','Listat, ovet ja karmit','Keittiön kalusteovet',
       'Kosteiden tilojen pinnat','Suojaus ja loppusiivous']),
     ('Ulkomaalaus ja julkisivut','maalaus-ulko',
@@ -100,13 +100,13 @@ SITES = {
      ['Puujulkisivun huoltomaalaus','Pesu ja irtoavan maalin poisto','Homeenpoisto ja pohjustus',
       'Räystäät, ikkunat ja ovet','Peltipintojen maalaus']),
     ('Tasoitetyöt','maalaus-tasoite',
-     'Seinien ja kattojen tasoitus maalausta tai tapetointia varten. Tasoitus on se, '
-     'mikä tekee pinnasta suoran — maali ei korjaa epätasaista seinää.',
+     'Seinien ja kattojen tasoitus maalausta tai tapetointia varten. Tasoituksella '
+     'pinta oikaistaan suoraksi ennen maalia tai tapettia.',
      ['Seinien ja kattojen tasoitus','Saumojen ja ruuvinkantojen tasoitus',
       'Vanhan pinnan korjaus','Hionta ja pölynhallinta']),
     ('Tapetointi','maalaus-suoja',
-     'Tapetointi ja vanhan tapetin poisto. Pohja tasoitetaan ennen uutta tapettia, '
-     'koska tapetti ei peitä epätasaisuuksia vaan korostaa niitä.',
+     'Tapetointi ja vanhan tapetin poisto. Pohja tasoitetaan ja pohjustetaan '
+     'ennen uuden tapetin kiinnitystä.',
      ['Vanhan tapetin poisto','Pohjan tasoitus ja pohjustus','Tapetointi',
       'Kuviollisten tapettien kohdistus']),
   ],
@@ -133,9 +133,9 @@ SITES = {
      'myös siirrot, jos se sovitaan etukäteen.'),
   ],
   promises=[
-    ('Pohjatyö kuuluu hintaan','Suojaus, tasoitus ja pohjustus ovat osa työtä, eivät lisä.'),
-    ('Suojaus pysyy','Lattiat, kalusteet ja ikkunat suojataan koko työn ajaksi.'),
-    ('Sovittu aikataulu','Aikataulu kirjataan sopimukseen. Muutoksista kerrotaan heti.'),
+    ('Pohjatyö sisältyy','Suojaus, tasoitus ja pohjustus sisältyvät maalaustyöhön.'),
+    ('Suojaus','Lattiat, kalusteet ja ikkunat suojataan työn ajaksi.'),
+    ('Aikataulu','Aikataulu kirjataan sopimukseen. Muutoksista kerrotaan heti.'),
   ],
   about='tekee sisä- ja ulkomaalaukset, tasoitetyöt ja tapetoinnit kotitalouksille, '
         'taloyhtiöille ja yrityksille.',
@@ -151,23 +151,23 @@ SITES = {
   lede='Kiveykset, terassit, salaojat ja maanrakennustyöt. Pohjarakenne ja '
        'vedenpoisto eritellään tarjouksessa.',
   hero='piha-hero',
-  facts=[('Pohjatyö','Routimaton pohja ratkaisee, kestääkö kiveys.'),
-         ('Vedenpoisto','Salaojat ja kaadot ovat osa pihan rakennetta.'),
+  facts=[('Pohjatyö','Routaeristys ja pohjarakenne kuuluvat kiveystyöhön.'),
+         ('Vedenpoisto','Salaojat ja kaadot tehdään osana pihan rakennetta.'),
          ('Toimialue','<span class="tbd">toimialue</span>')],
   services=[
     ('Kiveykset ja laatoitukset','piha-kivi',
-     'Pihakiveykset, kulkuväylät ja autopaikat. Kiveyksen kestävyys ratkaistaan '
-     'pohjatyössä: routimaton rakenne ja oikeat kaadot estävät painumisen.',
+     'Pihakiveykset, kulkuväylät ja autopaikat. Työhön kuuluvat pohjarakenne, '
+     'routaeristys ja kaadot.',
      ['Pihakiveykset ja kulkuväylät','Autopaikat ja ajoluiskat','Reunatuet ja rajaukset',
       'Pohjatyöt ja routaeristys','Vanhan kiveyksen korjaus']),
     ('Terassit ja katokset','piha-terassi',
-     'Terassit, portaat ja katokset. Rakenne tehdään niin, että se tuulettuu ja '
-     'kuivuu — se on ainoa tapa saada puurakenteesta pitkäikäinen.',
+     'Terassit, portaat ja katokset. Puurakenne tehdään tuulettuvaksi ja '
+     'kuivuvaksi.',
      ['Puuterassit ja portaat','Komposiittiterassit','Terassin kaiteet',
       'Katokset ja pergolat','Vanhan terassin uusiminen']),
     ('Salaojat ja sadevedet','piha-salaoja',
-     'Salaojitus, sadevesiviemärit ja pintavesien ohjaus. Väärin ohjattu vesi on '
-     'yleisin syy kosteusvaurioon, ja sen korjaaminen jälkikäteen on kallista.',
+     'Salaojitus, sadevesiviemärit ja pintavesien ohjaus. Vedet ohjataan pois '
+     'perustusten vierestä.',
      ['Salaojien asennus ja uusiminen','Sadevesiviemärit ja kaivot',
       'Perustusten vedeneristys','Pintavesien kallistukset','Rumpujen asennus']),
     ('Maanrakennus ja pohjatyöt','piha-maansiirto',
@@ -189,12 +189,11 @@ SITES = {
      'osoitteesta <a href="https://www.vero.fi" rel="noopener">vero.fi</a>.'),
     ('Tarvitaanko pihatöihin lupa?',
      'Osa töistä on luvanvaraisia — esimerkiksi maanpinnan korkeuden muuttaminen, puiden kaato ja '
-     'joissakin kunnissa myös isot katokset. Lupaehdot vahvistaa aina kunnan rakennusvalvonta, '
-     'ja autamme hakemuksen valmistelussa.'),
+     'joissakin kunnissa myös isot katokset. Lupaehdot vahvistaa aina kunnan '
+     'rakennusvalvonta.'),
     ('Miksi kiveys painuu?',
      'Lähes aina siksi, että pohja on tehty liian ohuena tai väärästä materiaalista, tai vesi ei '
-     'pääse pois. Siksi pohjarakenne eritellään tarjouksessa — se on se osa, jossa säästäminen '
-     'näkyy muutaman vuoden päästä.'),
+     'pääse pois. Siksi pohjarakenne eritellään tarjouksessa.'),
     ('Mihin aikaan vuodesta työt tehdään?',
      'Kaivuu- ja kiveystyöt tehdään sulan maan aikana. Kerromme katselmuksessa, mihin ajankohtaan '
      'työ realistisesti sijoittuu.'),
@@ -225,22 +224,22 @@ SITES = {
   services=[
     ('Katteen uusiminen','katto-tiili',
      'Vanhan katteen purku ja uuden asennus. Aluskate, ruoteet ja läpiviennit '
-     'tehdään samalla — niiden kunto ratkaisee, kuinka kauan uusi katto kestää.',
+     'käydään läpi ja uusitaan tarvittaessa samalla.',
      ['Vanhan katteen purku ja jätehuolto','Aluskate ja ruoteet','Tiilikatteen asennus',
       'Huopakatteen asennus','Läpiviennit ja tiivistykset']),
     ('Peltikatot','katto-pelti',
      'Konesaumatut ja profiilipeltikatot uudiskohteisiin ja saneeraukseen. '
-     'Peltikatto kestää pitkään, jos saumat ja kiinnitykset on tehty oikein.',
+     'Työhön kuuluvat saumat, kiinnitykset ja pellitykset.',
      ['Profiilipeltikatot','Konesaumakatot','Pellitykset ja listat',
       'Peltikaton huoltomaalaus','Lumiesteet ja kattosillat']),
     ('Räystäät ja sadevedet','katto-raystas',
-     'Räystäskourut, syöksytorvet ja niiden korjaus. Väärin johdettu sadevesi '
-     'päätyy perustuksiin, ja se on kalliimpi vika kuin itse katto.',
+     'Räystäskourut, syöksytorvet ja niiden korjaus. Sadevedet ohjataan katolta '
+     'maahan ja pois perustusten vierestä.',
      ['Räystäskourut ja syöksytorvet','Kourujen puhdistus ja korjaus',
       'Otsalaudat ja räystäslaudoitus','Sadevesien ohjaus maahan']),
     ('Kattoturvatuotteet','lista',
-     'Lumiesteet, kattosillat, tikkaat ja kattoluukut. Nämä ovat pakollisia, '
-     'jos katolla pitää käydä — ja katolla pitää käydä.',
+     'Lumiesteet, kattosillat, tikkaat ja kattoluukut. Nämä tarvitaan, jotta '
+     'katolle pääsee huoltamaan ja nuohoamaan turvallisesti.',
      ['Lumiesteet','Kattosillat ja tikkaat','Turvakiskot ja kiinnityspisteet',
       'Kattoluukut ja huoltoluukut']),
   ],
@@ -268,9 +267,9 @@ SITES = {
      '<a href="https://www.vero.fi" rel="noopener">vero.fi</a>.'),
   ],
   promises=[
-    ('Katto katsotaan ensin','Emme anna hintaa näkemättä kattoa — alta löytyy usein muutakin.'),
-    ('Aluskate ja ruoteet','Ne uusitaan tarvittaessa, ei piiloteta uuden katteen alle.'),
-    ('Työ eritellään','Tarjouksesta näkee, mitä purku, alusrakenne ja kate maksavat erikseen.'),
+    ('Katto katsotaan ensin','Hinta annetaan vasta kun katto on käyty läpi paikan päällä.'),
+    ('Aluskate ja ruoteet','Alusrakenteen kunto tarkastetaan ja uusitaan tarvittaessa.'),
+    ('Työ eritellään','Tarjouksesta näkee purun, alusrakenteen ja katteen hinnat erikseen.'),
   ],
   about='tekee kattoremontit, katteen uusimiset ja kattojen huoltotyöt.',
 ),
@@ -295,18 +294,18 @@ SITES = {
      ['Parkettiasennukset','Laminaatti ja vinyyli','Alustan tasoitus',
       'Jalkalistat ja siirtymälistat','Vanhan lattian purku']),
     ('Laatoitus','lattia-laatta',
-     'Lattia- ja seinälaatoitus märkätiloihin ja kuiviin tiloihin. Märkätilassa '
-     'vedeneristys on se osa, joka ratkaisee — se jää laatan alle piiloon.',
+     'Lattia- ja seinälaatoitus märkätiloihin ja kuiviin tiloihin. Märkätilaan '
+     'tehdään vedeneristys ennen laatoitusta.',
      ['Kylpyhuoneiden laatoitus','Vedeneristys','Keittiön välitilat',
       'Lattialaatoitukset','Saumaukset ja silikonit']),
     ('Lattian tasoitus','aallot',
-     'Lattian oikaisu tasoitteella ennen pintamateriaalia. Ilman tätä lankku '
-     'kupruilee ja laatta halkeaa — ja silloin koko työ tehdään uudelleen.',
+     'Lattian oikaisu tasoitteella ennen pintamateriaalin asennusta. Tasoituksen '
+     'jälkeen alusta on suora ja kuiva.',
      ['Pumpputasoitus','Käsintasoitus','Kaadot märkätiloihin',
       'Vanhan liiman ja tasoitteen poisto','Kosteusmittaukset']),
     ('Lattialämmitys','kehat',
      'Vesikiertoisen ja sähköisen lattialämmityksen asennus pintamateriaalin alle. '
-     'Sähkötyöt tekee sähköurakoitsija — me hoidamme alustan ja pinnan.',
+     'Kytkennät jäävät sähköurakoitsijalle.',
      ['Lattialämmityskaapelit ja -matot','Vesikiertoiset putkistot',
       'Tasoitus lämmityksen päälle','Yhteensovitus muiden urakoitsijoiden kanssa']),
   ],
@@ -324,16 +323,16 @@ SITES = {
      'Riippuu pinta-alasta ja siitä, paljonko tasoitusta ja kuivumisaikaa tarvitaan. '
      'Tasoite ja vedeneristys vaativat oman kuivumisaikansa, eikä sitä voi ohittaa.'),
     ('Kuka saa tehdä märkätilan vedeneristyksen?',
-     'Märkätilan vedeneristys edellyttää henkilösertifikaattia. Kysy se aina — väärin tehty '
-     'vedeneristys näkyy vasta vuosien päästä kosteusvauriona.'),
+     'Märkätilan vedeneristys edellyttää henkilösertifikaattia. Sen voi pyytää '
+     'nähtäväksi ennen työn tilaamista.'),
     ('Saako lattiatyöstä kotitalousvähennystä?',
      'Asunnossa tehdyn työn työosuudesta voi tietyin edellytyksin saada kotitalousvähennystä. '
      'Ehdot löytyvät osoitteesta <a href="https://www.vero.fi" rel="noopener">vero.fi</a>.'),
   ],
   promises=[
-    ('Alusta mitataan','Suoruus ja kosteus mitataan ennen kuin mitään asennetaan.'),
-    ('Kuivumisajat pidetään','Tasoite ja vedeneristys kuivuvat valmistajan ilmoittaman ajan.'),
-    ('Työ eritellään','Tarjouksesta näkee, mitä purku, tasoitus ja asennus maksavat erikseen.'),
+    ('Alusta mitataan','Suoruus ja kosteus mitataan ennen asennusta.'),
+    ('Kuivumisajat','Tasoite ja vedeneristys kuivuvat valmistajan ilmoittaman ajan.'),
+    ('Työ eritellään','Tarjouksesta näkee purun, tasoituksen ja asennuksen hinnat erikseen.'),
   ],
   about='tekee parketti-, laminaatti- ja laatoitustyöt sekä lattioiden tasoitukset.',
 ),
@@ -349,7 +348,7 @@ SITES = {
        'omistajille. Sovitut työt kirjataan huoltokirjaan.',
   hero='kiinteisto-hero',
   facts=[('Huoltosopimus','Sovittu huolto sovituin väliajoin.'),
-         ('Yksi numero','Kaikki kiinteistön huoltoasiat samasta paikasta.'),
+         ('Palvelut','Tekniset tilat, piha-alueet ja pienet korjaukset.'),
          ('Päivystys','<span class="tbd">päivystyksen ajat ja ehdot</span>')],
   services=[
     ('Kiinteistön huolto','lista',
@@ -359,7 +358,7 @@ SITES = {
       'Lamppujen ja pienosien vaihdot','Huoltokirjan ylläpito']),
     ('Piha-alueet','ruudukko',
      'Piha-alueiden hoito ympäri vuoden: talvikunnossapito, nurmikot ja '
-     'istutukset. Talvella liukkaudentorjunta on myös vastuukysymys.',
+     'istutukset. Talvikunnossapidon laajuus sovitaan sopimuksessa.',
      ['Lumityöt ja liukkaudentorjunta','Nurmikon leikkuu','Istutusten hoito',
       'Piha-alueiden siisteys','Hiekoitushiekan poisto']),
     ('Korjaus- ja pientyöt','tyokalut',
@@ -385,18 +384,17 @@ SITES = {
      'säännölliset tarkastuskäynnit, piha-alueet ja pienet korjaustyöt; erikoisurakat '
      'sovitaan erikseen.'),
     ('Kuinka nopeasti tulette vikailmoituksen jälkeen?',
-     'Vasteajat sovitaan sopimuksessa ja ne riippuvat vian kiireellisyydestä. '
-     'Emme lupaa aikaa, jota emme pysty pitämään.'),
+     'Vasteajat sovitaan sopimuksessa ja ne riippuvat vian kiireellisyydestä.'),
     ('Hoidatteko myös talvikunnossapidon?',
      'Kyllä, jos se sisällytetään sopimukseen. Talvikunnossapito on myös vastuukysymys: '
      'liukastumisesta vastaa kiinteistön haltija.'),
     ('Voiko yksittäisen työn tilata ilman sopimusta?',
-     'Kysy — se riippuu työtilanteesta. Sopimusasiakkaat menevät kiireellisissä töissä edelle.'),
+     'Kysy erikseen. Yksittäiset työt tehdään työtilanteen mukaan.'),
   ],
   promises=[
     ('Tehdyt työt kirjataan','Huoltokirjasta näkee mitä on tehty ja milloin.'),
-    ('Yksi yhteyshenkilö','Sama henkilö hoitaa kohteen asiat alusta loppuun.'),
-    ('Rajat kerrotaan','Sanomme suoraan, kun työ vaatii erikoisurakoitsijan.'),
+    ('Vasteajat sopimuksessa','Vikailmoitusten vasteajat kirjataan huoltosopimukseen.'),
+    ('Erikoisurakat erikseen','Erikoisurakoitsijaa vaativat työt kerrotaan ja sovitaan erikseen.'),
   ],
   about='hoitaa kiinteistöjen huollon, kunnossapidon ja piha-alueet.',
 ),
@@ -412,7 +410,7 @@ SITES = {
        'Työlista ja siivousväli sovitaan kirjallisesti.',
   hero='siivous-hero',
   facts=[('Sovittu lista','Työn sisältö kirjataan, ei sovita suullisesti.'),
-         ('Säännöllinen tai kertaluonteinen','Molemmat käyvät.'),
+         ('Siivousväli','Säännöllinen tai kertaluonteinen siivous.'),
          ('Toimialue','<span class="tbd">toimialue</span>')],
   services=[
     ('Kotisiivous','kehat',
@@ -422,17 +420,17 @@ SITES = {
       'Ikkunanpesut','Kodinkoneiden puhdistus','Sovittu työlista kirjallisena']),
     ('Toimitilasiivous','liiketila',
      'Toimistojen, liiketilojen ja yhteisten tilojen siivous sovittuina aikoina. '
-     'Työ tehdään niin, ettei se häiritse tilan omaa toimintaa.',
+     'Käyntiajat sovitaan tilan oman toiminnan mukaan.',
      ['Toimistot ja neuvottelutilat','Liiketilat','Yhteiset tilat ja porraskäytävät',
       'Sosiaalitilat','Siivousaikataulu sovitaan erikseen']),
     ('Muuttosiivous','pinot',
-     'Muuttosiivous asunnon luovutusta varten. Käydään läpi ne kohdat, joita '
-     'luovutuksessa katsotaan — kaapinpohjat, kodinkoneiden taustat ja kylpyhuone.',
+     'Muuttosiivous asunnon luovutusta varten. Työhön kuuluvat kaapistot sisältä, '
+     'kodinkoneiden taustat ja kylpyhuone.',
      ['Kaapistot sisältä','Kodinkoneet ja niiden taustat','Kylpyhuone ja saunatilat',
       'Ikkunat ja karmit','Lattioiden peruspesu']),
     ('Rakennussiivous','tyokalut',
-     'Remontin tai rakennustyön jälkeinen siivous. Rakennuspöly tarttuu kaikkialle '
-     'ja vaatii eri välineet kuin tavallinen siivous.',
+     'Remontin tai rakennustyön jälkeinen siivous. Rakennuspölyn poistoon '
+     'käytetään omia välineitä ja menetelmiä.',
      ['Rakennuspölyn poisto','Suojausten purku','Pintojen ensipesu',
       'Ikkunat ja karmit','Loppusiivous luovutusta varten']),
   ],
@@ -454,13 +452,13 @@ SITES = {
      'Ei tarvitse, jos avainten käytöstä on sovittu kirjallisesti. Ensimmäisellä kerralla '
      'on hyvä olla paikalla, jotta työlista käydään yhdessä läpi.'),
     ('Mitä jos jokin jää tekemättä?',
-     'Kerro heti, niin se korjataan. Siksi työlista on kirjallinen — silloin ei tarvitse '
-     'kiistellä siitä, mitä oli sovittu.'),
+     'Kerro siitä, niin asia käydään läpi. Työlista on kirjallinen, joten sovittu '
+     'sisältö on tarkistettavissa.'),
   ],
   promises=[
     ('Työlista on kirjallinen','Sovitut työt ja niiden tiheys kirjataan ennen aloitusta.'),
-    ('Samat tekijät','Pyrimme siihen, että kohteessa käy sama henkilö.'),
-    ('Puutteet korjataan','Jos jokin jäi tekemättä, se tehdään ilman erillistä laskua.'),
+    ('Käyntiajat sovitaan','Siivousväli ja käyntiajat sovitaan etukäteen.'),
+    ('Avaimista sovitaan','Avainten käytöstä sovitaan kirjallisesti ennen aloitusta.'),
   ],
   about='tekee kotisiivoukset, toimitilasiivoukset sekä muutto- ja rakennussiivoukset.',
 ),
@@ -480,13 +478,13 @@ SITES = {
          ('Kalusto','<span class="tbd">kaluston koko ja kantavuus</span>')],
   services=[
     ('Kotimuutot','ruudukko',
-     'Asuntomuutot pakkauksineen tai ilman. Käydään läpi etukäteen, mitä muutetaan '
-     'ja mitä tarvitaan — se määrää auton koon ja tarvittavan ajan.',
+     'Asuntomuutot pakkauksineen tai ilman. Muuton sisältö käydään läpi etukäteen, '
+     'koska se määrää auton koon ja tarvittavan ajan.',
      ['Muuton suunnittelu ja arviointi','Pakkaus ja purku','Huonekalujen purku ja kokoaminen',
       'Kuljetus ja kantoapu','Pakkausmateriaalit']),
     ('Toimistomuutot','liiketila',
-     'Toimistojen ja liiketilojen muutot sovittuna ajankohtana, usein illalla tai '
-     'viikonloppuna, jotta työ ei keskeydy.',
+     'Toimistojen ja liiketilojen muutot sovittuna ajankohtana, tarvittaessa '
+     'työajan ulkopuolella.',
      ['Toimistokalusteet','Arkistot ja laitteet','Muutto työajan ulkopuolella',
       'Merkintä ja purkujärjestys','Vanhan tilan tyhjennys']),
     ('Tavarankuljetukset','auto-nosturi',
@@ -511,8 +509,8 @@ SITES = {
      'Muuttopalvelun työosuudesta voi tietyin edellytyksin saada kotitalousvähennystä. '
      'Ehdot löytyvät osoitteesta <a href="https://www.vero.fi" rel="noopener">vero.fi</a>.'),
     ('Miten hinta määräytyy?',
-     'Tavallisesti kuutioiden, matkan ja työajan mukaan. Siksi kysymme etukäteen, mitä '
-     'muutetaan — arvio ilman tietoja ei pidä paikkaansa.'),
+     'Tavallisesti kuutioiden, matkan ja työajan mukaan. Siksi kysymme etukäteen, '
+     'mitä ja mistä muutetaan.'),
     ('Onko tavara vakuutettu kuljetuksen aikana?',
      'Kysy tämä aina jokaiselta muuttoyritykseltä ja pyydä vastaus kirjallisena. '
      'Vakuutusturvan laajuus vaihtelee yrityksittäin.'),
@@ -521,9 +519,9 @@ SITES = {
      'siltä osin. Sovitaan etukäteen.'),
   ],
   promises=[
-    ('Arvio perustuu tietoihin','Kysymme mitä muutetaan ennen kuin annamme hinnan.'),
+    ('Arvio perustuu tietoihin','Muuton sisältö kysytään ennen hinta-arvion antamista.'),
     ('Tavarat suojataan','Huonekalut suojataan kuljetuksen ajaksi.'),
-    ('Sovittu aika pitää','Jos aikataulu muuttuu, kerromme siitä heti.'),
+    ('Aikataulu','Nouto- ja toimitusaika sovitaan etukäteen. Muutoksista kerrotaan heti.'),
   ],
   about='tekee koti- ja toimistomuutot, tavarankuljetukset ja poisvientipalvelut.',
 ),
@@ -543,23 +541,22 @@ SITES = {
          ('Merkit','<span class="tbd">merkit ja erikoisosaaminen</span>')],
   services=[
     ('Määräaikaishuollot','kello',
-     'Huolto-ohjelman mukaiset huollot. Huolto merkitään huoltokirjaan, joten '
-     'auton takuu ja jälleenmyyntiarvo säilyvät.',
+     'Huolto-ohjelman mukaiset huollot. Tehty huolto merkitään huoltokirjaan.',
      ['Öljyn- ja suodattimenvaihdot','Huolto-ohjelman mukaiset työt',
       'Jarrujen tarkastus','Nesteiden tarkastus ja lisäys','Merkintä huoltokirjaan']),
     ('Korjaukset','tyokalut',
-     'Vikadiagnoosi ja korjaus. Kerromme mikä vikana on ja mitä korjaus maksaa '
-     'ennen kuin aloitamme — myös silloin, kun vastaus ei miellytä.',
+     'Vikadiagnoosi ja korjaus. Vika ja korjauksen hinta kerrotaan ennen työn '
+     'aloittamista.',
      ['Vikadiagnostiikka','Jarrutyöt','Jakopään ja hihnojen vaihdot',
       'Jousitus ja iskunvaimentimet','Pakoputkistot']),
     ('Rengastyöt','auto-hero',
-     'Rengastyöt ja renkaiden säilytys. Kausivaihdon yhteydessä renkaiden kunto '
-     'ja urasyvyys tarkistetaan ja kerrotaan, paljonko käyttöikää on jäljellä.',
+     'Rengastyöt ja renkaiden säilytys. Kausivaihdon yhteydessä tarkistetaan '
+     'renkaiden kunto ja urasyvyys.',
      ['Rengaskausivaihdot','Rengaspaikkaukset','Tasapainotukset',
       'Renkaiden kunnon tarkastus','Renkaiden säilytys']),
     ('Katsastuspalvelu','lista',
      'Katsastustarkastus ennen katsastusta ja jälkitarkastukseen johtavien vikojen '
-     'korjaus. Halvempi tarkastaa etukäteen kuin ajaa kahdesti.',
+     'korjaus samalla käynnillä.',
      ['Katsastustarkastus etukäteen','Vikojen korjaus','Jälkitarkastuksen valmistelu',
       'Päästömittaukset']),
   ],
@@ -583,9 +580,9 @@ SITES = {
      'Saat, jos pyydät sitä työn tilaamisen yhteydessä.'),
   ],
   promises=[
-    ('Soitamme ennen lisätöitä','Mitään sovitun ulkopuolista ei tehdä kysymättä.'),
-    ('Vika selitetään','Kerromme mikä oli vikana ja miksi, ilman ammattisanastoa.'),
-    ('Työ dokumentoidaan','Tehdyt työt ja vaihdetut osat näkyvät laskussa eriteltyinä.'),
+    ('Lisätöistä kysytään','Sovitun ulkopuolisista töistä soitetaan ennen tekemistä.'),
+    ('Vika kerrotaan','Kerromme mikä vikana oli ja mitä sille tehtiin.'),
+    ('Työ eritellään','Tehdyt työt ja vaihdetut osat näkyvät laskussa eriteltyinä.'),
   ],
   about='tekee autojen määräaikaishuollot, korjaukset ja rengastyöt.',
 
@@ -598,11 +595,11 @@ SITES = {
     ('Auto tarkastetaan',
      'Vika etsitään ennen kuin mitään vaihdetaan. Kerromme mitä löytyi ja '
      'mitä korjaus maksaa.'),
-    ('Sinä päätät',
-     'Työ tehdään vasta kun olet hyväksynyt hinnan. Jos matkalla löytyy '
-     'muuta, soitamme ennen kuin jatkamme.'),
+    ('Hyväksyntä ja työ',
+     'Työ tehdään vasta kun hinta on hyväksytty. Jos matkalla löytyy muuta, '
+     'siitä soitetaan ennen jatkamista.'),
     ('Auto luovutetaan',
-     'Kerromme mitä tehtiin ja mitä kannattaa seurata. Vaihdetut osat saa '
+     'Luovutuksen yhteydessä kerrotaan, mitä tehtiin. Vaihdetut osat saa '
      'nähdä pyydettäessä.'),
   ],
   steps_eyebrow='NÄIN HUOLTO MENEE',
@@ -616,20 +613,16 @@ SITES = {
   way_title='Miten korjaamme',
   way_text='Vika etsitään ennen kuin osia vaihdetaan, ja hinta kerrotaan '
            'ennen kuin työ aloitetaan. Jos työn aikana löytyy jotain muuta, '
-           'siitä soitetaan — lasku ei saa olla yllätys.',
+           'siitä soitetaan ennen jatkamista.',
   way=[
     ('Vika etsitään ensin',
-     'Emme vaihda osia arvaamalla. Se on halvempaa sinulle ja rehellisempää '
-     'meiltä.'),
+     'Vika paikannetaan ennen kuin osia vaihdetaan.'),
     ('Hinta ennen työtä',
-     'Kerromme arvion ennen aloitusta. Työ tehdään vasta kun olet '
-     'hyväksynyt sen.'),
-    ('Soitamme jos jotain muuttuu',
-     'Jos korjauksen aikana löytyy muuta, kysymme ennen kuin teemme. '
-     'Emme koskaan jälkeenpäin.'),
+     'Arvio kerrotaan ennen aloitusta. Työ tehdään vasta hyväksynnän jälkeen.'),
+    ('Muutoksista soitetaan',
+     'Jos korjauksen aikana löytyy muuta, siitä kysytään ennen tekemistä.'),
     ('Vanhat osat näytetään',
-     'Vaihdetut osat saa nähdä pyydettäessä. Se on ainoa tapa todistaa, '
-     'että vaihto oli tarpeen.'),
+     'Vaihdetut osat saa nähdä pyydettäessä.'),
   ],
 ),
 
@@ -648,18 +641,18 @@ SITES = {
          ('Hinnasto','<span class="tbd">hinnasto</span>')],
   services=[
     ('Leikkaukset','lista',
-     'Leikkaukset kaikenikäisille. Katsotaan hiusten rakenne ja se, paljonko '
-     'aikaa haluat käyttää hiuksiin aamulla — se määrää mikä leikkaus toimii.',
+     'Leikkaukset kaikenikäisille. Ennen leikkausta käydään läpi hiusten rakenne '
+     'ja se, paljonko muotoiluun on aikaa arkena.',
      ['Parturileikkaukset','Kampaamoleikkaukset','Lasten leikkaukset',
       'Partakoneleikkaukset','Muotoilu ja viimeistely']),
     ('Värjäykset','aallot',
-     'Värjäykset, raidoitukset ja sävytykset. Isoissa värinmuutoksissa katsotaan '
-     'ensin hiusten kunto — liian nopea muutos vaurioittaa hiuksen.',
+     'Värjäykset, raidoitukset ja sävytykset. Isoissa värinmuutoksissa hiusten '
+     'kunto katsotaan ensin ja muutos tehdään tarvittaessa useammalla kerralla.',
      ['Kokovärjäykset','Raidat ja balayage','Sävytykset ja kirkastukset',
       'Tyvivärjäykset','Värinpoistot']),
     ('Hoidot','kehat',
-     'Hiuspohjan ja hiusten hoidot. Käymme läpi, mistä ongelma johtuu, '
-     'ennen kuin suositellaan tuotetta.',
+     'Hiuspohjan ja hiusten hoidot. Lähtötilanne käydään läpi ennen hoidon '
+     'valintaa.',
      ['Tehohoidot','Hiuspohjan hoidot','Hoitoaineet ja naamiot',
       'Kotihoito-ohjeet']),
     ('Kampaukset','ruudukko',
@@ -687,9 +680,9 @@ SITES = {
      'Voit. Ilmoita mahdollisimman ajoissa, niin aika voidaan antaa jollekin toiselle.'),
   ],
   promises=[
-    ('Kerromme mikä sopii','Sanomme suoraan, jos toivottu tyyli ei toimi hiustyypilläsi.'),
+    ('Hiusten kunto katsotaan','Lähtötilanne ja toiveet käydään läpi ennen aloitusta.'),
     ('Hinta ennen aloitusta','Hinta kerrotaan ennen työn aloittamista.'),
-    ('Kotihoito-ohjeet','Saat ohjeet siihen, miten kampaus pysyy hyvänä kotona.'),
+    ('Kotihoito-ohjeet','Kotihoidon ohjeet käydään läpi käynnin lopuksi.'),
   ],
   about='tekee leikkaukset, värjäykset, hoidot ja juhlakampaukset.',
 
@@ -698,9 +691,8 @@ SITES = {
     ('Ajanvaraus',
      'Soitat ja kerrot mitä olet ajatellut. Kerromme arvion ajasta ja hinnasta '
      'jo puhelimessa.'),
-    ('Katsotaan yhdessä',
-     'Ennen aloitusta käydään läpi hiusten kunto ja se, mitä haluat. Sanomme '
-     'suoraan, jos toivottu tyyli ei toimi.'),
+    ('Lähtötilanne katsotaan',
+     'Ennen aloitusta käydään läpi hiusten kunto ja se, mitä olet toivonut.'),
     ('Työ ja kotihoito-ohjeet',
      'Leikkauksen tai värjäyksen jälkeen kerromme, miten kampaus pysyy hyvänä '
      'kotona.'),
@@ -710,7 +702,7 @@ SITES = {
   customers_title='Kenelle teemme',
   services_lede='Leikkaukset, värjäykset, hoidot ja juhlakampaukset. '
                 'Kaikkiin varataan aika puhelimitse.',
-  cta_title='Varaa aika puhelimitse',
+  cta_title='Varaa aika',
   cta_text='Soita ja kerro mitä olet ajatellut, niin katsotaan sopiva aika. '
            'Kerromme hinta-arvion jo puhelimessa.',
   contact_lede='Ajanvaraus käy puhelimitse. Kerro mitä olet ajatellut, niin '
@@ -720,18 +712,14 @@ SITES = {
            'kuullaan mitä haluat. Hinta kerrotaan ennen aloitusta, eikä '
            'mitään tehdä sopimatta.',
   way=[
-    ('Sanomme suoraan, mikä sopii',
-     'Jos toivottu tyyli ei toimi hiustyypilläsi, kerromme sen ennen kuin '
-     'aloitamme — emme jälkeenpäin.'),
+    ('Toive käydään läpi ennen aloitusta',
+     'Jos toivottu tyyli ei toimi hiustyypillä, se kerrotaan ennen aloitusta.'),
     ('Hinta ennen aloitusta',
-     'Tiedät hinnan ennen kuin istut tuoliin. Jos työ laajenee, siitä '
-     'kysytään erikseen.'),
-    ('Hiusten kunto ratkaisee',
-     'Isoa värinmuutosta ei tehdä kerralla, jos hius ei kestä sitä. '
-     'Se on hiusten etu, ei myynnin este.'),
-    ('Kotihoito kuuluu hintaan',
-     'Saat ohjeet siihen, miten lopputulos pysyy hyvänä. Tuotetta ei '
-     'suositella ilman syytä.'),
+     'Hinta kerrotaan ennen aloitusta. Jos työ laajenee, siitä kysytään erikseen.'),
+    ('Iso värinmuutos jaetaan',
+     'Isoa värinmuutosta ei tehdä yhdellä kerralla, jos hius ei kestä sitä.'),
+    ('Kotihoito-ohjeet',
+     'Ohjeet lopputuloksen hoitoon käydään läpi käynnin lopuksi.'),
   ],
 ),
 
@@ -740,23 +728,23 @@ SITES = {
   brand1='Lounas', brand2='ravintola',
   name='Ravintola',
   title='Lounasravintola ja tilausruoat',
-  desc='Lounas arkisin, tilausruoat ja kokoustarjoilut.',
-  h1='Lounas arkisin, tilausruoat ja kokoustarjoilut',
-  lede='Lounas arkisin, tilausruoat ja kokoustarjoilut. Ruokalista viikoksi '
-       'kerrallaan, jotta tiedät etukäteen mitä on tarjolla.',
+  desc='Lounas, tilausruoat ja kokoustarjoilut.',
+  h1='Lounas, tilausruoat ja kokoustarjoilut',
+  lede='Lounas, tilausruoat ja kokoustarjoilut. Ruokalista julkaistaan viikoksi '
+       'kerrallaan.',
   hero='ravintola-hero',
   facts=[('Lounas','<span class="tbd">lounasajat</span>'),
          ('Aukioloajat','<span class="tbd">aukioloajat</span>'),
          ('Hinnasto','<span class="tbd">hinnasto</span>')],
   services=[
     ('Lounas','ruudukko',
-     'Lounas arkisin. Ruokalista julkaistaan viikoksi kerrallaan, ja tarjolla on '
-     'aina myös kasvisvaihtoehto.',
+     'Lounas paikan päällä tai mukaan. Ruokalista julkaistaan viikoksi '
+     'kerrallaan.',
      ['Lämmin ruoka ja kasvisvaihtoehto','Salaattipöytä','Leipä ja juomat',
       'Viikon ruokalista etukäteen','Erityisruokavaliot huomioidaan']),
     ('Tilausruoat','pinot',
-     'Tilausruoat noudettuna tai toimitettuna. Kerro määrä ja ajankohta hyvissä '
-     'ajoin, niin varmistamme että se onnistuu.',
+     'Tilausruoat noudettuna tai toimitettuna. Määrä ja ajankohta sovitaan '
+     'etukäteen.',
      ['Juhlat ja perhetilaisuudet','Muistotilaisuudet','Noutopöydät',
       'Toimitus tai nouto','Erityisruokavaliot']),
     ('Kokoustarjoilut','kello',
@@ -765,13 +753,13 @@ SITES = {
      ['Kokouskahvitukset','Kokouslounaat','Aamiaistarjoilut',
       'Toimitus sovittuna aikana']),
     ('Tilat','liiketila',
-     'Tila yksityistilaisuuksiin sovittaessa. Kerro tilaisuuden koko ja luonne, '
-     'niin katsotaan mikä onnistuu.',
+     'Tila yksityistilaisuuksiin sovittaessa. Tilaisuuden koko ja ajankohta '
+     'sovitaan etukäteen.',
      ['Yksityistilaisuudet','Ryhmävaraukset','Tilan koko ja varustus: '
       '<span class="tbd">tarkennettava</span>']),
   ],
   customers=[
-    ('Lounasasiakkaat','Arkilounas paikan päällä tai mukaan.'),
+    ('Lounasasiakkaat','Lounas paikan päällä tai mukaan.'),
     ('Yritykset','Kokoustarjoilut ja henkilöstön lounaat.'),
     ('Perheet ja juhlat','Tilausruoat juhliin ja muistotilaisuuksiin.'),
     ('Ryhmät','Ryhmävaraukset sovittaessa.'),
@@ -789,11 +777,11 @@ SITES = {
      'Saa. Kerro se tilatessa, niin pakkaamme sen valmiiksi.'),
   ],
   promises=[
-    ('Lista etukäteen','Viikon ruokalista julkaistaan etukäteen, ei päivänä.'),
-    ('Kasvisvaihtoehto joka päivä','Se on listalla valmiina, sitä ei tarvitse tilata erikseen.'),
-    ('Sovittu aika pitää','Tilausruoka on valmis silloin kun sovittiin.'),
+    ('Ruokalista','Viikon ruokalista julkaistaan etukäteen.'),
+    ('Kasvisvaihtoehto','Listalla on kasvisvaihtoehto.'),
+    ('Tilausruoat','Määrä ja noutoaika sovitaan etukäteen.'),
   ],
-  about='tarjoaa arkilounaan sekä tilausruoat ja kokoustarjoilut.',
+  about='tarjoaa lounaan sekä tilausruoat ja kokoustarjoilut.',
 
   # Ravintolassa ei ole vaiheita: asiakas tulee, syo ja maksaa. Sen
   # selittaminen neljana vaiheena olisi asiakkaan aliarviointia.
@@ -801,30 +789,25 @@ SITES = {
   services_title='Mitä tarjoamme',
   services_link='Katso mitä tarjoamme',
   customers_title='Kenelle tarjoamme',
-  services_lede='Neljä asiaa: arkilounas, tilausruoat, kokoustarjoilut ja '
-                'tila yksityistilaisuuksiin.',
-  cta_title='Tule syömään tai tilaa ruoat',
-  cta_text='Lounaalle ei tarvitse varata pöytää. Tilausruoat ja '
-           'kokoustarjoilut sovitaan puhelimessa.',
-  contact_lede='Kysy lounaslistaa, varaa pöytä ryhmälle tai tilaa ruoat. '
-               'Vastaamme puhelimeen aukioloaikoina.',
-  way_title='Miten täällä toimitaan',
-  way_text='Ruoka tehdään itse ja lista suunnitellaan viikoksi kerrallaan. '
-           'Tilausruoat sovitaan etukäteen puhelimessa, jotta määrä ja '
-           'ajankohta ovat varmasti selvät.',
+  services_lede='Lounas, tilausruoat, kokoustarjoilut ja tila '
+                'yksityistilaisuuksiin.',
+  cta_title='Tilaukset ja yhteydenotot',
+  cta_text='Tilausruoat, kokoustarjoilut ja ryhmävaraukset sovitaan '
+           'puhelimessa.',
+  contact_lede='Kysy lounaslistaa, varaa pöytä ryhmälle tai tilaa ruoat.',
+  way_title='Miten toimimme',
+  way_text='Ruokalista suunnitellaan viikoksi kerrallaan ja julkaistaan '
+           'etukäteen. Tilausruoista sovitaan puhelimessa, jotta määrä ja '
+           'ajankohta ovat selvät.',
   way=[
-    ('Lista viikoksi etukäteen',
-     'Ruokalista julkaistaan viikon alussa, ei sinä päivänä. Näin tiedät '
-     'etukäteen, milloin kannattaa tulla.'),
-    ('Ruoka tehdään itse',
-     'Lounas valmistetaan paikan päällä. Kerromme pyydettäessä, mitä ruoka '
-     'sisältää.'),
-    ('Erityisruokavaliot hoidetaan',
-     'Kerro ruokavaliosta tilatessa tai kysy paikan päällä. Se ei ole '
-     'erikoisjärjestely vaan tavallinen asia.'),
-    ('Tilaus on valmis sovittuna aikana',
-     'Kun tilausruoasta on sovittu kellonaika, se pitää. Siihen ei tarvitse '
-     'soittaa perään.'),
+    ('Ruokalista viikoksi etukäteen',
+     'Ruokalista julkaistaan viikon alussa.'),
+    ('Ruoan sisältö kerrotaan',
+     'Ruoan raaka-aineet kerrotaan pyydettäessä.'),
+    ('Erityisruokavaliot',
+     'Ruokavaliosta voi kertoa tilatessa tai kysyä paikan päällä.'),
+    ('Tilausten ajankohta',
+     'Tilausruoan noutoaika tai toimitusaika sovitaan etukäteen.'),
   ],
 ),
 
