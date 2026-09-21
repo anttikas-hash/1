@@ -45,16 +45,16 @@
 }
 
 :root {
-  --dark-1: #28201F;
-  --dark-2: #362C2B;
+  --dark-1: #301B17;
+  --dark-2: #402521;
   --light-1: #F9F5F4;
   --light-2: #F3E9E8;
   --accent: #7D3B31;
   --accent-dark: #5A2821;
-  --accent-light: #C7877D;
-  --accent-brass: #A7584C;
+  --accent-light: #C6857B;
+  --accent-brass: #A4574B;
   --accent-rust: #663129;
-  --accent-ember: #AB5548;
+  --accent-ember: #A95548;
   --muted: #663129;
   --muted-on-dark: #D0A69F;
   --line-light: #E6D1CE;

@@ -45,19 +45,19 @@
 }
 
 :root {
-  --dark-1: #232A1E;
-  --dark-2: #2F3829;
-  --light-1: #F6F9F5;
-  --light-2: #ECF1E9;
-  --accent: #51743A;
-  --accent-dark: #395327;
-  --accent-light: #98BC81;
-  --accent-brass: #658A4C;
-  --accent-rust: #435F30;
-  --accent-ember: #5A7E42;
-  --muted: #435F30;
-  --muted-on-dark: #B4CAA5;
-  --line-light: #D8E3D1;
+  --dark-1: #2D281A;
+  --dark-2: #3D3624;
+  --light-1: #F9F8F5;
+  --light-2: #F2EFE9;
+  --accent: #776737;
+  --accent-dark: #554925;
+  --accent-light: #BFAE7E;
+  --accent-brass: #8D7C49;
+  --accent-rust: #61542E;
+  --accent-ember: #847340;
+  --muted: #61542E;
+  --muted-on-dark: #CCC2A3;
+  --line-light: #E4DFD0;
   --line-dark: rgba(255, 255, 255, 0.08);
   --white: #FFFFFF;
 
@@ -200,8 +200,8 @@ section {
   position: relative;
   background-color: var(--light-1);
   background-image:
-    radial-gradient(ellipse 55% 60% at 88% 8%, rgba(76, 115, 47, 0.10), transparent 65%),
-    radial-gradient(ellipse 45% 50% at 4% 95%, rgba(116, 156, 78, 0.12), transparent 70%);
+    radial-gradient(ellipse 55% 60% at 88% 8%, rgba(115, 96, 47, 0.10), transparent 65%),
+    radial-gradient(ellipse 45% 50% at 4% 95%, rgba(156, 130, 78, 0.12), transparent 70%);
   color: var(--dark-1);
 }
 
@@ -209,8 +209,8 @@ section {
   position: relative;
   background-color: var(--light-2);
   background-image:
-    radial-gradient(ellipse 50% 55% at 10% 10%, rgba(63, 94, 39, 0.10), transparent 66%),
-    radial-gradient(ellipse 55% 60% at 92% 90%, rgba(76, 115, 47, 0.10), transparent 68%);
+    radial-gradient(ellipse 50% 55% at 10% 10%, rgba(94, 78, 39, 0.10), transparent 66%),
+    radial-gradient(ellipse 55% 60% at 92% 90%, rgba(115, 96, 47, 0.10), transparent 68%);
   color: var(--dark-1);
 }
 
@@ -269,8 +269,8 @@ section {
   z-index: -2;
   background: radial-gradient(
     ellipse 60% 50% at 78% 22%,
-    rgba(76, 115, 47, 0.18),
-    rgba(76, 115, 47, 0.08) 45%,
+    rgba(115, 96, 47, 0.18),
+    rgba(115, 96, 47, 0.08) 45%,
     transparent 70%
   );
   filter: blur(30px);
@@ -429,7 +429,7 @@ section {
 
 .header-actions .btn-primary:hover,
 .header-actions .btn-primary:focus-visible {
-  background-color: #29441D;
+  background-color: #443D1D;
 }
 
 @media (max-width: 420px) {
@@ -520,7 +520,7 @@ section {
   min-height: 640px;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(96deg, rgba(27, 50, 20, 0.96) 20%, rgba(27, 50, 20, 0.72) 46%, rgba(27, 50, 20, 0.24) 76%, rgba(27, 50, 20, 0.44) 100%),
+    linear-gradient(96deg, rgba(50, 47, 20, 0.96) 20%, rgba(50, 47, 20, 0.72) 46%, rgba(50, 47, 20, 0.24) 76%, rgba(50, 47, 20, 0.44) 100%),
     url("images/hero.jpg");
   background-size: cover;
   background-position: center right;
@@ -529,7 +529,7 @@ section {
 @media (max-width: 820px) {
   .hero {
     background-image:
-      linear-gradient(to bottom, rgba(27, 50, 20, 0.90) 30%, rgba(27, 50, 20, 0.80) 100%),
+      linear-gradient(to bottom, rgba(50, 47, 20, 0.90) 30%, rgba(50, 47, 20, 0.80) 100%),
       url("images/hero.jpg");
     background-position: center;
   }
@@ -562,7 +562,7 @@ section {
 }
 
 .hero-support {
-  color: rgba(248, 251, 243, 0.78);
+  color: rgba(251, 247, 243, 0.78);
   font-size: 18px;
   max-width: 56ch;
 }
@@ -584,7 +584,7 @@ section {
   position: relative;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(100deg, rgba(27, 50, 20, 0.95) 24%, rgba(27, 50, 20, 0.70) 50%, rgba(27, 50, 20, 0.30) 100%),
+    linear-gradient(100deg, rgba(50, 47, 20, 0.95) 24%, rgba(50, 47, 20, 0.70) 50%, rgba(50, 47, 20, 0.30) 100%),
     var(--page-img, none);
   background-size: cover;
   background-position: center right;
@@ -600,7 +600,7 @@ section {
 @media (max-width: 820px) {
   .page-header {
     background-image:
-      linear-gradient(to bottom, rgba(27, 50, 20, 0.92), rgba(27, 50, 20, 0.84)),
+      linear-gradient(to bottom, rgba(50, 47, 20, 0.92), rgba(50, 47, 20, 0.84)),
       var(--page-img, none);
     background-position: center;
   }
@@ -615,7 +615,7 @@ section {
   align-items: center;
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(94deg, rgba(27, 50, 20, 0.94) 18%, rgba(27, 50, 20, 0.66) 48%, rgba(27, 50, 20, 0.22) 100%),
+    linear-gradient(94deg, rgba(50, 47, 20, 0.94) 18%, rgba(50, 47, 20, 0.66) 48%, rgba(50, 47, 20, 0.22) 100%),
     var(--band-img, none);
   background-size: cover;
   background-position: center;
@@ -626,7 +626,7 @@ section {
 }
 
 .image-band p {
-  color: rgba(248, 251, 243, 0.82);
+  color: rgba(251, 247, 243, 0.82);
   max-width: 48ch;
   margin-top: 16px;
 }
@@ -634,7 +634,7 @@ section {
 @media (max-width: 820px) {
   .image-band {
     background-image:
-      linear-gradient(to bottom, rgba(27, 50, 20, 0.92), rgba(27, 50, 20, 0.86)),
+      linear-gradient(to bottom, rgba(50, 47, 20, 0.92), rgba(50, 47, 20, 0.86)),
       var(--band-img, none);
   }
 }
@@ -933,7 +933,7 @@ section {
   font-family: var(--font-base);
   border: 1px solid var(--line-light);
   border-radius: 4px;
-  background-color: #FAFCF7;
+  background-color: #FCFAF7;
   color: var(--dark-1);
 }
 
@@ -1003,7 +1003,7 @@ section {
 .footer-col p,
 .footer-col address {
   font-style: normal;
-  color: rgba(248, 251, 243, 0.8);
+  color: rgba(251, 247, 243, 0.8);
   margin: 0 0 8px 0;
 }
 
@@ -1016,7 +1016,7 @@ section {
 }
 
 .footer-col a {
-  color: rgba(248, 251, 243, 0.85);
+  color: rgba(251, 247, 243, 0.85);
   text-decoration: none;
 }
 
@@ -1255,13 +1255,13 @@ section {
 
 .card:hover {
   transform: translateY(-3px);
-  background-color: rgba(76, 115, 47, 0.05);
+  background-color: rgba(115, 96, 47, 0.05);
 }
 
 /* Kuparihehku tummien osioiden yläreunaan */
 .built-surface {
   border-top: 1px solid transparent;
-  border-image: linear-gradient(90deg, transparent, rgba(76, 115, 47, 0.55), transparent) 1;
+  border-image: linear-gradient(90deg, transparent, rgba(115, 96, 47, 0.55), transparent) 1;
 }
 
 /* ---------- Scroll-reveal (progressiivinen parannus) ---------- */
@@ -1314,7 +1314,7 @@ section {
 .canvas {
   padding: 0;
   background-color: var(--light-1);
-  background-image: linear-gradient(178deg, #FAFCF7 0%, var(--light-1) 26%, #E7EFDC 74%, var(--light-2) 100%);
+  background-image: linear-gradient(178deg, #FCFAF7 0%, var(--light-1) 26%, #EFE7DC 74%, var(--light-2) 100%);
   color: var(--dark-1);
 }
 
@@ -1356,7 +1356,7 @@ section {
   border: 1px solid var(--line-light);
   border-radius: 4px;
   padding: 8px 28px;
-  box-shadow: 0 -1px 0 rgba(76, 115, 47, 0.5);
+  box-shadow: 0 -1px 0 rgba(115, 96, 47, 0.5);
 }
 
 .facts-overlap .facts {
@@ -1378,7 +1378,7 @@ section {
   color: var(--light-1);
   background-color: var(--dark-1);
   background-image:
-    linear-gradient(100deg, rgba(27, 50, 20, 0.95) 24%, rgba(27, 50, 20, 0.74) 52%, rgba(27, 50, 20, 0.34) 100%),
+    linear-gradient(100deg, rgba(50, 47, 20, 0.95) 24%, rgba(50, 47, 20, 0.74) 52%, rgba(50, 47, 20, 0.34) 100%),
     var(--panel-img, none);
   background-size: cover;
   background-position: center right;
@@ -1394,7 +1394,7 @@ section {
 @media (max-width: 820px) {
   .panel-dark {
     background-image:
-      linear-gradient(to bottom, rgba(27, 50, 20, 0.93), rgba(27, 50, 20, 0.86)),
+      linear-gradient(to bottom, rgba(50, 47, 20, 0.93), rgba(50, 47, 20, 0.86)),
       var(--panel-img, none);
   }
 }
@@ -1404,7 +1404,7 @@ section {
 }
 
 .panel-dark p {
-  color: rgba(248, 251, 243, 0.86);
+  color: rgba(251, 247, 243, 0.86);
 }
 
 .panel-dark .plain-list li {
@@ -1428,8 +1428,8 @@ section {
   overflow: hidden;
   background-color: var(--dark-1);
   background-image:
-    radial-gradient(ellipse 60% 60% at 84% 18%, rgba(116, 156, 78, 0.14), transparent 66%),
-    linear-gradient(165deg, #375222 0%, #1B3214 62%);
+    radial-gradient(ellipse 60% 60% at 84% 18%, rgba(156, 130, 78, 0.14), transparent 66%),
+    linear-gradient(165deg, #524422 0%, #322F14 62%);
   padding: 56px 0 72px;
 }
 
@@ -1468,7 +1468,7 @@ section {
 }
 
 .hero-split .hero-support {
-  color: rgba(248, 251, 243, 0.82);
+  color: rgba(251, 247, 243, 0.82);
   font-size: 18px;
   max-width: 52ch;
 }
@@ -1480,9 +1480,9 @@ section {
   align-items: center;
   gap: 10px;
   padding: 8px 16px;
-  border: 1px solid rgba(116, 156, 78, 0.45);
+  border: 1px solid rgba(156, 130, 78, 0.45);
   border-radius: 999px;
-  background-color: rgba(76, 115, 47, 0.12);
+  background-color: rgba(115, 96, 47, 0.12);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1501,8 +1501,8 @@ section {
 .on-light-2 .chip,
 .canvas .chip {
   color: var(--accent-dark);
-  border-color: rgba(53, 80, 31, 0.4);
-  background-color: rgba(76, 115, 47, 0.08);
+  border-color: rgba(80, 65, 31, 0.4);
+  background-color: rgba(115, 96, 47, 0.08);
 }
 
 /* Aksenttiviiva otsikon alla */
@@ -1526,7 +1526,7 @@ section {
 .collage img {
   position: absolute;
   border-radius: 6px;
-  border: 1px solid rgba(116, 156, 78, 0.3);
+  border: 1px solid rgba(156, 130, 78, 0.3);
   object-fit: cover;
   box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5);
 }
@@ -1602,19 +1602,19 @@ section {
 
 .action-primary:hover,
 .action-primary:focus-visible {
-  background-color: #29441D;
-  border-color: #29441D;
+  background-color: #443D1D;
+  border-color: #443D1D;
 }
 
 .action:hover,
 .action:focus-visible {
-  background-color: rgba(76, 115, 47, 0.16);
+  background-color: rgba(115, 96, 47, 0.16);
 }
 
 .canvas .action,
 .on-light .action {
   color: var(--accent-dark);
-  border-color: rgba(53, 80, 31, 0.55);
+  border-color: rgba(80, 65, 31, 0.55);
 }
 
 .canvas .action-primary,
@@ -1627,7 +1627,7 @@ section {
 
 .breadcrumb {
   font-size: 14px;
-  color: rgba(248, 251, 243, 0.65);
+  color: rgba(251, 247, 243, 0.65);
   margin-bottom: 20px;
 }
 
@@ -1640,7 +1640,7 @@ section {
 }
 
 .breadcrumb a {
-  color: rgba(248, 251, 243, 0.78);
+  color: rgba(251, 247, 243, 0.78);
   text-decoration: none;
 }
 
@@ -1799,7 +1799,7 @@ html {
 
 .site-header.is-scrolled {
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
-  border-bottom-color: rgba(76, 115, 47, 0.45);
+  border-bottom-color: rgba(115, 96, 47, 0.45);
 }
 
 /* Liike: lyhyempi kesto ja pehmeä ylitys (design-systeemin Standard-taso) */
@@ -1848,7 +1848,7 @@ html {
 .form-field.has-error textarea {
   border-color: var(--accent-dark);
   border-width: 2px;
-  background-color: #F1F5EA;
+  background-color: #F5F0EA;
 }
 
 .required-mark {
@@ -1930,9 +1930,9 @@ html {
   align-items: center;
   gap: 12px;
   padding: 10px 18px;
-  border: 1px solid rgba(116, 156, 78, 0.42);
+  border: 1px solid rgba(156, 130, 78, 0.42);
   border-radius: 6px;
-  background-color: rgba(76, 115, 47, 0.12);
+  background-color: rgba(115, 96, 47, 0.12);
 }
 
 .rating-score {
@@ -1944,8 +1944,8 @@ html {
 
 .canvas .rating,
 .on-light .rating {
-  border-color: rgba(53, 80, 31, 0.34);
-  background-color: rgba(76, 115, 47, 0.07);
+  border-color: rgba(80, 65, 31, 0.34);
+  background-color: rgba(115, 96, 47, 0.07);
 }
 
 .canvas .rating-score,
@@ -1961,7 +1961,7 @@ html {
 
 .rating-meta {
   font-size: 14px;
-  color: rgba(248, 251, 243, 0.78);
+  color: rgba(251, 247, 243, 0.78);
   line-height: 1.3;
 }
 
@@ -2005,7 +2005,7 @@ html {
 }
 
 .panel-dark .hours .time {
-  color: rgba(248, 251, 243, 0.72);
+  color: rgba(251, 247, 243, 0.72);
 }
 
 .panel-dark .hours .closed {
@@ -2015,7 +2015,7 @@ html {
 .footer-hours {
   list-style: none;
   font-size: 15px;
-  color: rgba(248, 251, 243, 0.8);
+  color: rgba(251, 247, 243, 0.8);
 }
 
 .footer-hours li {
@@ -2348,8 +2348,8 @@ html {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(200deg, rgba(171, 201, 140, 0.10), transparent 52%),
-              linear-gradient(0deg, rgba(20, 36, 14, 0.45), transparent 58%);
+  background: linear-gradient(200deg, rgba(201, 179, 140, 0.10), transparent 52%),
+              linear-gradient(0deg, rgba(36, 34, 14, 0.45), transparent 58%);
 }
 
 .media-4-3 { aspect-ratio: 4 / 3; }
@@ -2374,7 +2374,7 @@ html {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(27, 50, 20, 0.92) 0%, rgba(27, 50, 20, 0.30) 46%, rgba(27, 50, 20, 0.72) 100%);
+  background: linear-gradient(90deg, rgba(50, 47, 20, 0.92) 0%, rgba(50, 47, 20, 0.30) 46%, rgba(50, 47, 20, 0.72) 100%);
 }
 
 .image-band .band-text {
@@ -2424,7 +2424,7 @@ a.card:hover,
 a.card:focus-visible {
   transform: translateY(-4px);
   border-color: var(--accent);
-  box-shadow: 0 20px 42px rgba(27, 50, 20, 0.16);
+  box-shadow: 0 20px 42px rgba(50, 47, 20, 0.16);
 }
 
 a.card:hover .card-media img,
@@ -2521,7 +2521,7 @@ a.card:focus-visible .card-link::after {
   display: none;
   gap: 10px;
   padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-  background: rgba(27, 50, 20, 0.97);
+  background: rgba(50, 47, 20, 0.97);
   border-top: 1px solid var(--line-dark);
   backdrop-filter: blur(8px);
 }
@@ -2579,11 +2579,11 @@ a.card:focus-visible .card-link::after {
 /* Reunavalo erottaa kuvan tummasta taustasta */
 .hero-figure .media {
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42),
-              0 0 0 1px rgba(171, 201, 140, 0.22);
+              0 0 0 1px rgba(201, 179, 140, 0.22);
 }
 
 .hero-figure .media::after {
-  background: linear-gradient(210deg, rgba(171, 201, 140, 0.12), transparent 50%);
+  background: linear-gradient(210deg, rgba(201, 179, 140, 0.12), transparent 50%);
 }
 
 /* ---------- Korjaus: faktarivin ylivuoto kapeilla näytöillä ---------- */

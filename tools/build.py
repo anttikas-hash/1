@@ -68,8 +68,9 @@ def ic(k, cls=''):
             'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>' % (c, ICON[k]))
 
 DEMO = ('<div class="demo-bar" role="note"><strong>Mallisivusto.</strong> Tämä on esimerkki '
-        'siitä, miltä sivusto voi näyttää. Nimi, kuvat ja yhteystiedot vaihdetaan '
-        'yrityksen omiin — mitään tietoa ei ole keksitty.</div>')
+        'siitä, miltä sivusto voi näyttää. Valmiiseen sivustoon tulevat yrityksen '
+        'omat tiedot ja oikeat valokuvat — nämä kuvitukset ovat paikanvaraajia. '
+        'Mitään tietoa ei ole keksitty.</div>')
 
 def head(cfg, title, desc, canonical):
     return ('<!DOCTYPE html>\n<html lang="fi" class="no-js">\n<head>\n'

@@ -10,7 +10,7 @@ Kaikki yrityskohtainen tieto on paikanvaraaja.
 SITES = {
 
 'sahko': dict(
-  slug='sahko', glyph='salama', cta='Pyydä tarjous', hue=38, sat=0.62, dark_sat=0.16,
+  slug='sahko', glyph='salama', cta='Pyydä tarjous', hue=38, sat=0.50, dark_sat=0.34,
   brand1='Sähkö', brand2='asennus',
   name='Sähköasennus',
   title='Sähköasennukset ja sähköremontit',
@@ -78,7 +78,7 @@ SITES = {
 ),
 
 'maalaus': dict(
-  slug='maalaus', glyph='tela', cta='Pyydä tarjous', hue=8, sat=0.52, dark_sat=0.15,
+  slug='maalaus', glyph='tela', cta='Pyydä tarjous', hue=8, sat=0.52, dark_sat=0.42,
   brand1='Maalaus', brand2='liike',
   name='Maalausliike',
   title='Maalaus- ja tasoitetyöt',
@@ -145,7 +145,7 @@ SITES = {
 ),
 
 'piha': dict(
-  slug='piha', glyph='talo', cta='Pyydä tarjous', hue=86, sat=0.46, dark_sat=0.20,
+  slug='piha', glyph='talo', cta='Pyydä tarjous', hue=108, sat=0.48, dark_sat=0.46,
   brand1='Piha', brand2='ja maanrakennus',
   name='Piha- ja maanrakennus',
   title='Pihatyöt, kiveykset ja maanrakennus',
@@ -214,7 +214,7 @@ SITES = {
 
 
 'katto': dict(
-  slug='katto', glyph='talo', cta='Pyydä tarjous', hue=205, sat=0.44, dark_sat=0.30,
+  slug='katto', glyph='talo', cta='Pyydä tarjous', hue=205, sat=0.50, dark_sat=0.52,
   brand1='Katto', brand2='palvelu',
   name='Kattoasennus',
   title='Kattoremontit ja kattojen huolto',
@@ -281,7 +281,7 @@ SITES = {
 ),
 
 'lattia': dict(
-  slug='lattia', glyph='talo', cta='Pyydä tarjous', hue=26, sat=0.40, dark_sat=0.17,
+  slug='lattia', glyph='talo', cta='Pyydä tarjous', hue=26, sat=0.46, dark_sat=0.32,
   brand1='Lattia', brand2='asennus',
   name='Lattia-asennus',
   title='Parketit, laminaatit ja laatoitus',
@@ -345,7 +345,7 @@ SITES = {
 ),
 
 'kiinteisto': dict(
-  slug='kiinteisto', glyph='avain', cta='Pyydä tarjous', hue=228, sat=0.38, dark_sat=0.26,
+  slug='kiinteisto', glyph='avain', cta='Pyydä tarjous', hue=228, sat=0.50, dark_sat=0.52,
   brand1='Kiinteistö', brand2='huolto',
   name='Kiinteistöhuolto',
   title='Kiinteistöhuolto ja kunnossapito',
@@ -409,7 +409,7 @@ SITES = {
 ),
 
 'siivous': dict(
-  slug='siivous', glyph='pisara', cta='Pyydä tarjous', hue=178, sat=0.44, dark_sat=0.24,
+  slug='siivous', glyph='pisara', cta='Pyydä tarjous', hue=186, sat=0.50, dark_sat=0.50,
   brand1='Siivous', brand2='palvelu',
   name='Siivouspalvelu',
   title='Siivouspalvelut koteihin ja toimitiloihin',
@@ -474,7 +474,7 @@ SITES = {
 ),
 
 'kuljetus': dict(
-  slug='kuljetus', glyph='auto', cta='Pyydä tarjous', hue=340, sat=0.42, dark_sat=0.18,
+  slug='kuljetus', glyph='auto', cta='Pyydä tarjous', hue=340, sat=0.48, dark_sat=0.46,
   brand1='Kuljetus', brand2='ja muutot',
   name='Kuljetus ja muutot',
   title='Muutot ja kuljetuspalvelut',
@@ -538,7 +538,7 @@ SITES = {
 ),
 
 'autokorjaamo': dict(
-  slug='autokorjaamo', glyph='avain', cta='Varaa huolto', hue=258, sat=0.36, dark_sat=0.20,
+  slug='autokorjaamo', glyph='avain', cta='Varaa huolto', hue=250, sat=0.46, dark_sat=0.50,
   brand1='Auto', brand2='korjaamo',
   name='Autokorjaamo',
   title='Autohuollot ja korjaukset',
@@ -644,7 +644,7 @@ SITES = {
 ),
 
 'kampaamo': dict(
-  slug='kampaamo', glyph='sakset', cta='Varaa aika', hue=318, sat=0.34, dark_sat=0.16,
+  slug='kampaamo', glyph='sakset', cta='Varaa aika', hue=330, sat=0.44, dark_sat=0.44,
   brand1='Parturi', brand2='kampaamo',
   name='Parturi-kampaamo',
   title='Hiustenleikkaukset ja värjäykset',
@@ -747,7 +747,7 @@ SITES = {
 ),
 
 'ravintola': dict(
-  slug='ravintola', glyph='lautanen', cta='Ota yhteyttä', hue=96, sat=0.40, dark_sat=0.20,
+  slug='ravintola', glyph='lautanen', cta='Ota yhteyttä', hue=45, sat=0.44, dark_sat=0.32,
   brand1='Lounas', brand2='ravintola',
   name='Ravintola',
   title='Lounasravintola ja tilausruoat',
