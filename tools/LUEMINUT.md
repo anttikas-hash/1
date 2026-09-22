@@ -22,6 +22,7 @@ node tools/verify.js                   # tarkistukset
 | `scenes.html` | Kuvitusten piirto. 18 kohtausta, parametrina paletti. |
 | `render.js` | Renderöi kohtaukset selaimella kuviksi. |
 | `verify.js` | Ylivuoto, kontrasti, alt-tekstit, kosketuskohteet, JS-virheet. |
+| `asiakas.py` | Tekee toimialamallista asiakaskohtaisen kopion yrityksen nimella. |
 
 ## Uuden toimialan lisääminen
 
@@ -32,6 +33,23 @@ node tools/verify.js                   # tarkistukset
 Sävyn valinta: `hue` on sävykulma 0–360, `sat` korostusten kylläisyys ja
 `dark_sat` tummien pintojen kylläisyys. Lämpimillä sävyillä (0–60)
 `dark_sat` pitää olla matala, muuten tumma pinta muuttuu ruskeaksi.
+
+## Asiakaskohtainen malli
+
+Kun asiakas kiinnostuu puhelimessa, hanelle tehdaan oma kopio toimialamallista:
+
+```
+python3 tools/asiakas.py siivous "Siivouspalvelu Kota"
+python3 tools/asiakas.py --alat          # listaa toimialat
+```
+
+Tulos menee kansioon `asiakkaat/<nimi>/`. Vain yrityksen nimi vaihtuu —
+logo, otsikot ja yritys-sivun nimikentat. Puhelin, osoite, hinnat,
+aukioloajat ja y-tunnus jaavat paikanvaraajiksi, ja mallihuomautus jaa
+ylalaitaan. Sivu ei esita olevansa asiakkaan oikea sivusto.
+
+Kuvitukset kopioidaan toimialamallista, joten `build.py` ja `render.js`
+pitaa olla ajettuna ensin.
 
 ## Mitä nämä eivät ole
 
