@@ -698,6 +698,25 @@ SITES = {
      'kotona.'),
   ],
   steps_eyebrow='NÄIN KÄYNTI MENEE',
+
+  # Kampaamossa ei osteta urakkaa vaan aika tuoliin. Asiakas etsii
+  # sivulta kolmea asiaa: hinnaston, aukioloajat ja sen miltä jälki
+  # näyttää. Siksi etusivu rakennetaan toisin kuin urakka-aloilla.
+  kaava='aika',
+  hinnasto=[
+    ('Leikkaukset', ['Parturileikkaus', 'Kampaamoleikkaus', 'Lasten leikkaus',
+                     'Partakoneleikkaus', 'Parranajo ja muotoilu']),
+    ('Värjäykset', ['Tyvivärjäys', 'Kokovärjäys', 'Raidat ja balayage',
+                    'Sävytys', 'Värinpoisto']),
+    ('Hoidot ja kampaukset', ['Tehohoito', 'Hiuspohjan hoito', 'Föönaus',
+                              'Juhlakampaus', 'Hääkampaus ja koekampaus']),
+  ],
+  hinnasto_note='Palvelut on lueteltu valmiiksi. Kestot ja hinnat täytetään '
+                'yrityksen omasta hinnastosta ennen julkaisua.',
+  aukiolo=[('Maanantai', ''), ('Tiistai', ''), ('Keskiviikko', ''),
+           ('Torstai', ''), ('Perjantai', ''), ('Lauantai', ''), ('Sunnuntai', '')],
+  galleria=6,
+  tekijat=3,
   services_title='Mitä teemme',
   customers_title='Kenelle teemme',
   services_lede='Leikkaukset, värjäykset, hoidot ja juhlakampaukset. '

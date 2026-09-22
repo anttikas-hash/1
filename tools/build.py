@@ -394,6 +394,190 @@ def page_index(cfg, pal):
     return s + footer(cfg, pal)
 
 
+def varaus_block(cfg):
+    """Ajanvaraus ja aukioloajat.
+
+    Kampaamossa nama ovat se mita sivulta ensimmaisena etsitaan, joten ne
+    nostetaan heti heron alle eika yhteystiedot-sivun pohjalle.
+    """
+    rivit = '\n'.join(
+        '            <tr><th scope="row">%s</th><td>%s</td></tr>'
+        % (paiva, tbd('aukioloaika'))
+        for paiva, _ in cfg['aukiolo'])
+    return '''
+      <div class="block">
+        <div class="varaus-panel reveal">
+          <div>
+            <span class="eyebrow">AJANVARAUS</span>
+            <h2>Varaa aika</h2>
+            <p style="margin-top:14px;max-width:46ch;">%s</p>
+            <div class="action-stack" style="margin-top:24px;">
+              <span class="action action-primary"><span>%s</span>%s</span>
+              <span class="action"><span>Puhelin: %s</span>%s</span>
+            </div>
+          </div>
+          <div>
+            <span class="eyebrow">AUKIOLOAJAT</span>
+            <table class="aukiolo">
+              <tbody>
+%s
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+''' % (cfg.get('varaus_text', 'Ajan voi varata puhelimitse tai verkossa. '
+                 'Kerro mitä olet ajatellut, niin varaamme riittävästi aikaa.'),
+       tbd('varauslinkki'), ic('cal'), tbd('puhelinnumero'), ic('phone'), rivit)
+
+
+def hinnasto_block(cfg):
+    """Hinnasto. Palvelunimet ovat alan yleisnimia, hinnat paikanvaraajia."""
+    osat = []
+    for otsikko, rivit in cfg['hinnasto']:
+        lista = '\n'.join(
+            '            <tr><th scope="row">%s</th><td>%s</td></tr>' % (r, tbd('hinta'))
+            for r in rivit)
+        osat.append(
+            '        <div class="hinnasto-ryhma reveal">\n'
+            '          <h3>%s</h3>\n'
+            '          <table class="hinnasto">\n            <tbody>\n%s\n'
+            '            </tbody>\n          </table>\n        </div>' % (otsikko, lista))
+    return '''
+      <div class="block">
+        <div class="section-head reveal">
+          <span class="section-index">01</span>
+          <span class="eyebrow">HINNASTO</span>
+          <h2>Palvelut ja hinnat</h2>
+        </div>
+        <p class="hinnasto-note">%s</p>
+        <div class="hinnasto-grid">
+%s
+        </div>
+      </div>
+''' % (cfg.get('hinnasto_note', ''), '\n'.join(osat))
+
+
+def galleria_block(cfg):
+    """Kuvapaikat asiakkaan omille valokuville.
+
+    Piirroskuvitus ei kelpaa kampaamolle: hanen tyonsa on kuva. Siksi tassa
+    on tyhjat paikat eika keksittya kuvitusta."""
+    n = cfg.get('galleria', 6)
+    ruudut = '\n'.join(
+        '          <div class="kuvapaikka"><span>%s</span></div>' % tbd('valokuva')
+        for _ in range(n))
+    return '''
+      <div class="block">
+        <div class="section-head reveal">
+          <span class="section-index">02</span>
+          <span class="eyebrow">KUVAT</span>
+          <h2>Tehtyjä töitä</h2>
+        </div>
+        <div class="galleria reveal">
+%s
+        </div>
+      </div>
+''' % ruudut
+
+
+def tekijat_block(cfg):
+    """Kuka leikkaa. Pienessa kampaamossa asiakas tulee tietylle ihmiselle."""
+    kortit = '\n'.join(
+        '''          <div class="card reveal%s">
+            <h3>%s</h3>
+            <p>%s</p>
+          </div>''' % (' reveal-delay-%d' % i if i else '',
+                        tbd('nimi'), tbd('mitä tekee ja kuinka kauan'))
+        for i in range(cfg.get('tekijat', 3)))
+    return '''
+      <div class="block">
+        <div class="section-head reveal">
+          <span class="section-index">04</span>
+          <span class="eyebrow">TEKIJÄT</span>
+          <h2>Ketkä työskentelevät täällä</h2>
+        </div>
+        <div class="grid grid-4" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+%s
+        </div>
+      </div>
+''' % kortit
+
+
+def page_index_aika(cfg, pal):
+    """Etusivu ajanvarausaloille: hinnasto, aukiolo ja kuvat edella."""
+    s = head(cfg, '%s | %s' % (cfg['title'], cfg['name']), cfg['desc'], 'index.html')
+    s += header(cfg, pal, 'index.html')
+
+    kortit = []
+    for i, (name, scene, body, bullets) in enumerate(cfg['services']):
+        kortit.append('''          <a class="card reveal%s" href="palvelut.html">
+            <h3>%s</h3>
+            <p>%s</p>
+            <span class="card-link">Lue lisää →</span>
+          </a>''' % (' reveal-delay-%d' % i if i else '', name, body.split('.')[0] + '.'))
+
+    s += '''
+<main id="main">
+
+  <section class="hero-split">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="reveal">
+          <span class="chip">%s %s</span>
+          <h1>%s</h1>
+          <div class="accent-bar"></div>
+          <p class="hero-support">%s</p>
+
+          <div class="action-stack" style="margin-top:30px;">
+            <a class="action action-primary" href="yhteystiedot.html">
+              <span>%s</span>%s
+            </a>
+            <a class="action" href="palvelut.html">
+              <span>%s</span>%s
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-figure reveal reveal-delay-1">
+          <div class="media media-4-3">
+            <img src="images/%s.jpg" width="1600" height="1125" alt="Kuvitus alan työstä." fetchpriority="high" decoding="async">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="canvas">
+    <div class="container">
+%s%s%s
+      <div class="block">
+        <div class="section-head reveal">
+          <span class="section-index">03</span>
+          <span class="eyebrow">PALVELUT</span>
+          <h2>%s</h2>
+        </div>
+        <div class="grid grid-4">
+%s
+        </div>
+      </div>
+%s
+    </div>
+  </section>
+%s
+</main>
+''' % (ic('check'), cfg['name'], cfg['h1'], cfg['lede'],
+       cfg.get('cta', 'Varaa aika'), ic('cal'),
+       cfg.get('services_link', 'Katso mitä teemme'), ic('doc'),
+       cfg['hero'],
+       varaus_block(cfg), hinnasto_block(cfg), galleria_block(cfg),
+       cfg.get('services_title', 'Mitä teemme'), '\n'.join(kortit),
+       tekijat_block(cfg), cta(cfg))
+    return s + footer(cfg, pal)
+
+
 def page_palvelut(cfg, pal):
     s = head(cfg, 'Palvelut — %s' % cfg['name'],
              'Palvelut: ' + ', '.join(x[0].lower() for x in cfg['services']) + '.',
@@ -700,6 +884,94 @@ def write_css(cfg, pal, out):
 }
 .demo-bar strong { color: #3D2E00; }
 """
+
+    if cfg.get('kaava') == 'aika':
+        css += """
+
+/* ---------- Ajanvarausalat: hinnasto, aukiolo, galleria ---------- */
+
+.varaus-panel {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  padding: 36px;
+  background: var(--dark-1);
+  color: var(--light-1);
+  border-radius: 6px;
+}
+.varaus-panel h2 { color: var(--light-1); }
+.varaus-panel p,
+.varaus-panel table.aukiolo th,
+.varaus-panel table.aukiolo td { color: var(--muted-on-dark); }
+.varaus-panel table.aukiolo th { color: var(--light-1); }
+.varaus-panel .eyebrow { color: var(--accent-light); }
+
+/* .canvas .action varittaa napit vaaleaa pohjaa varten. Paneeli on tumma,
+   joten varit palautetaan tummaa pintaa vastaaviksi. */
+.varaus-panel .action {
+  color: var(--accent-light);
+  border-color: var(--accent);
+}
+.varaus-panel .action-primary {
+  color: var(--white);
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+@media (max-width: 720px) {
+  .varaus-panel { grid-template-columns: 1fr; gap: 28px; padding: 26px 22px; }
+}
+
+table.aukiolo, table.hinnasto {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+}
+table.aukiolo th, table.hinnasto th {
+  text-align: left;
+  font-weight: 500;
+  padding: 9px 0;
+}
+table.aukiolo td, table.hinnasto td {
+  text-align: right;
+  padding: 9px 0;
+  white-space: nowrap;
+}
+table.aukiolo th, table.aukiolo td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+table.hinnasto th, table.hinnasto td {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.hinnasto-note { margin: 0 0 26px; color: var(--muted); max-width: 62ch; }
+.hinnasto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 36px;
+}
+.hinnasto-ryhma h3 {
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.galleria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+.kuvapaikka {
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--line-light);
+  border-radius: 4px;
+  text-align: center;
+  padding: 12px;
+}
+"""
+
     io.open(out, 'w', encoding='utf-8').write(css)
 
 def write_favicon(pal, out):
@@ -747,7 +1019,8 @@ def build_site(key):
     write_css(cfg, pal, os.path.join(d, 'styles.css'))
     write_favicon(pal, os.path.join(d, 'favicon.svg'))
 
-    for fn, name in [(page_index, 'index.html'), (page_palvelut, 'palvelut.html'),
+    etusivu = page_index_aika if cfg.get('kaava') == 'aika' else page_index
+    for fn, name in [(etusivu, 'index.html'), (page_palvelut, 'palvelut.html'),
                      (page_yritys, 'yritys.html'), (page_yhteystiedot, 'yhteystiedot.html')]:
         io.open(os.path.join(d, name), 'w', encoding='utf-8').write(fn(cfg, pal))
 
