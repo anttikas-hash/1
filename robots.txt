@@ -1,0 +1,7 @@
+# Tama on harjoitus- ja myyntityo, ei yhdenkaan yrityksen virallinen
+# sivusto. Sivut kayttavat oikeiden yritysten nimia ja tietoja, joten
+# niiden paatyminen hakukoneisiin voisi sekoittaa asiakkaita ja kilpailla
+# yritysten omien sivujen kanssa. Siksi mitaan ei indeksoida.
+
+User-agent: *
+Disallow: /

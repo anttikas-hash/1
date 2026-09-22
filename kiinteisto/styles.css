@@ -1,0 +1,2789 @@
+/* Kiinteistöhuolto — mallisivuston tyylitiedosto */
+
+/* Inter, itse isännöity — ei ulkoisia riippuvuuksia */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/inter-latin-400-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/inter-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/inter-latin-700-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("fonts/inter-latin-800-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/fraunces-latin-600-normal.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Fraunces";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/fraunces-latin-700-normal.woff2") format("woff2");
+}
+
+:root {
+  --dark-1: #141B33;
+  --dark-2: #1D2544;
+  --light-1: #F4F5F9;
+  --light-2: #E8EAF2;
+  --accent: #32417B;
+  --accent-dark: #222D59;
+  --accent-light: #7F8DC5;
+  --accent-brass: #5466AF;
+  --accent-rust: #2A3665;
+  --accent-ember: #5265B3;
+  --muted: #2A3665;
+  --muted-on-dark: #A0A9CF;
+  --line-light: #CFD3E5;
+  --line-dark: rgba(255, 255, 255, 0.08);
+  --white: #FFFFFF;
+
+  --font-base: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+  /* Juokseva typografia-asteikko — skaalautuu ikkunan mukana ilman katkoksia */
+  --step--1: clamp(0.83rem, 0.80rem + 0.15vw, 0.92rem);
+  --step-0:  clamp(1.00rem, 0.96rem + 0.20vw, 1.13rem);
+  --step-1:  clamp(1.20rem, 1.12rem + 0.38vw, 1.45rem);
+  --step-2:  clamp(1.44rem, 1.30rem + 0.68vw, 1.86rem);
+  --step-3:  clamp(1.73rem, 1.49rem + 1.15vw, 2.38rem);
+  --step-4:  clamp(2.07rem, 1.70rem + 1.85vw, 3.05rem);
+  --step-5:  clamp(2.49rem, 1.90rem + 2.90vw, 3.90rem);
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --t-fast: 160ms;
+  --t-base: 220ms;
+
+  --section-pad-desktop: 112px;
+  --section-pad-mobile: 64px;
+
+  --container-max: 1180px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--light-1);
+  background-color: var(--dark-1);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+h1, h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.018em;
+  line-height: 1.06;
+  text-wrap: balance;
+  margin: 0;
+}
+
+h3 {
+  font-family: var(--font-base);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-wrap: balance;
+  margin: 0;
+}
+
+h1 { font-size: var(--step-5); }
+h2 { font-size: var(--step-4); }
+h3 { font-size: var(--step-1); }
+
+p {
+  margin: 0 0 16px 0;
+  max-width: 62ch;
+}
+
+.center p {
+  max-width: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-light);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Eyebrow / Silmäotsikko ---------- */
+
+.eyebrow {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 14px;
+}
+
+.on-light .eyebrow,
+.on-light-2 .eyebrow {
+  color: var(--accent-dark);
+}
+
+/* ---------- Sections ---------- */
+
+section {
+  padding: var(--section-pad-mobile) 0;
+}
+
+@media (min-width: 800px) {
+  section {
+    padding: var(--section-pad-desktop) 0;
+  }
+}
+
+.on-dark {
+  background-color: var(--dark-1);
+  color: var(--light-1);
+}
+
+.on-dark-2 {
+  background-color: var(--dark-2);
+  color: var(--light-1);
+}
+
+.on-light {
+  position: relative;
+  background-color: var(--light-1);
+  background-image:
+    radial-gradient(ellipse 55% 60% at 88% 8%, rgba(47, 62, 115, 0.10), transparent 65%),
+    radial-gradient(ellipse 45% 50% at 4% 95%, rgba(78, 100, 156, 0.12), transparent 70%);
+  color: var(--dark-1);
+}
+
+.on-light-2 {
+  position: relative;
+  background-color: var(--light-2);
+  background-image:
+    radial-gradient(ellipse 50% 55% at 10% 10%, rgba(39, 52, 94, 0.10), transparent 66%),
+    radial-gradient(ellipse 55% 60% at 92% 90%, rgba(47, 62, 115, 0.10), transparent 68%);
+  color: var(--dark-1);
+}
+
+.on-light > .container,
+.on-light-2 > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.on-light p,
+.on-light-2 p {
+  color: var(--dark-1);
+}
+
+.on-dark p,
+.on-dark-2 p {
+  color: var(--light-1);
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--line-dark);
+  margin: 0;
+}
+
+.on-light + .on-light,
+.on-light-2 + .on-light-2,
+.on-light + .on-light-2,
+.on-light-2 + .on-light {
+  border-top: 1px solid var(--line-light);
+}
+
+.on-dark + .on-dark,
+.on-dark-2 + .on-dark-2,
+.on-dark + .on-dark-2,
+.on-dark-2 + .on-dark {
+  border-top: 1px solid var(--line-dark);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Rakennettu tumma pinta (kuvan korvike) ---------- */
+
+.built-surface {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.built-surface::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: -2;
+  background: radial-gradient(
+    ellipse 60% 50% at 78% 22%,
+    rgba(47, 62, 115, 0.18),
+    rgba(47, 62, 115, 0.08) 45%,
+    transparent 70%
+  );
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.built-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.04;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(135deg, var(--light-1) 0px, var(--light-1) 1px, transparent 1px, transparent 64px),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+  background-size: auto, 120px 120px;
+  mix-blend-mode: overlay;
+}
+
+.built-surface > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* concentric arcs variant */
+.built-surface.arcs::after {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><g fill='none' stroke='%23ECE8E2' stroke-width='1'><circle cx='520' cy='80' r='60'/><circle cx='520' cy='80' r='120'/><circle cx='520' cy='80' r='180'/><circle cx='520' cy='80' r='240'/><circle cx='520' cy='80' r='300'/></g></svg>");
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: 600px 600px;
+  opacity: 0.05;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 12px 28px;
+  border-radius: 4px;
+  font-size: 19px;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: var(--white);
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--accent-dark);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+
+.on-light .btn-secondary,
+.on-light-2 .btn-secondary,
+.canvas .btn-secondary {
+  color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus-visible {
+  background-color: var(--accent);
+  color: var(--white);
+  border-color: var(--accent);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--dark-1);
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--light-1);
+  line-height: 1.2;
+  max-width: 220px;
+}
+
+.main-nav {
+  display: none;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--light-1);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+  border-bottom-color: var(--accent);
+  color: var(--accent-light);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Headerin painikkeen teksti on pieni, joten tausta on tumma aksentti (WCAG AA). */
+.header-actions .btn-primary {
+  padding: 10px 16px;
+  font-size: 15px;
+  white-space: nowrap;
+  background-color: var(--accent-dark);
+}
+
+.header-actions .btn-primary:hover,
+.header-actions .btn-primary:focus-visible {
+  background-color: #1D2244;
+}
+
+@media (max-width: 420px) {
+  .brand {
+    font-size: 13px;
+    line-height: 1.2;
+    max-width: 170px;
+  }
+  .header-actions .btn-primary {
+    padding: 10px 12px;
+  }
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--line-dark);
+  border-radius: 4px;
+  color: var(--light-1);
+  cursor: pointer;
+}
+
+.menu-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+.mobile-nav {
+  display: none;
+  border-top: 1px solid var(--line-dark);
+  background-color: var(--dark-1);
+}
+
+.mobile-nav.is-open {
+  display: block;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  padding: 8px 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav a {
+  display: block;
+  padding: 12px 0;
+  text-decoration: none;
+  color: var(--light-1);
+  font-size: 17px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--line-dark);
+  min-height: 44px;
+}
+
+@media (min-width: 980px) {
+  .main-nav {
+    display: block;
+  }
+  .menu-toggle {
+    display: none;
+  }
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
+/* No-JS fallback: mobile nav is a plain block list, always reachable */
+.no-js .mobile-nav {
+  display: block;
+}
+.no-js .menu-toggle {
+  display: none;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 104px 0 96px;
+  display: flex;
+  align-items: center;
+  min-height: 640px;
+  background-color: var(--dark-1);
+  background-image:
+    linear-gradient(96deg, rgba(20, 21, 50, 0.96) 20%, rgba(20, 21, 50, 0.72) 46%, rgba(20, 21, 50, 0.24) 76%, rgba(20, 21, 50, 0.44) 100%),
+    url("images/hero.jpg");
+  background-size: cover;
+  background-position: center right;
+}
+
+@media (max-width: 820px) {
+  .hero {
+    background-image:
+      linear-gradient(to bottom, rgba(20, 21, 50, 0.90) 30%, rgba(20, 21, 50, 0.80) 100%),
+      url("images/hero.jpg");
+    background-position: center;
+  }
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: repeating-linear-gradient(135deg, var(--light-1) 0px, var(--light-1) 1px, transparent 1px, transparent 58px);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+.hero h1 {
+  font-size: 32px;
+  color: var(--light-1);
+  margin-bottom: 20px;
+}
+
+.hero .eyebrow {
+  color: var(--accent-light);
+}
+
+.hero-support {
+  color: rgba(243, 246, 251, 0.78);
+  font-size: 18px;
+  max-width: 56ch;
+}
+
+@media (min-width: 800px) {
+  .hero h1 {
+    font-size: 56px;
+  }
+}
+
+/* ---------- Page header (non-home pages) ---------- */
+
+.page-header h1 {
+  font-size: 32px;
+}
+
+.page-header {
+  text-align: left;
+  position: relative;
+  background-color: var(--dark-1);
+  background-image:
+    linear-gradient(100deg, rgba(20, 21, 50, 0.95) 24%, rgba(20, 21, 50, 0.70) 50%, rgba(20, 21, 50, 0.30) 100%),
+    var(--page-img, none);
+  background-size: cover;
+  background-position: center right;
+  padding: 88px 0;
+}
+
+@media (min-width: 800px) {
+  .page-header {
+    padding: 128px 0;
+  }
+}
+
+@media (max-width: 820px) {
+  .page-header {
+    background-image:
+      linear-gradient(to bottom, rgba(20, 21, 50, 0.92), rgba(20, 21, 50, 0.84)),
+      var(--page-img, none);
+    background-position: center;
+  }
+}
+
+/* ---------- Kuvakaista ---------- */
+
+.image-band {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  background-color: var(--dark-1);
+  background-image:
+    linear-gradient(94deg, rgba(20, 21, 50, 0.94) 18%, rgba(20, 21, 50, 0.66) 48%, rgba(20, 21, 50, 0.22) 100%),
+    var(--band-img, none);
+  background-size: cover;
+  background-position: center;
+}
+
+.image-band h2 {
+  max-width: 18ch;
+}
+
+.image-band p {
+  color: rgba(243, 246, 251, 0.82);
+  max-width: 48ch;
+  margin-top: 16px;
+}
+
+@media (max-width: 820px) {
+  .image-band {
+    background-image:
+      linear-gradient(to bottom, rgba(20, 21, 50, 0.92), rgba(20, 21, 50, 0.86)),
+      var(--band-img, none);
+  }
+}
+
+/* ---------- Tunnusluvut ---------- */
+
+.facts {
+  display: grid;
+  gap: 0;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--line-light);
+}
+
+.fact {
+  padding: 32px 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+@media (min-width: 760px) {
+  .facts {
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--line-light);
+  }
+  .fact {
+    padding: 36px 32px;
+    border-bottom: none;
+    border-left: 1px solid var(--line-light);
+  }
+  .fact:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+.fact-value {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--accent-dark);
+  margin-bottom: 8px;
+}
+
+.fact-label {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0;
+}
+
+@media (min-width: 800px) {
+  .page-header h1 {
+    font-size: 48px;
+  }
+}
+
+/* ---------- Grid layouts ---------- */
+
+.grid {
+  display: grid;
+  gap: 24px;
+}
+
+.grid-2 {
+  grid-template-columns: 1fr;
+}
+
+.grid-4 {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.split-5-7 {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 900px) {
+  .split-5-7 {
+    grid-template-columns: 5fr 7fr;
+    gap: 64px;
+  }
+}
+
+/* ---------- Cards ---------- */
+
+.card {
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  padding: 28px 24px;
+  background-color: transparent;
+  transition: border-color 0.15s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card .card-link {
+  margin-top: auto;
+}
+
+.on-dark .card,
+.on-dark-2 .card {
+  border-color: var(--line-dark);
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: var(--accent);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card p {
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+.card .card-link {
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.on-dark .card .card-link,
+.on-dark-2 .card .card-link {
+  color: var(--accent-light);
+}
+
+/* ---------- Numbered list (asiakasryhmät) ---------- */
+
+.plain-list {
+  list-style: none;
+}
+
+.plain-list li {
+  padding: 28px 0;
+  border-top: 1px solid var(--line-dark);
+}
+
+.on-light .plain-list li,
+.on-light-2 .plain-list li {
+  border-top: 1px solid var(--line-light);
+}
+
+.plain-list li:last-child {
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.on-light .plain-list li:last-child,
+.on-light-2 .plain-list li:last-child {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.plain-list h3 {
+  margin-bottom: 8px;
+}
+
+/* ---------- Numbered steps ---------- */
+
+.steps {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 700px) {
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.step-number {
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 800px) {
+  .step-number {
+    font-size: 56px;
+  }
+}
+
+.step h3 {
+  margin-bottom: 10px;
+}
+
+/* ---------- Testimonials ---------- */
+
+.testimonial {
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  padding: 28px 24px;
+}
+
+.on-dark .testimonial,
+.on-dark-2 .testimonial {
+  border-color: var(--line-dark);
+}
+
+.testimonial blockquote {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.testimonial cite {
+  font-style: normal;
+  font-size: 14px;
+  color: var(--muted);
+  display: block;
+}
+
+/* ---------- Services page blocks ---------- */
+
+.service-block h2 {
+  margin-bottom: 16px;
+}
+
+/* ---------- Contact cluster ---------- */
+
+.contact-block {
+  margin-bottom: 28px;
+}
+
+.contact-block h3 {
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.contact-value {
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--light-1);
+}
+
+.on-light .contact-value,
+.on-light-2 .contact-value {
+  color: var(--dark-1);
+}
+
+.contact-value:hover {
+  color: var(--accent-light);
+}
+
+.on-light .contact-value:hover,
+.on-light-2 .contact-value:hover {
+  color: var(--accent-dark);
+}
+
+/* ---------- Forms ---------- */
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 12px 14px;
+  font-size: 16px;
+  font-family: var(--font-base);
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  background-color: #F7F9FC;
+  color: var(--dark-1);
+}
+
+.form-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.form-field input:focus-visible,
+.form-field select:focus-visible,
+.form-field textarea:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.form-note {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* ---------- Map ---------- */
+
+.map-frame {
+  width: 100%;
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 380px;
+  border: 0;
+  display: block;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background-color: var(--dark-2);
+  border-top: 1px solid var(--line-dark);
+  padding: 64px 0 32px;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 36px;
+  grid-template-columns: 1fr;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 700px) {
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.footer-col h3 {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+  margin-bottom: 16px;
+}
+
+.footer-col p,
+.footer-col address {
+  font-style: normal;
+  color: rgba(243, 246, 251, 0.8);
+  margin: 0 0 8px 0;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col li {
+  margin-bottom: 10px;
+}
+
+.footer-col a {
+  color: rgba(243, 246, 251, 0.85);
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: var(--accent-light);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--line-dark);
+  padding-top: 24px;
+  font-size: 14px;
+  color: var(--muted-on-dark);
+}
+
+/* ---------- CTA strip ---------- */
+
+.cta-strip {
+  text-align: left;
+}
+
+.cta-strip .contact-block {
+  margin-bottom: 0;
+}
+
+.cta-meta {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  color: var(--muted-on-dark);
+  font-size: 15px;
+}
+
+/* ---------- Utilities ---------- */
+
+.center {
+  text-align: center;
+}
+
+.section-head {
+  margin-bottom: 48px;
+}
+
+.section-head.center {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 800px) {
+  .h1-desktop {
+    font-size: 60px;
+  }
+}
+
+/* ---------- Piirretty kuvitus (hero ja sivuotsikot) ---------- */
+
+.hero-art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-art svg {
+  position: absolute;
+  right: -8%;
+  bottom: -6%;
+  width: 760px;
+  max-width: 120%;
+  height: auto;
+  opacity: 0.85;
+}
+
+@media (max-width: 900px) {
+  .hero-art svg {
+    right: -30%;
+    bottom: auto;
+    top: 4%;
+    width: 620px;
+    opacity: 0.35;
+  }
+}
+
+.pipe-flow {
+  stroke-dasharray: 10 16;
+  animation: pipe-flow 6s linear infinite;
+}
+
+@keyframes pipe-flow {
+  to {
+    stroke-dashoffset: -52;
+  }
+}
+
+.joint-pulse {
+  animation: joint-pulse 4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.joint-pulse-2 {
+  animation-delay: 1.3s;
+}
+
+.joint-pulse-3 {
+  animation-delay: 2.6s;
+}
+
+@keyframes joint-pulse {
+  0%, 100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Sivuotsikon kuvitus */
+
+.page-header .container {
+  position: relative;
+}
+
+.page-art {
+  display: block;
+  width: 116px;
+  height: 116px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 900px) {
+  .page-header .page-art {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 190px;
+    height: 190px;
+    margin: 0;
+  }
+  .page-header h1,
+  .page-header p {
+    max-width: 62%;
+  }
+}
+
+/* ---------- Palvelukorttien ikonit ---------- */
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.testimonial::before {
+  content: "\201D";
+  display: block;
+  font-size: 56px;
+  font-weight: 800;
+  line-height: 0.7;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.card-icon.tone-copper { color: var(--accent); }
+.card-icon.tone-brass  { color: var(--accent-rust); }
+.card-icon.tone-ember  { color: var(--accent-ember); }
+.card-icon.tone-rust   { color: var(--accent-dark); }
+
+.card:hover .card-icon,
+.card:focus-visible .card-icon {
+  color: var(--accent-dark);
+}
+
+/* ---------- Kupariset korostukset ---------- */
+
+.step {
+  position: relative;
+  padding-top: 20px;
+}
+
+.step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-brass));
+}
+
+.on-light .plain-list li:hover h3,
+.on-dark .plain-list li:hover h3 {
+  color: var(--accent-light);
+}
+
+.plain-list li {
+  transition: border-color 0.2s ease;
+}
+
+.on-dark .plain-list li:hover {
+  border-top-color: var(--accent);
+}
+
+.service-block h2 {
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.service-block h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 72px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-brass));
+}
+
+.testimonial {
+  position: relative;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.testimonial:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.card {
+  transition: border-color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  background-color: rgba(47, 62, 115, 0.05);
+}
+
+/* Kuparihehku tummien osioiden yläreunaan */
+.built-surface {
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgba(47, 62, 115, 0.55), transparent) 1;
+}
+
+/* ---------- Scroll-reveal (progressiivinen parannus) ---------- */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal-delay-1 { transition-delay: 0.08s; }
+.js .reveal-delay-2 { transition-delay: 0.16s; }
+.js .reveal-delay-3 { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .pipe-flow,
+  .joint-pulse {
+    animation: none;
+  }
+}
+
+/* ---------- Palvelulohkon kaksipalstainen asettelu ---------- */
+
+.service-block .split-5-7 {
+  align-items: start;
+}
+
+.service-block .service-body p:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  .service-block h2 {
+    font-size: 34px;
+  }
+}
+
+/* ---------- Yhtenäinen vaalea pinta (korvaa tumma/vaalea-vuorottelun) ---------- */
+
+.canvas {
+  padding: 0;
+  background-color: var(--light-1);
+  background-image: linear-gradient(178deg, #F7F9FC 0%, var(--light-1) 26%, #DCE3EF 74%, var(--light-2) 100%);
+  color: var(--dark-1);
+}
+
+.canvas .block {
+  padding: var(--section-pad-mobile) 0;
+  border-top: 1px solid var(--line-light);
+}
+
+.canvas .block:first-child {
+  border-top: none;
+}
+
+@media (min-width: 800px) {
+  .canvas .block {
+    padding: var(--section-pad-desktop) 0;
+  }
+}
+
+.canvas .block.tight {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+
+.canvas .eyebrow {
+  color: var(--accent-dark);
+}
+
+.canvas p {
+  color: var(--dark-1);
+}
+
+/* Tunnusluvut nostettuna heron päälle */
+
+.facts-overlap {
+  position: relative;
+  margin-top: -72px;
+  margin-bottom: 8px;
+  background-color: var(--light-1);
+  border: 1px solid var(--line-light);
+  border-radius: 4px;
+  padding: 8px 28px;
+  box-shadow: 0 -1px 0 rgba(47, 62, 115, 0.5);
+}
+
+.facts-overlap .facts {
+  border-top: none;
+}
+
+@media (min-width: 760px) {
+  .facts-overlap .facts {
+    border-bottom: none;
+  }
+}
+
+/* Upotettu tumma paneeli vaalean pinnan sisällä */
+
+.panel-dark {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  color: var(--light-1);
+  background-color: var(--dark-1);
+  background-image:
+    linear-gradient(100deg, rgba(20, 21, 50, 0.95) 24%, rgba(20, 21, 50, 0.74) 52%, rgba(20, 21, 50, 0.34) 100%),
+    var(--panel-img, none);
+  background-size: cover;
+  background-position: center right;
+  padding: 48px 28px;
+}
+
+@media (min-width: 800px) {
+  .panel-dark {
+    padding: 72px 64px;
+  }
+}
+
+@media (max-width: 820px) {
+  .panel-dark {
+    background-image:
+      linear-gradient(to bottom, rgba(20, 21, 50, 0.93), rgba(20, 21, 50, 0.86)),
+      var(--panel-img, none);
+  }
+}
+
+.panel-dark .eyebrow {
+  color: var(--accent-light);
+}
+
+.panel-dark p {
+  color: rgba(243, 246, 251, 0.86);
+}
+
+.panel-dark .plain-list li {
+  border-top-color: var(--line-dark);
+}
+
+.panel-dark .plain-list li:last-child {
+  border-bottom-color: var(--line-dark);
+}
+
+.panel-dark .plain-list h3 {
+  color: var(--light-1);
+}
+
+/* ================= Uudet rakenteet ================= */
+
+/* ---------- Jaettu hero ---------- */
+
+.hero-split {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--dark-1);
+  background-image:
+    radial-gradient(ellipse 60% 60% at 84% 18%, rgba(78, 100, 156, 0.14), transparent 66%),
+    linear-gradient(165deg, #222E52 0%, #141532 62%);
+  padding: 56px 0 72px;
+}
+
+.hero-split .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 44px;
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 6fr 5fr;
+    gap: 64px;
+  }
+  .hero-split {
+    padding: 88px 0 104px;
+  }
+}
+
+.hero-split h1 {
+  font-size: 34px;
+  color: var(--light-1);
+  margin-bottom: 0;
+}
+
+@media (min-width: 960px) {
+  .hero-split h1 {
+    font-size: 56px;
+  }
+}
+
+.hero-split .hero-support {
+  color: rgba(243, 246, 251, 0.82);
+  font-size: 18px;
+  max-width: 52ch;
+}
+
+/* Chip-merkki */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border: 1px solid rgba(78, 100, 156, 0.45);
+  border-radius: 999px;
+  background-color: rgba(47, 62, 115, 0.12);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  /* --accent-light jai tummalla herolla 4.43 (vaaditaan 4.5). */
+  color: var(--muted-on-dark);
+  margin-bottom: 24px;
+}
+.chip svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.on-light .chip,
+.on-light-2 .chip,
+.canvas .chip {
+  color: var(--accent-dark);
+  border-color: rgba(31, 43, 80, 0.4);
+  background-color: rgba(47, 62, 115, 0.08);
+}
+
+/* Aksenttiviiva otsikon alla */
+
+.accent-bar {
+  width: 68px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent-brass), var(--accent));
+  margin: 22px 0 24px;
+}
+
+/* Kuvakollaasi */
+
+.collage {
+  position: relative;
+  aspect-ratio: 5 / 5;
+  min-height: 320px;
+}
+
+.collage img {
+  position: absolute;
+  border-radius: 6px;
+  border: 1px solid rgba(78, 100, 156, 0.3);
+  object-fit: cover;
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5);
+}
+
+.collage .shot-a {
+  width: 68%;
+  height: 74%;
+  top: 0;
+  right: 0;
+}
+
+.collage .shot-b {
+  width: 50%;
+  height: 42%;
+  bottom: 4%;
+  left: 0;
+}
+
+.collage .shot-c {
+  width: 40%;
+  height: 30%;
+  top: 46%;
+  left: 34%;
+  z-index: 2;
+}
+
+@media (max-width: 620px) {
+  .collage {
+    aspect-ratio: 4 / 3;
+  }
+  .collage .shot-c {
+    display: none;
+  }
+}
+
+/* ---------- Painikepino ---------- */
+
+.action-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 520px;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 60px;
+  padding: 14px 22px;
+  border-radius: 4px;
+  border: 1px solid var(--accent);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--accent-light);
+  background-color: transparent;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.action svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.action-primary {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: var(--white);
+}
+
+.action-primary:hover,
+.action-primary:focus-visible {
+  background-color: #1D2244;
+  border-color: #1D2244;
+}
+
+.action:hover,
+.action:focus-visible {
+  background-color: rgba(47, 62, 115, 0.16);
+}
+
+.canvas .action,
+.on-light .action {
+  color: var(--accent-dark);
+  border-color: rgba(31, 43, 80, 0.55);
+}
+
+.canvas .action-primary,
+.on-light .action-primary {
+  color: var(--white);
+  border-color: var(--accent-dark);
+}
+
+/* ---------- Murupolku ---------- */
+
+.breadcrumb {
+  font-size: 14px;
+  color: rgba(243, 246, 251, 0.65);
+  margin-bottom: 20px;
+}
+
+.breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.breadcrumb a {
+  color: rgba(243, 246, 251, 0.78);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--accent-light);
+  text-decoration: underline;
+}
+
+.breadcrumb li[aria-current="page"] {
+  color: var(--accent-light);
+}
+
+.breadcrumb .sep {
+  /* Ei opacitya: se laskisi perityn tekstivarin kontrastia. */
+}
+
+/* ---------- Nostettu sitaatti ---------- */
+
+.quote-feature {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.quote-feature .mark {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 0.6;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 20px;
+}
+
+.quote-feature blockquote {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 800px) {
+  .quote-feature blockquote {
+    font-size: 32px;
+  }
+}
+
+.quote-feature cite {
+  display: block;
+  margin-top: 24px;
+  font-style: normal;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.quote-feature .source {
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ---------- Toimialuepaneeli ---------- */
+
+.area-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .area-grid {
+    grid-template-columns: 7fr 5fr;
+    gap: 64px;
+  }
+}
+
+.area-mark {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* ---------- Footer-parannukset ---------- */
+
+.site-footer {
+  border-top: 3px solid var(--accent);
+}
+
+.footer-contact li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-contact svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--accent-light);
+}
+
+.footer-brand {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--light-1);
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* ================= UX-parannukset ================= */
+
+/* Pehmeä vieritys ankkurilinkeille */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Skip-linkki näppäimistökäyttäjille */
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -60px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background-color: var(--accent-dark);
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 12px;
+}
+
+/* Headerin korostus vieritettäessä */
+
+.site-header {
+  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.site-header.is-scrolled {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  border-bottom-color: rgba(47, 62, 115, 0.45);
+}
+
+/* Liike: lyhyempi kesto ja pehmeä ylitys (design-systeemin Standard-taso) */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+  transition:
+    opacity 0.42s cubic-bezier(0.22, 0.8, 0.3, 1),
+    transform 0.42s cubic-bezier(0.22, 0.9, 0.3, 1.12);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.js .reveal-delay-1 { transition-delay: 0.06s; }
+.js .reveal-delay-2 { transition-delay: 0.12s; }
+.js .reveal-delay-3 { transition-delay: 0.18s; }
+
+/* Lomakkeen kenttäkohtainen virheilmoitus */
+
+.form-field .field-error {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.form-field .field-error svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+.form-field.has-error .field-error {
+  display: flex;
+}
+
+.form-field.has-error input,
+.form-field.has-error select,
+.form-field.has-error textarea {
+  border-color: var(--accent-dark);
+  border-width: 2px;
+  background-color: #EAEFF5;
+}
+
+.required-mark {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.form-legend {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+/* Tunnuslukujen ikonit */
+
+.fact-icon {
+  width: 26px;
+  height: 26px;
+  color: var(--accent-dark);
+  margin-bottom: 12px;
+}
+
+/* ================= Logo, aukioloajat ja arvosana ================= */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: none;
+}
+
+.brand-mark {
+  width: 40px;
+  height: 40px;
+  flex: none;
+}
+
+.brand-text {
+  display: block;
+  line-height: 1.1;
+}
+
+.brand-line-1 {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-light);
+}
+
+.brand-line-2 {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--light-1);
+  white-space: nowrap;
+}
+
+@media (max-width: 420px) {
+  .brand-mark { width: 34px; height: 34px; }
+  .brand-line-2 { font-size: 13px; }
+  .brand-line-1 { font-size: 9px; }
+  .brand { gap: 9px; }
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* Arvosanamerkki */
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border: 1px solid rgba(78, 100, 156, 0.42);
+  border-radius: 6px;
+  background-color: rgba(47, 62, 115, 0.12);
+}
+
+.rating-score {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--accent-light);
+  line-height: 1;
+}
+
+.canvas .rating,
+.on-light .rating {
+  border-color: rgba(31, 43, 80, 0.34);
+  background-color: rgba(47, 62, 115, 0.07);
+}
+
+.canvas .rating-score,
+.on-light .rating-score {
+  color: var(--accent-dark);
+}
+
+.rating-stars {
+  width: 96px;
+  height: 18px;
+  flex: none;
+}
+
+.rating-meta {
+  font-size: 14px;
+  color: rgba(243, 246, 251, 0.78);
+  line-height: 1.3;
+}
+
+.canvas .rating-meta,
+.on-light .rating-meta {
+  color: var(--muted);
+}
+
+/* Aukioloajat */
+
+.hours {
+  list-style: none;
+  border-top: 1px solid var(--line-light);
+  max-width: 380px;
+}
+
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.hours .day {
+  font-weight: 700;
+}
+
+.hours .time {
+  color: var(--muted);
+}
+
+.hours .closed {
+  color: var(--accent-dark);
+  font-weight: 700;
+}
+
+.panel-dark .hours,
+.panel-dark .hours li {
+  border-color: var(--line-dark);
+}
+
+.panel-dark .hours .time {
+  color: rgba(243, 246, 251, 0.72);
+}
+
+.panel-dark .hours .closed {
+  color: var(--accent-light);
+}
+
+.footer-hours {
+  list-style: none;
+  font-size: 15px;
+  color: rgba(243, 246, 251, 0.8);
+}
+
+.footer-hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+  max-width: 240px;
+}
+
+/* Vastuuhenkilö */
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px;
+  border: 1px solid var(--line-light);
+  border-radius: 6px;
+  max-width: 460px;
+}
+
+.person-initials {
+  width: 64px;
+  height: 64px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(140deg, var(--accent-brass), var(--accent-dark));
+  color: var(--white);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.person-name {
+  font-size: 19px;
+  font-weight: 800;
+  margin: 0 0 2px;
+}
+
+.person-role {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ================= Mobiilin ylivuotokorjaukset ================= */
+/* Nämä ovat tiedoston lopussa tarkoituksella: ne kumoavat aiemmat
+   logo- ja hero-säännöt kapeilla näytöillä. */
+
+/* Grid-sarakkeet eivät saa kasvaa sisältönsä vähimmäisleveyteen */
+.hero-grid > *,
+.split-5-7 > *,
+.area-grid > * {
+  min-width: 0;
+}
+
+.chip {
+  white-space: normal;
+}
+
+.action span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 560px) {
+  .header-inner {
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-line-1 {
+    font-size: 8.5px;
+    letter-spacing: 0.1em;
+  }
+
+  .brand-line-2 {
+    font-size: 12px;
+    white-space: normal;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-actions .btn-primary {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .chip {
+    font-size: 11px;
+    padding: 7px 12px;
+  }
+
+  .rating {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .rating-stars {
+    width: 78px;
+  }
+
+  .action {
+    padding: 13px 16px;
+    font-size: 16px;
+  }
+}
+
+/* ================= Kysymykset ja vastaukset ================= */
+
+.faq {
+  border-top: 1px solid var(--line-light);
+  max-width: 760px;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 20px 44px 20px 0;
+  position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark-1);
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  margin-top: -7px;
+  border-right: 2px solid var(--accent-dark);
+  border-bottom: 2px solid var(--accent-dark);
+  transform: rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.faq details[open] summary::after {
+  transform: rotate(-135deg);
+  margin-top: -3px;
+}
+
+.faq summary:focus-visible {
+  outline: 3px solid var(--accent-light);
+  outline-offset: 2px;
+}
+
+.faq .answer {
+  padding: 0 44px 22px 0;
+}
+
+.faq .answer p {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.faq .answer p:last-child { margin-bottom: 0; }
+
+/* Tietolaatikko */
+
+.notice {
+  border: 1px solid var(--line-light);
+  border-left: 3px solid var(--accent);
+  border-radius: 4px;
+  padding: 24px 26px;
+  max-width: 640px;
+}
+
+.notice h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.notice p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.notice p:last-child { margin-bottom: 0; }
+
+.notice a {
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+/* Vaiheluettelo numeroin */
+
+.phases {
+  list-style: none;
+  counter-reset: ph;
+  border-top: 1px solid var(--line-light);
+  max-width: 720px;
+}
+
+.phases li {
+  counter-increment: ph;
+  display: grid;
+  grid-template-columns: 46px 1fr;
+  gap: 18px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line-light);
+}
+
+.phases li::before {
+  content: counter(ph, decimal-leading-zero);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--accent-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.phases h3 { font-size: 17px; margin-bottom: 4px; }
+.phases p { margin: 0; color: var(--muted); font-size: 16px; }
+
+
+/* --- Paikanvaraaja: tieto jota ei ole vielä vahvistettu --- */
+.tbd {
+  background: #FFF4CE;
+  color: #5A4300;
+  border-bottom: 2px dotted #B08900;
+  padding: 0 5px;
+  border-radius: 3px;
+  font-weight: 600;
+  font-style: normal;
+}
+.tbd-note {
+  background: #FFF4CE;
+  color: #5A4300;
+  border: 1px solid #E0C36B;
+  border-radius: 10px;
+  padding: 16px 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0 0 28px;
+}
+.tbd-note strong { color: #3D2E00; }
+
+
+/* --- Talosaaro: lisäkomponentit --- */
+.hero-figure { width: 100%; }
+.hero-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.42);
+}
+
+.plain-list.check li { padding-left: 34px; position: relative; }
+.plain-list.check li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.62em;
+  width: 13px;
+  height: 7px;
+  border-left: 2.5px solid var(--accent);
+  border-bottom: 2.5px solid var(--accent);
+  transform: rotate(-45deg);
+}
+.on-dark .plain-list.check li::before,
+.panel-dark .plain-list.check li::before { border-color: var(--accent-light); }
+
+.contact-blocks { list-style: none; margin: 0; padding: 0; }
+.contact-blocks li {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line-light);
+}
+.contact-blocks li:last-child { border-bottom: 0; }
+.contact-ic { width: 24px; height: 24px; flex: 0 0 24px; color: var(--accent); margin-top: 2px; }
+
+
+/* =========================================================
+   LAATUPÄIVITYS — kuvat, mikrointeraktiot, liikkeen hallinta
+   ========================================================= */
+
+/* ---------- Kuvakomponentit ---------- */
+
+.media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: var(--dark-2);
+  box-shadow: 0 22px 54px rgba(0, 0, 0, 0.34);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.001);
+  transition: transform 600ms var(--ease);
+}
+
+.media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(200deg, rgba(140, 159, 201, 0.10), transparent 52%),
+              linear-gradient(0deg, rgba(14, 15, 36, 0.45), transparent 58%);
+}
+
+.media-4-3 { aspect-ratio: 4 / 3; }
+.media-16-9 { aspect-ratio: 16 / 9; }
+.media-3-2 { aspect-ratio: 3 / 2; }
+
+/* Kuvakaista — täysleveä rytmin katkaisija */
+.image-band {
+  position: relative;
+  height: clamp(220px, 32vw, 380px);
+  overflow: hidden;
+  padding: 0;
+}
+
+.image-band img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(20, 21, 50, 0.92) 0%, rgba(20, 21, 50, 0.30) 46%, rgba(20, 21, 50, 0.72) 100%);
+}
+
+.image-band .band-text {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.image-band .band-text p {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-3);
+  line-height: 1.22;
+  color: var(--light-1);
+  max-width: 24ch;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Kortin kuva */
+.card .card-media {
+  margin: -28px -28px 22px;
+  border-radius: 10px 10px 0 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background-color: var(--dark-2);
+}
+
+.card .card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease);
+}
+
+/* ---------- Mikrointeraktiot ---------- */
+
+.card {
+  transition: transform var(--t-base) var(--ease),
+              box-shadow var(--t-base) var(--ease),
+              border-color var(--t-base) var(--ease);
+}
+
+a.card:hover,
+a.card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 42px rgba(20, 21, 50, 0.16);
+}
+
+a.card:hover .card-media img,
+a.card:focus-visible .card-media img,
+.media:hover img {
+  transform: scale(1.045);
+}
+
+.card-link {
+  position: relative;
+  display: inline-block;
+}
+
+.card-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -3px;
+  height: 2px;
+  background: currentColor;
+  transition: right var(--t-base) var(--ease);
+}
+
+a.card:hover .card-link::after,
+a.card:focus-visible .card-link::after {
+  right: 0;
+}
+
+.action {
+  transition: transform var(--t-fast) var(--ease),
+              background-color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease);
+}
+
+.action:hover,
+.action:focus-visible {
+  transform: translateX(3px);
+}
+
+.btn {
+  transition: background-color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease),
+              color var(--t-fast) var(--ease),
+              transform var(--t-fast) var(--ease);
+}
+
+.btn:active { transform: translateY(1px); }
+
+.main-nav a {
+  position: relative;
+  transition: color var(--t-fast) var(--ease);
+}
+
+/* ---------- Osion numerointi (sveitsiläinen ruudukko) ---------- */
+
+.section-head {
+  position: relative;
+}
+
+.section-index {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--step-1);
+  line-height: 1;
+  color: var(--accent-dark);
+  margin-bottom: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.on-dark .section-index,
+.panel-dark .section-index { color: var(--accent-light); }
+
+/* Nostosaate */
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  max-width: 44ch;
+  color: var(--muted);
+}
+
+.on-dark .lede,
+.panel-dark .lede { color: var(--muted-on-dark); }
+
+/* ---------- Kiinteä mobiilipalkki ---------- */
+
+.mobile-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: none;
+  gap: 10px;
+  padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  background: rgba(20, 21, 50, 0.97);
+  border-top: 1px solid var(--line-dark);
+  backdrop-filter: blur(8px);
+}
+
+.mobile-cta .btn {
+  flex: 1;
+  min-height: 48px;
+  font-size: 17px;
+}
+
+@media (max-width: 720px) {
+  .mobile-cta { display: flex; }
+  body { padding-bottom: 76px; }
+}
+
+/* ---------- Liikkeen hallinta ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  a.card:hover { transform: none; }
+  .media img, .card-media img { transition: none; }
+}
+
+/* ---------- Tulostus ---------- */
+
+@media print {
+  .site-header, .mobile-cta, .mobile-nav, .skip-link, form { display: none !important; }
+  body { background: #fff; color: #000; padding-bottom: 0; }
+  .canvas, .on-dark, .panel-dark, .page-header { background: #fff !important; color: #000 !important; }
+  .on-dark *, .panel-dark *, .page-header * { color: #000 !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 11px; }
+}
+
+
+/* ---------- Hero: kuva vuotaa oikeaan reunaan ---------- */
+
+@media (min-width: 960px) {
+  .hero-split { overflow: visible; }
+  .hero-split .container { overflow: visible; }
+  .hero-figure { position: relative; }
+  .hero-figure .media {
+    width: calc(100% + max(24px, (100vw - var(--container-max)) / 2 + 24px));
+    border-radius: 10px 0 0 10px;
+  }
+}
+
+/* Reunavalo erottaa kuvan tummasta taustasta */
+.hero-figure .media {
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.42),
+              0 0 0 1px rgba(140, 159, 201, 0.22);
+}
+
+.hero-figure .media::after {
+  background: linear-gradient(210deg, rgba(140, 159, 201, 0.12), transparent 50%);
+}
+
+/* ---------- Korjaus: faktarivin ylivuoto kapeilla näytöillä ---------- */
+
+.facts { grid-template-columns: minmax(0, 1fr); }
+
+@media (min-width: 760px) {
+  .facts { grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
+}
+
+.fact { min-width: 0; }
+
+.fact-value {
+  font-size: clamp(24px, 1.05rem + 1.45vw, 38px);
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.fact-label { overflow-wrap: break-word; }
+
+/* Ruudunlukijalle piilotettu teksti ilman sivuvaikutuksia asetteluun */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Korjaus: pitkät suomalaiset yhdyssanat ---------- */
+
+h1, h2, h3 {
+  overflow-wrap: break-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* Näyttöotsikon minimikoko pienemmäksi kapeilla näytöillä */
+:root {
+  --step-4: clamp(1.78rem, 1.45rem + 1.75vw, 3.05rem);
+  --step-5: clamp(2.05rem, 1.58rem + 2.60vw, 3.90rem);
+}
+
+@media (max-width: 420px) {
+  .brand-line-2 { white-space: normal; }
+  .brand-mark { flex: 0 0 34px; width: 34px; height: 34px; }
+}
+
+/* ---------- Sivuotsikko: tiiviimpi ja tasapainoisempi ---------- */
+
+.page-header {
+  padding-top: clamp(48px, 7vw, 92px);
+  padding-bottom: clamp(48px, 7vw, 92px);
+}
+
+/* Juokseva asteikko voittaa vanhat kiinteät koot */
+.page-header h1,
+.hero-split h1 {
+  font-size: var(--step-5);
+}
+
+@media (min-width: 800px) {
+  .page-header h1 { font-size: var(--step-5); }
+}
+
+@media (min-width: 960px) {
+  .hero-split h1 { font-size: var(--step-5); }
+}
+
+.page-header h1 + .lede,
+.page-header h1 + p {
+  margin-top: 20px;
+}
+
+.page-header .lede {
+  color: var(--muted-on-dark);
+  max-width: 50ch;
+}
+
+.page-header .breadcrumb { margin-bottom: 26px; }
+
+/* Ingressi myös hero-tekstille */
+.hero-split .hero-support { font-size: var(--step-1); }
+
+/* ---------- Erittelylista (oma, ei peri plain-listin täytettä) ---------- */
+
+.spec-list {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--line-light);
+}
+
+.spec-list li {
+  position: relative;
+  padding: 13px 0 13px 32px;
+  border-bottom: 1px solid var(--line-light);
+  font-size: var(--step-0);
+}
+
+.spec-list li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 1.32em;
+  width: 12px;
+  height: 6px;
+  border-left: 2.5px solid var(--accent);
+  border-bottom: 2.5px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+.on-dark .spec-list,
+.panel-dark .spec-list { border-top-color: var(--line-dark); }
+
+.on-dark .spec-list li,
+.panel-dark .spec-list li { border-bottom-color: var(--line-dark); }
+
+.on-dark .spec-list li::before,
+.panel-dark .spec-list li::before { border-color: var(--accent-light); }
+
+/* ---------- Otsikoiden katkaisu vain kun se on pakko ---------- */
+
+h1, h2, h3 { overflow-wrap: normal; }
+
+/* Kapeassa sarakkeessa otsikko pienemmäksi ennen kuin se katkaistaan */
+.split-5-7 h2 { font-size: var(--step-3); }
+
+@media (max-width: 560px) {
+  h1, h2, h3 { overflow-wrap: break-word; }
+}
+
+/* ---------- Kosketuskohteiden vähimmäiskoko (44x44) ---------- */
+
+.menu-toggle {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.brand { min-height: 44px; }
+
+.site-footer a,
+.footer-contact a,
+.breadcrumb a {
+  display: inline-block;
+  padding-block: 4px;
+}
+
+@media (max-width: 720px) {
+  .site-footer .footer-col ul a,
+  .footer-contact a,
+  .mobile-nav a {
+    display: block;
+    min-height: 44px;
+    line-height: 36px;
+    padding-block: 4px;
+  }
+  .footer-contact li { align-items: center; }
+}
+
+.faq summary {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+/* Kiinteä alapalkki korvaa otsikkopalkin painikkeen mobiilissa */
+@media (max-width: 720px) {
+  .header-actions .btn-primary { display: none; }
+}
+
+/* Murupolun linkeille riittävä kosketusalue kapeilla näytöillä */
+@media (max-width: 720px) {
+  .breadcrumb { margin-bottom: 12px; }
+  .breadcrumb ol { gap: 4px; }
+  .breadcrumb a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 6px;
+    margin-inline: -6px;
+  }
+}
+
+
+/* ---------- Mallisivuston tunniste ---------- */
+
+.demo-bar {
+  position: relative;
+  z-index: 70;
+  background: #FFF4CE;
+  color: #5A4300;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px 24px;
+  text-align: center;
+  border-bottom: 1px solid #E0C36B;
+}
+.demo-bar strong { color: #3D2E00; }
