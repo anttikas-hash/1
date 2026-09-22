@@ -525,13 +525,14 @@ def page_yritys(cfg, pal):
   </section>
 %s
 </main>
-''' % (crumb('Yritys'), cfg['lede'], tbd('Yrityksen nimi'), cfg['about'],
+''' % (crumb('Yritys'), cfg['lede'],
+       cfg.get('yritys_nimi') or tbd('Yrityksen nimi'), cfg['about'],
        tbd('vuosi'), tbd('toimialue'),
        cfg.get('way_text',
                'Toimintatapa on yksinkertainen: kohde katsotaan ennen tarjousta, '
                'tarjous annetaan kirjallisena, ja aikataulu kirjataan sopimukseen. '
                'Jos jokin muuttuu kesken työn, siitä kerrotaan silloin kun se tapahtuu.'),
-       tbd('yrityksen nimi'), tbd('y-tunnus'),
+       cfg.get('yritys_nimi') or tbd('yrityksen nimi'), tbd('y-tunnus'),
        tbd('kunnat, joissa työskentelette'),
        tbd('ennakkoperintärekisteri, alv-rekisteri ym. — vain ne, jotka pitävät paikkansa'),
        cfg.get('way_title', 'Miten teemme työtä'),
