@@ -2787,3 +2787,87 @@ h1, h2, h3 { overflow-wrap: normal; }
   border-bottom: 1px solid #E0C36B;
 }
 .demo-bar strong { color: #3D2E00; }
+
+
+/* ---------- Ajanvarausalat: hinnasto, aukiolo, galleria ---------- */
+
+.varaus-panel {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 40px;
+  padding: 36px;
+  background: var(--dark-1);
+  color: var(--light-1);
+  border-radius: 6px;
+}
+.varaus-panel h2 { color: var(--light-1); }
+.varaus-panel p,
+.varaus-panel table.aukiolo th,
+.varaus-panel table.aukiolo td { color: var(--muted-on-dark); }
+.varaus-panel table.aukiolo th { color: var(--light-1); }
+.varaus-panel .eyebrow { color: var(--accent-light); }
+
+/* .canvas .action varittaa napit vaaleaa pohjaa varten. Paneeli on tumma,
+   joten varit palautetaan tummaa pintaa vastaaviksi. */
+.varaus-panel .action {
+  color: var(--accent-light);
+  border-color: var(--accent);
+}
+.varaus-panel .action-primary {
+  color: var(--white);
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+@media (max-width: 720px) {
+  .varaus-panel { grid-template-columns: 1fr; gap: 28px; padding: 26px 22px; }
+}
+
+table.aukiolo, table.hinnasto {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+}
+table.aukiolo th, table.hinnasto th {
+  text-align: left;
+  font-weight: 500;
+  padding: 9px 0;
+}
+table.aukiolo td, table.hinnasto td {
+  text-align: right;
+  padding: 9px 0;
+  white-space: nowrap;
+}
+table.aukiolo th, table.aukiolo td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+}
+table.hinnasto th, table.hinnasto td {
+  border-bottom: 1px solid var(--line-light);
+}
+
+.hinnasto-note { margin: 0 0 26px; color: var(--muted); max-width: 62ch; }
+.hinnasto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 36px;
+}
+.hinnasto-ryhma h3 {
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.galleria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+.kuvapaikka {
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--line-light);
+  border-radius: 4px;
+  text-align: center;
+  padding: 12px;
+}
