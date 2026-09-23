@@ -23,6 +23,7 @@ node tools/verify.js                   # tarkistukset
 | `render.js` | Renderöi kohtaukset selaimella kuviksi. |
 | `verify.js` | Ylivuoto, kontrasti, alt-tekstit, kosketuskohteet, JS-virheet. |
 | `asiakas.py` | Tekee toimialamallista asiakaskohtaisen kopion yrityksen nimella. |
+| `julkaise.py` | Poistaa mallimerkinnat ja tekee julkaisukelpoisen version. |
 
 ## Uuden toimialan lisääminen
 
@@ -50,6 +51,25 @@ ylalaitaan. Sivu ei esita olevansa asiakkaan oikea sivusto.
 
 Kuvitukset kopioidaan toimialamallista, joten `build.py` ja `render.js`
 pitaa olla ajettuna ensin.
+
+## Julkaisu asiakkaan omaan osoitteeseen
+
+```
+python3 tools/julkaise.py asiakkaat/kampaamo-vilo --lomake https://formspree.io/f/xxxx
+```
+
+Tulos menee kansioon `julkaisu/<nimi>/`, jonka sisallon vie asiakkaan omaan
+repoon. Skripti poistaa mallipalkin ja `noindex`-merkinnan ja kirjoittaa
+`robots.txt`:n joka sallii indeksoinnin.
+
+Nama merkinnat ovat mallisivustoissa syysta: ne estavat malleja paatymasta
+hakukoneisiin oikeiden yritysten nimilla. Asiakkaan omalla sivustolla ne
+olisivat virhe — han maksaa sivusta jota ei loyda mistaan.
+
+Skripti kieltaytyy, jos sivuille jai yhtaan keltaista paikanvaraajaa, ja
+kertoo mika ja missa. `--pakota` ohittaa tarkistuksen.
+
+`julkaisu/` on gitignoressa: se on vientikansio, ei osa tata repoa.
 
 ## Mitä nämä eivät ole
 
