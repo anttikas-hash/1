@@ -14,3 +14,7 @@ Tulos: `kissa-ja-ankka/kissa-ja-ankka.mp4`. Ruudut (`frames/`) ja mp4 eivät ole
 
 Uusi video: kopioi `kissa-ja-ankka/` uudella nimellä ja muuta kohtaukset.
 Selaimessa voi esikatsella avaamalla `index.html` ja ajamalla konsolissa `render(4)`.
+
+Puhe: `aani.py` tekee repliikit edge-tts:llä (`pip install edge-tts`), oletuksena suomeksi.
+Englanninkielinen versio: `KIELI=en node render.js kissa-ja-ankka`. Repliikit ja ajoitukset
+ovat `aani.py`:n `LINES`-listassa; animaatio lukee niistä suun liikkeet ja tekstitykset.

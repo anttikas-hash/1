@@ -1,14 +1,23 @@
-"""Kissa ja ankka: musiikki ja ääniefektit syntetisoituna, ei ulkoisia äänitiedostoja.
+"""Kissa ja ankka: puhe, musiikki ja ääniefektit.
 
-Käyttö: python3 aani.py ulos.wav
+Käyttö: python3 aani.py ulos.wav [puhe.js]
 Ajat vastaavat index.html:n kohtauksia (sekunteina).
+Musiikki ja efektit syntetisoidaan. Puhe tehdään edge-tts:llä (kieli: KIELI=fi|en);
+jos se ei onnistu, video tehdään ilman puhetta. puhe.js kertoo animaatiolle,
+milloin kukin hahmo puhuu, jotta suu liikkuu oikeaan aikaan.
 """
+import asyncio
+import hashlib
+import json
+import os
+import ssl
+import subprocess
 import sys
 import wave
 import numpy as np
 
 SR = 44100
-DUR = 12.0
+DUR = 13.0
 N = int(SR * DUR)
 rng = np.random.default_rng(7)
 music = np.zeros(N)
@@ -119,6 +128,10 @@ g[fade] = 1 - (t[fade] - 3.62) / .1
 rise = (t >= 5.45) & (t < 5.6)
 g[rise] = (t[rise] - 5.45) / .15
 music *= g
+# Loppusointu
+add(music, 12.0, pluck(48, 1.0, 3), .55)
+for m in (60, 64, 67, 72):
+    add(music, 12.0, pluck(m, 1.0, 3), .2)
 
 
 # ---- Ääniefektit ----------------------------------------------------------
@@ -146,9 +159,6 @@ for k in range(1, 12):
     step(k * .25, .3)
 for k in range(15):
     add(sfx, .1 + k * .2, band(noise(.03), 1500, 5000) * decay(.03, 90), .08)  # ankan tassut
-quack(0.7)
-quack(1.55, 1.12)
-quack(2.45, .95, .4)
 
 # 2) Isku: kepin nosto, sujahdus, BONK, tähdet, kaatuminen
 whoosh(3.15, .55, .2, 300, 1500)
@@ -200,6 +210,90 @@ for k in range(4):
     tc = 8.5 + 2.7 + np.pi / 28 + k * np.pi / 14 + .03
     if tc < DUR:
         add(sfx, tc, band(noise(.08), 150, 1400) * decay(.08, 35), .4)
+
+# ---- Puhe -----------------------------------------------------------------
+KIELI = os.environ.get('KIELI', 'fi')
+LINES = {
+    'fi': [(0.3, 'ankka', 'Ihana ilma tänään!'),
+           (1.5, 'kissa', 'Niin on.'),
+           (2.32, 'kissa', 'Näytät herkulliselta.'),
+           (3.68, 'ankka', 'Häh?'),
+           (4.75, 'kissa', 'Ruoka valmis.'),
+           (6.1, 'kissa', 'Kyyti kotiin, kaveri!'),
+           (8.7, 'kissa', 'Ripaus voita...'),
+           (9.95, 'kissa', 'ja vähän rakkautta.'),
+           (11.55, 'kissa', 'Paras kaveri ikinä.')],
+    'en': [(0.3, 'ankka', 'What a lovely day!'),
+           (1.5, 'kissa', 'It is.'),
+           (2.32, 'kissa', 'You look delicious.'),
+           (3.68, 'ankka', 'Huh?'),
+           (4.75, 'kissa', 'Dinner time.'),
+           (6.1, 'kissa', 'Ride home, buddy!'),
+           (8.7, 'kissa', 'A little butter...'),
+           (9.95, 'kissa', 'and a lot of love.'),
+           (11.55, 'kissa', 'Best friend ever.')],
+}
+VOICES = {
+    'fi': {'kissa': ('fi-FI-HarriNeural', '+5%', '-12Hz'), 'ankka': ('fi-FI-NooraNeural', '+10%', '+70Hz')},
+    'en': {'kissa': ('en-US-GuyNeural', '+5%', '-12Hz'), 'ankka': ('en-US-AnaNeural', '+10%', '+40Hz')},
+}
+CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'puhe')
+
+
+async def tts(text, voice, rate, pitch, path):
+    import edge_tts
+    import edge_tts.communicate
+    import edge_tts.voices
+    # Ympäristön välityspalvelin allekirjoittaa yhteydet omalla CA:llaan
+    ca = os.environ.get('SSL_CERT_FILE') or '/root/.ccr/ca-bundle.crt'
+    if os.path.exists(ca):
+        ctx = ssl.create_default_context(cafile=ca)
+        edge_tts.communicate._SSL_CTX = ctx
+        edge_tts.voices._SSL_CTX = ctx
+    proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy')
+    await edge_tts.Communicate(text, voice, rate=rate, pitch=pitch, proxy=proxy).save(path)
+
+
+def speech_clip(text, who):
+    voice, rate, pitch = VOICES[KIELI][who]
+    key = hashlib.sha1(f'{voice}|{rate}|{pitch}|{text}'.encode()).hexdigest()[:12]
+    mp3 = os.path.join(CACHE, key + '.mp3')
+    if not os.path.exists(mp3) or os.path.getsize(mp3) == 0:
+        os.makedirs(CACHE, exist_ok=True)
+        asyncio.run(tts(text, voice, rate, pitch, mp3))
+    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', mp3, '-f', 's16le', '-ac', '1', '-ar', str(SR), '-'],
+                         capture_output=True, check=True).stdout
+    x = np.frombuffer(raw, dtype=np.int16).astype(float) / 32768
+    nz = np.nonzero(np.abs(x) > .01)[0]  # hiljaisuus pois alusta ja lopusta
+    return x[nz[0]:nz[-1] + 1] if len(nz) else x
+
+
+voice = np.zeros(N)
+spoken = []
+try:
+    for start, who, text in LINES[KIELI]:
+        clip = speech_clip(text, who)
+        add(voice, start, clip)
+        spoken.append({'who': who, 'start': start, 'dur': round(len(clip) / SR, 3), 'text': text})
+        print(f'  {start:5.2f}–{start + len(clip) / SR:5.2f}  {who}: {text}')
+except Exception as e:  # verkko poikki tms.: tehdään ilman puhetta
+    print('puhe ohitettu:', e, file=sys.stderr)
+    voice[:] = 0
+    spoken = []
+
+# Musiikki hiljenee puheen alle
+duck = np.ones(N)
+for s_ in spoken:
+    a, b = int((s_['start'] - .1) * SR), int((s_['start'] + s_['dur'] + .15) * SR)
+    duck[max(0, a):min(N, b)] = .35
+k = int(.08 * SR)
+duck = np.convolve(duck, np.ones(k) / k, mode='same')
+music *= duck
+sfx += voice * 1.6
+
+if len(sys.argv) > 2:
+    with open(sys.argv[2], 'w') as f:
+        f.write('window.PUHE = ' + json.dumps(spoken, ensure_ascii=False) + ';\n')
 
 # ---- Miksaus --------------------------------------------------------------
 mixed = np.tanh(1.2 * (music * .42 + sfx))

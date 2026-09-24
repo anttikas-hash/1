@@ -76,12 +76,15 @@
       <polygon points="0,-150 40,-60 140,-100 80,-20 170,40 60,50 70,160 0,80 -70,160 -60,50 -170,40 -80,-20 -140,-100 -40,-60" fill="#FFE066" stroke="#E4572E" stroke-width="10"/>
       <text class="pop" text-anchor="middle" y="30" font-size="88" fill="#E4572E">BONK!</text>
     </g>
+    <text id="sub" class="pop" x="540" y="520" text-anchor="middle" font-size="64" fill="#fff" stroke="#1B1B22" stroke-width="12" paint-order="stroke" stroke-linejoin="round"></text>
     <g id="nam" display="none">
       <text class="pop" text-anchor="middle" font-size="120" fill="#fff" stroke="#E4572E" stroke-width="14" paint-order="stroke">NAM!</text>
     </g>
   </g>
 </svg>
 
+<script>window.PUHE = [];</script>
+<script src="puhe.js"></script>
 <script>
 const $ = id => document.getElementById(id);
 const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
@@ -158,6 +161,7 @@ function duckSVG(p) {
       <path d="M40,0 Q95,-6 108,12 Q80,34 40,22 Z" fill="#F29A38"/>
       <path d="M45,14 Q80,20 104,14" stroke="#C8741E" stroke-width="4" fill="none"/>
       <g id="${p}-eye"><circle cx="18" cy="-14" r="12" fill="#2B2B35"/><circle cx="22" cy="-18" r="4" fill="#fff"/></g>
+      <ellipse id="${p}-mouth" display="none" cx="72" cy="17" rx="30" ry="9" fill="#7A2E35"/>
       <g id="${p}-x" display="none" stroke="#2B2B35" stroke-width="6" stroke-linecap="round"><path d="M6,-26 l22,22 M28,-26 l-22,22"/></g>
     </g>
   </g>`;
@@ -234,6 +238,11 @@ function build() {
 }
 
 // ---- Apufunktiot -----------------------------------------------------
+// window.PUHE tulee aani.py:n kirjoittamasta puhe.js:stä: kuka puhuu ja milloin.
+const talking = (who, t) => window.PUHE.some(l => l.who === who && t >= l.start && t < l.start + l.dur);
+const flap = t => Math.floor(t * 9) % 3 !== 2;
+const catMouth = (t, dflt) => talking('kissa', t) ? (flap(t) ? 'grin' : 'smile') : dflt;
+
 function catFace(p, { eyes = 'open', mouth = 'smile', look = 0, shades = false, hat = false } = {}) {
   show(`${p}-eyes`, eyes === 'open'); show(`${p}-happy`, eyes === 'happy');
   show(`${p}-smile`, mouth === 'smile'); show(`${p}-grin`, mouth === 'grin');
@@ -255,7 +264,7 @@ function duckWalk(p, t) {
   tf(`${p}-l1`, `translate(-30,${-55 - Math.max(0, s) * 18})`);
   tf(`${p}-l2`, `translate(15,${-55 - Math.max(0, -s) * 18})`);
 }
-function duckKO(p, ko) { show(`${p}-eye`, !ko); show(`${p}-x`, ko); }
+function duckKO(p, ko, t = -1) { show(`${p}-eye`, !ko); show(`${p}-x`, ko); show(`${p}-mouth`, talking('ankka', t) && flap(t)); }
 function starsAt(x, y, u, r) {
   for (let i = 0; i < 5; i++) {
     const a = u * 4 + i * Math.PI * 2 / 5;
@@ -271,14 +280,14 @@ function sceneWalk(t) { // 0–3 s: kissa ja ankka kävelevät niityllä
   const bob = Math.abs(Math.sin(t * Math.PI * 4)) * 10;
   tf('c1', `translate(${x},${GROUND - bob}) scale(${CAT_S})`);
   catWalk('c1', t, 22); tailWag('c1', t);
-  catFace('c1', { look: t > 1.8 ? easeOut(seg(t, 1.8, 2.3)) : 0 });
+  catFace('c1', { look: t > 1.8 ? easeOut(seg(t, 1.8, 2.3)) : 0, mouth: catMouth(t, 'smile') });
   tf('c1-head', `translate(0,${-475 + Math.sin(t * Math.PI * 4) * 4}) rotate(${t > 1.8 ? 6 * seg(t, 1.8, 2.3) : 0})`);
   arm('c1', 'L', Math.sin(t * Math.PI * 4) * 14);
   arm('c1', 'R', -6 + Math.sin(t * Math.PI * 4) * 3);
   tf('c1-armRw', 'translate(150,-335)');
   const dx = x + 520;
   tf('d1', `translate(${dx},${GROUND - Math.abs(Math.sin(t * Math.PI * 5)) * 10}) scale(1.05)`);
-  duckWalk('d1', t); duckKO('d1', false);
+  duckWalk('d1', t); duckKO('d1', false, t);
   tf('d1-head', `translate(45,${-210 + Math.sin(t * 16) * 5})`);
 }
 
@@ -293,7 +302,7 @@ function sceneBonk(t) { // 3–5,5 s: kissa lyö ankkaa kepillä
   arm('c1', 'R', a + (u > 1 ? Math.sin((u - 1) * 30) * 4 * (1 - seg(u, 1, 1.5)) : 0));
   arm('c1', 'L', lerp(0, -30, raise) * (1 - seg(u, 1.1, 1.6)));
   const impact = u >= 1.0;
-  catFace('c1', { look: 1, eyes: u > 1.4 ? 'happy' : 'open', mouth: u > 1.4 ? 'grin' : 'smile' });
+  catFace('c1', { look: 1, eyes: u > 1.4 ? 'happy' : 'open', mouth: catMouth(t, u > 1.4 ? 'grin' : 'smile') });
   tf('c1-head', `translate(0,-475) rotate(${impact ? 4 : 6})`);
 
   // Ankka: litistyy, kaatuu selälleen, tähdet pään ympärillä
@@ -302,7 +311,7 @@ function sceneBonk(t) { // 3–5,5 s: kissa lyö ankkaa kepillä
   const fall = easeOut(seg(u, 1.25, 1.65));
   const bounce = fall >= 1 ? Math.abs(Math.sin(seg(u, 1.65, 1.95) * Math.PI)) * 20 * (1 - seg(u, 1.65, 1.95)) : 0;
   tf('d1', `translate(${dx + fall * 40},${GROUND - fall * 75 - bounce}) rotate(${-95 * fall}) scale(${1.05 / Math.sqrt(sq)},${1.05 * sq})`);
-  duckWalk('d1', 0); duckKO('d1', impact);
+  duckWalk('d1', 0); duckKO('d1', impact, t);
   tf('d1-head', `translate(45,-210) rotate(${impact ? 15 : 0})`);
   show('stars', u > 1.1);
   // Pää on kaatumisen jälkeen vasemmalla, maan tasossa
@@ -330,7 +339,7 @@ function sceneRide(t) { // 5,5–8,5 s: moottoripyörällä kotiin, ankka koriss
   // Kissa satulassa
   tf('c3', `translate(-120,${-240 + 22 + Math.sin(u * 22 + .5) * 4}) scale(0.9)`);
   show('c3-legs', false);
-  catFace('c3', { shades: true, mouth: 'grin' });
+  catFace('c3', { shades: true, mouth: catMouth(t, 'grin') });
   tailWag('c3', u * 2);
   arm('c3', 'R', -62); arm('c3', 'L', -55);
   tf('c3-head', `translate(0,${-475 + Math.sin(u * 22) * 5}) rotate(${Math.sin(u * 4) * 3})`);
@@ -348,7 +357,7 @@ function sceneCook(t) { // 8,5–12 s: kokkaus ja haukkaus
   tailWag('c4', u);
   const lift = easeInOut(seg(u, 2.0, 2.6));
   const chew = u > 2.7 ? Math.abs(Math.sin((u - 2.7) * 14)) : 0;
-  catFace('c4', { hat: true, eyes: u < 2.0 || u > 2.7 ? 'happy' : 'open', mouth: u > 2.6 && chew < .5 ? 'smile' : 'grin' });
+  catFace('c4', { hat: true, eyes: u < 2.0 || u > 2.7 ? 'happy' : 'open', mouth: catMouth(t, u > 2.6 && chew < .5 ? 'smile' : 'grin') });
   tf('c4-head', `translate(0,${-475 + Math.sin(u * 5) * 5 + chew * 6}) rotate(${Math.sin(u * 3) * 3 - lift * 6})`);
   arm('c4', 'L', 18 + Math.sin(u * 5) * 6);
   // Oikea käsi koipineen piirretään pannun päälle omana kappaleenaan
@@ -375,8 +384,7 @@ function sceneCook(t) { // 8,5–12 s: kokkaus ja haukkaus
     tf(`fe${i}`, `translate(${[160, 900, 560, 980][i] + Math.sin(u * 2 + i) * 40},${y}) rotate(${Math.sin(u * 2.5 + i) * 35}) scale(.8)`);
   }
   const n = seg(u, 2.8, 2.95);
-  show('nam', u > 2.8);
-  tf('nam', `translate(760,720) scale(${easeOut(n) * (1 + Math.sin(u * 12) * .04)}) rotate(8)`);
+  tf('nam', `translate(760,720) scale(${easeOut(n) * (1 - seg(u, 3.4, 3.6)) * (1 + Math.sin(u * 12) * .04)}) rotate(8)`);
 }
 
 window.render = function (t) {
@@ -388,8 +396,13 @@ window.render = function (t) {
   tf('cloud2', `translate(${720 + t * 12},560)`);
   tf('cloud3', `translate(${520 - t * 10},180)`);
   [sceneWalk, sceneBonk, sceneRide, sceneCook][s](t);
+  show('nam', t > 11.3 && t < 12.1);
+  // Tekstitys: repliikki näkyy puheen ajan ja hetken sen jälkeen
+  const line = window.PUHE.filter(l => t >= l.start && t < l.start + l.dur + .25).pop();
+  $('sub').textContent = line ? line.text : '';
+  $('sub').setAttribute('fill', line && line.who === 'ankka' ? '#FFE27A' : '#fff');
 };
-window.DURATION = 12;
+window.DURATION = 13;
 
 build();
 window.render(0);
