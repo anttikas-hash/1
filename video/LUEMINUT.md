@@ -18,3 +18,16 @@ Selaimessa voi esikatsella avaamalla `index.html` ja ajamalla konsolissa `render
 Puhe: `aani.py` tekee repliikit edge-tts:llä (`pip install edge-tts`), oletuksena suomeksi.
 Englanninkielinen versio: `KIELI=en node render.js kissa-ja-ankka`. Repliikit ja ajoitukset
 ovat `aani.py`:n `LINES`-listassa; animaatio lukee niistä suun liikkeet ja tekstitykset.
+
+## 3D-versio (kissa-ja-ankka)
+
+Kuva renderöidään three.js:llä (WebGL) selaimessa: `kohtaus.js` rakentaa mallit, valot ja kamerat,
+`tekstuurit.js` piirtää turkin, höyhenet, lihan ym. tekstuurit koodilla. Riippuvuudet:
+
+```
+cd video && npm install          # three, three-bvh-csg (haukattu koipi), three-mesh-bvh
+node render.js kissa-ja-ankka --peek 2 9.9 20   # yksittäiset ruudut frames/peek_*.png
+```
+
+Konttissa ei ole näytönohjainta, joten WebGL ajetaan ohjelmallisesti (SwiftShader) ja
+koko video kestää renderöidä kauan.
