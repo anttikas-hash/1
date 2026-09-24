@@ -1,310 +1,201 @@
-"""Kissa ja ankka: puhe, musiikki ja ääniefektit.
+"""Kissa ja ankka: kertoja, äänitehosteet ja musiikki.
 
 Käyttö: python3 aani.py ulos.wav [puhe.js]
-Ajat vastaavat index.html:n kohtauksia (sekunteina).
-Musiikki ja efektit syntetisoidaan. Puhe tehdään edge-tts:llä (kieli: KIELI=fi|en);
-jos se ei onnistu, video tehdään ilman puhetta. puhe.js kertoo animaatiolle,
-milloin kukin hahmo puhuu, jotta suu liikkuu oikeaan aikaan.
+
+- Kertoja tehdään edge-tts:llä (englanti, brittiläinen luontodokumenttiääni).
+  Repliikit ja niiden alkuajat ovat alla listassa LINES.
+- Äänitehosteet ja musiikki ovat aanet/-hakemistossa (CC0, Freesound; ks. aanet/LAHTEET.md).
+- puhe.js kertoo animaatiolle sanojen ajoitukset tekstityksiä varten.
+Kohtausten alkuajat luetaan ajat.js:stä, jota myös index.html käyttää.
 """
 import asyncio
 import hashlib
 import json
 import os
+import re
 import ssl
 import subprocess
 import sys
 import wave
 import numpy as np
 
+HERE = os.path.dirname(os.path.abspath(__file__))
 SR = 44100
-DUR = 13.0
+A = {k: float(v) for k, v in re.findall(r'(\w+):\s*([\d.]+)', open(os.path.join(HERE, 'ajat.js')).read())}
+DUR = A['end']
 N = int(SR * DUR)
-rng = np.random.default_rng(7)
-music = np.zeros(N)
-sfx = np.zeros(N)
 
-
-def tt(d):
-    return np.arange(int(d * SR)) / SR
-
-
-def add(buf, start, sig, gain=1.0):
-    i = int(start * SR)
-    if i >= N:
-        return
-    j = min(N, i + len(sig))
-    buf[i:j] += sig[:j - i] * gain
-
-
-def midi(m):
-    return 440.0 * 2 ** ((m - 69) / 12)
-
-
-def phase(freq, d):
-    f = np.broadcast_to(np.asarray(freq, dtype=float), (int(d * SR),))
-    return np.cumsum(f) / SR
-
-
-def sine(freq, d):
-    return np.sin(2 * np.pi * phase(freq, d))
-
-
-def saw(freq, d):
-    return 2 * (phase(freq, d) % 1.0) - 1
-
-
-def noise(d):
-    return rng.standard_normal(int(d * SR))
-
-
-def band(x, lo, hi):
-    X = np.fft.rfft(x)
-    f = np.fft.rfftfreq(len(x), 1 / SR)
-    X[(f < lo) | (f > hi)] = 0
-    return np.fft.irfft(X, len(x))
-
-
-def decay(d, k):
-    e = np.exp(-tt(d) * k)
-    a = min(len(e), int(0.004 * SR))
-    e[:a] *= np.linspace(0, 1, a)
-    return e
-
-
-def mixsig(*sigs):
-    out = np.zeros(max(len(x) for x in sigs))
-    for x in sigs:
-        out[:len(x)] += x
-    return out
-
-
-def bell(d):
-    return np.sin(np.pi * np.linspace(0, 1, int(d * SR)))
-
-
-# ---- Musiikki: 120 bpm, C-duuri ------------------------------------------
-BEAT = 0.5
-CHORDS = [(48, [60, 64, 67]), (43, [59, 62, 67]), (45, [60, 64, 69]),
-          (41, [60, 65, 69]), (48, [60, 64, 67]), (43, [59, 62, 67])]
-MELODY = [
-    [72, None, 76, 79, 76, None, 72, 74],
-    [74, None, 79, None, 74, 71, 74, None],
-    [76, None, 72, None, 69, 72, 76, None],
-    [77, 76, 74, 72, 74, None, 72, None],
-    [72, 76, 79, 84, 79, 76, 72, None],
-    [74, 79, 83, 79, 74, 71, 67, None],
+VOICE, RATE = 'en-GB-RyanNeural', '-5%'
+LINES = [
+    (0.4, "Deep in the meadow, two unlikely friends take their morning stroll."),
+    (5.1, "The duck trusts him completely."),
+    (7.6, "This... is a mistake."),
+    (10.9, "Nature, as always, is brutal."),
+    (14.2, "The hunter rides home, his prize secured."),
+    (18.8, "A little butter. A pinch of salt."),
+    (23.9, "Truly, a friendship to remember."),
 ]
 
 
-def pluck(m, d, k):
-    f = midi(m)
-    return (sine(f, d) + .35 * sine(2 * f, d) + .12 * sine(3 * f, d)) * decay(d, k)
+# ---- Apufunktiot ----------------------------------------------------------
+def decode(path):
+    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', path, '-f', 's16le', '-ac', '1', '-ar', str(SR), '-'],
+                         capture_output=True, check=True).stdout
+    return np.frombuffer(raw, dtype=np.int16).astype(float) / 32768
 
 
-for bar, ((root, triad), mel) in enumerate(zip(CHORDS, MELODY)):
-    t0 = bar * 4 * BEAT
-    for b in range(4):
-        tb = t0 + b * BEAT
-        bass = root + (7 if b == 2 else 0)
-        add(music, tb, pluck(bass, .45, 6), .55)
-        stab = sum(saw(midi(m), .18) for m in triad) / 3
-        add(music, tb + BEAT / 2, band(stab, 200, 3000) * decay(.18, 14), .22)
-        if b in (0, 2):  # potku
-            f = 45 + 80 * np.exp(-tt(.14) * 30)
-            add(music, tb, sine(f, .14) * decay(.14, 18), .8)
-        else:  # taputus
-            add(music, tb, band(noise(.12), 900, 5000) * decay(.12, 30), .35)
-        add(music, tb + BEAT / 2, band(noise(.05), 6000, 14000) * decay(.05, 60), .18)
-    for i, m in enumerate(mel):
-        if m is not None:
-            add(music, t0 + i * BEAT / 2, pluck(m, .3, 9), .3)
-
-# Musiikki katkeaa juuri ennen iskua ja palaa mopon käynnistyessä
-g = np.ones(N)
-t = np.arange(N) / SR
-g[(t >= 3.72) & (t < 5.45)] = 0
-fade = (t >= 3.62) & (t < 3.72)
-g[fade] = 1 - (t[fade] - 3.62) / .1
-rise = (t >= 5.45) & (t < 5.6)
-g[rise] = (t[rise] - 5.45) / .15
-music *= g
-# Loppusointu
-add(music, 12.0, pluck(48, 1.0, 3), .55)
-for m in (60, 64, 67, 72):
-    add(music, 12.0, pluck(m, 1.0, 3), .2)
+_cache = {}
 
 
-# ---- Ääniefektit ----------------------------------------------------------
-def step(t0, gain=.35):
-    add(sfx, t0, sine(85, .09) * decay(.09, 45) + band(noise(.09), 60, 600) * decay(.09, 60) * .5, gain)
+def snd(name, start=0.0, dur=None):
+    """Pätkä äänitiedostosta aanet/<name>.mp3, normalisoituna huippuun 1.0."""
+    if name not in _cache:
+        x = decode(os.path.join(HERE, 'aanet', name + '.mp3'))
+        _cache[name] = x / (np.max(np.abs(x)) + 1e-9)
+    x = _cache[name]
+    a = int(start * SR)
+    b = len(x) if dur is None else min(len(x), a + int(dur * SR))
+    return x[a:b].copy()
 
 
-def quack(t0, pitch=1.0, gain=.5):
-    d = .2
-    f = 480 * pitch * (1 - .3 * tt(d) / d) * (1 + .03 * np.sin(2 * np.pi * 30 * tt(d)))
-    q = band(saw(f, d), 600, 3200) * (1 - np.exp(-tt(d) * 80)) * np.exp(-tt(d) * 9)
-    add(sfx, t0, q, gain)
+def fades(x, fin=0.01, fout=0.05):
+    n1, n2 = min(len(x), int(fin * SR)), min(len(x), int(fout * SR))
+    if n1:
+        x[:n1] *= np.linspace(0, 1, n1)
+    if n2:
+        x[-n2:] *= np.linspace(1, 0, n2)
+    return x
 
 
-def whoosh(t0, d, gain=.35, lo=400, hi=3500):
-    add(sfx, t0, band(noise(d), lo, hi) * bell(d) ** 2, gain)
+def db(v):
+    return 10 ** (v / 20)
 
 
-def thud(t0, gain=.6):
-    add(sfx, t0, mixsig(sine(65, .25) * decay(.25, 16), band(noise(.2), 40, 400) * decay(.2, 30) * .6), gain)
+def add(buf, t0, x, gain_db=0.0):
+    i = int(t0 * SR)
+    if i >= N or len(x) == 0:
+        return
+    if i < 0:
+        x, i = x[-i:], 0
+    j = min(N, i + len(x))
+    buf[i:j] += x[:j - i] * db(gain_db)
 
 
-# 1) Kävely: kissan askeleet ja ankan kvaakkeet
-for k in range(1, 12):
-    step(k * .25, .3)
-for k in range(15):
-    add(sfx, .1 + k * .2, band(noise(.03), 1500, 5000) * decay(.03, 90), .08)  # ankan tassut
-
-# 2) Isku: kepin nosto, sujahdus, BONK, tähdet, kaatuminen
-whoosh(3.15, .55, .2, 300, 1500)
-whoosh(3.84, .18, .6, 800, 6000)
-bonk = mixsig(sine(90 + 360 * np.exp(-tt(.45) * 14), .45) * decay(.45, 9),
-              (sine(640, .2) + .6 * sine(1010, .2)) * decay(.2, 35) * .6,
-              band(noise(.03), 1000, 6000) * decay(.03, 120) * .8)
-add(sfx, 4.0, bonk, 1.0)
-quack(4.02, 1.5, .45)
-for rep in range(2):
-    for i, m in enumerate([96, 100, 103, 108, 103]):
-        add(sfx, 4.15 + rep * .5 + i * .09, sine(midi(m), .35) * decay(.35, 10), .12)
-d = .45
-add(sfx, 4.22, sine(1400 - 1050 * tt(d) / d + 40 * np.sin(2 * np.pi * 7 * tt(d)), d) * bell(d), .22)
-thud(4.65, .7)
-
-# 3) Moottoripyörä: käynnistys, kiihdytys, tööt, hyppy ja alastulo
-d = 3.0
-te = tt(d)
-f = 58 + 30 * (1 - np.exp(-te * 3)) + 6 * np.sin(2 * np.pi * .7 * te)
-jump = (te > 1.6) & (te < 2.1)
-f[jump] += 35 * np.sin(np.pi * (te[jump] - 1.6) / .5)
-eng = (saw(f, d) + .5 * saw(2 * f, d)) * (.65 + .35 * np.sin(2 * np.pi * phase(f / 2, d)))
-eng = band(eng, 40, 1600) + band(noise(d), 100, 900) * .15
-env = np.minimum(1, te / .12) * np.minimum(1, (d - te) / .15)
-add(sfx, 5.5, eng * env, .32)
-for tb in (6.35, 6.55):
-    add(sfx, tb, band(np.sign(sine(440, .13)) + np.sign(sine(554, .13)), 200, 4000) * bell(.13) ** .3, .12)
-whoosh(7.05, .5, .3)
-thud(7.6, .5)
-add(sfx, 7.62, sine(180 + 30 * np.sin(2 * np.pi * 18 * tt(.4)), .4) * decay(.4, 9), .25)  # jousi
-
-# 4) Keittiö: siirtymä, paistuminen, kehräys, haukkaus ja mässytys
-whoosh(8.35, .3, .3)
-d = 3.5
-siz = band(noise(d), 2500, 11000) * (.5 + .5 * np.abs(np.sin(2 * np.pi * 1.3 * tt(d))))
-for _ in range(60):
-    add(siz, rng.uniform(0, d - .02), band(noise(.012), 2000, 9000) * 4)
-env = np.minimum(1, tt(d) / .15)
-add(sfx, 8.5, siz * env, .13)
-d = 1.9
-purr = band(noise(d), 80, 450) * (.5 + .5 * np.sin(2 * np.pi * 24 * tt(d))) * bell(d) ** .4
-add(sfx, 8.6, purr, .45)
-whoosh(10.45, .35, .25, 500, 3000)  # koipi nousee suulle
-for i in range(3):
-    add(sfx, 11.23 + i * .045, band(noise(.035), 700, 7000) * decay(.035, 70), .7)
-add(sfx, 11.3, (sine(1318, .8) + .5 * sine(1976, .8)) * decay(.8, 5), .22)
-for k in range(4):
-    tc = 8.5 + 2.7 + np.pi / 28 + k * np.pi / 14 + .03
-    if tc < DUR:
-        add(sfx, tc, band(noise(.08), 150, 1400) * decay(.08, 35), .4)
-
-# ---- Puhe -----------------------------------------------------------------
-KIELI = os.environ.get('KIELI', 'fi')
-LINES = {
-    'fi': [(0.3, 'ankka', 'Ihana ilma tänään!'),
-           (1.5, 'kissa', 'Niin on.'),
-           (2.32, 'kissa', 'Näytät herkulliselta.'),
-           (3.68, 'ankka', 'Häh?'),
-           (4.75, 'kissa', 'Ruoka valmis.'),
-           (6.1, 'kissa', 'Kyyti kotiin, kaveri!'),
-           (8.7, 'kissa', 'Ripaus voita...'),
-           (9.95, 'kissa', 'ja vähän rakkautta.'),
-           (11.55, 'kissa', 'Paras kaveri ikinä.')],
-    'en': [(0.3, 'ankka', 'What a lovely day!'),
-           (1.5, 'kissa', 'It is.'),
-           (2.32, 'kissa', 'You look delicious.'),
-           (3.68, 'ankka', 'Huh?'),
-           (4.75, 'kissa', 'Dinner time.'),
-           (6.1, 'kissa', 'Ride home, buddy!'),
-           (8.7, 'kissa', 'A little butter...'),
-           (9.95, 'kissa', 'and a lot of love.'),
-           (11.55, 'kissa', 'Best friend ever.')],
-}
-VOICES = {
-    'fi': {'kissa': ('fi-FI-HarriNeural', '+5%', '-12Hz'), 'ankka': ('fi-FI-NooraNeural', '+10%', '+70Hz')},
-    'en': {'kissa': ('en-US-GuyNeural', '+5%', '-12Hz'), 'ankka': ('en-US-AnaNeural', '+10%', '+40Hz')},
-}
-CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'puhe')
+def loop(name, length, start=0.0):
+    x = snd(name, start)
+    reps = int(np.ceil(length * SR / len(x))) + 1
+    return np.tile(x, reps)[:int(length * SR)]
 
 
-async def tts(text, voice, rate, pitch, path):
+# ---- Kertoja --------------------------------------------------------------
+async def tts(text, path_mp3, path_json):
     import edge_tts
     import edge_tts.communicate
     import edge_tts.voices
-    # Ympäristön välityspalvelin allekirjoittaa yhteydet omalla CA:llaan
     ca = os.environ.get('SSL_CERT_FILE') or '/root/.ccr/ca-bundle.crt'
-    if os.path.exists(ca):
+    if os.path.exists(ca):  # ympäristön välityspalvelin allekirjoittaa yhteydet omalla CA:llaan
         ctx = ssl.create_default_context(cafile=ca)
         edge_tts.communicate._SSL_CTX = ctx
         edge_tts.voices._SSL_CTX = ctx
     proxy = os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy')
-    await edge_tts.Communicate(text, voice, rate=rate, pitch=pitch, proxy=proxy).save(path)
+    com = edge_tts.Communicate(text, VOICE, rate=RATE, boundary='WordBoundary', proxy=proxy)
+    audio, words = bytearray(), []
+    async for ch in com.stream():
+        if ch['type'] == 'audio':
+            audio += ch['data']
+        elif ch['type'] == 'WordBoundary':
+            words.append({'t': ch['offset'] / 1e7, 'd': ch['duration'] / 1e7, 'w': ch['text']})
+    open(path_mp3, 'wb').write(audio)
+    json.dump(words, open(path_json, 'w'))
 
 
-def speech_clip(text, who):
-    voice, rate, pitch = VOICES[KIELI][who]
-    key = hashlib.sha1(f'{voice}|{rate}|{pitch}|{text}'.encode()).hexdigest()[:12]
-    mp3 = os.path.join(CACHE, key + '.mp3')
-    if not os.path.exists(mp3) or os.path.getsize(mp3) == 0:
-        os.makedirs(CACHE, exist_ok=True)
-        asyncio.run(tts(text, voice, rate, pitch, mp3))
-    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', mp3, '-f', 's16le', '-ac', '1', '-ar', str(SR), '-'],
-                         capture_output=True, check=True).stdout
-    x = np.frombuffer(raw, dtype=np.int16).astype(float) / 32768
-    nz = np.nonzero(np.abs(x) > .01)[0]  # hiljaisuus pois alusta ja lopusta
-    return x[nz[0]:nz[-1] + 1] if len(nz) else x
+def narration(text):
+    key = hashlib.sha1(f'{VOICE}|{RATE}|{text}'.encode()).hexdigest()[:12]
+    cache = os.path.join(HERE, 'puhe')
+    mp3, js = os.path.join(cache, key + '.mp3'), os.path.join(cache, key + '.json')
+    if not (os.path.exists(mp3) and os.path.exists(js) and os.path.getsize(mp3)):
+        os.makedirs(cache, exist_ok=True)
+        asyncio.run(tts(text, mp3, js))
+    x = decode(mp3)
+    words = json.load(open(js))
+    nz = np.nonzero(np.abs(x) > .01)[0]
+    lead = nz[0] / SR if len(nz) else 0.0
+    x = x[nz[0]:nz[-1] + 1] if len(nz) else x
+    return x / (np.max(np.abs(x)) + 1e-9), [{**w, 't': w['t'] - lead} for w in words]
 
 
 voice = np.zeros(N)
 spoken = []
 try:
-    for start, who, text in LINES[KIELI]:
-        clip = speech_clip(text, who)
-        add(voice, start, clip)
-        spoken.append({'who': who, 'start': start, 'dur': round(len(clip) / SR, 3), 'text': text})
-        print(f'  {start:5.2f}–{start + len(clip) / SR:5.2f}  {who}: {text}')
-except Exception as e:  # verkko poikki tms.: tehdään ilman puhetta
-    print('puhe ohitettu:', e, file=sys.stderr)
+    for start, text in LINES:
+        x, words = narration(text)
+        add(voice, start, fades(x, .005, .03))
+        dur = len(x) / SR
+        shift = max(0.0, -words[0]['t']) if words else 0.0  # ensimmäinen sana ei ala ennen ääntä
+        spoken.append({'start': start, 'dur': round(dur, 3), 'text': text,
+                       'words': [{'t': round(start + w['t'] + shift, 3), 'w': w['w']} for w in words]})
+        print(f'  {start:5.2f}–{start + dur:5.2f}  {text}')
+except Exception as e:  # ei verkkoa tms.: video tehdään ilman kertojaa
+    print('kertoja ohitettu:', e, file=sys.stderr)
     voice[:] = 0
     spoken = []
 
-# Musiikki hiljenee puheen alle
-duck = np.ones(N)
-for s_ in spoken:
-    a, b = int((s_['start'] - .1) * SR), int((s_['start'] + s_['dur'] + .15) * SR)
-    duck[max(0, a):min(N, b)] = .35
-k = int(.08 * SR)
-duck = np.convolve(duck, np.ones(k) / k, mode='same')
-music *= duck
-sfx += voice * 1.6
+# ---- Musiikki: ukulele, katkeaa ennen iskua, palaa ajelussa ---------------
+HIT = A['bonk'] + 2.8
+music = np.zeros(N)
+add(music, 0, fades(loop('ukulele', HIT - .2), .3, .25))
+add(music, A['ride'], fades(loop('ukulele', DUR - A['ride']), .4, 1.2))
+def ducking(depth_db):
+    """Vahvistuskäyrä, joka laskee äänen kertojan puheen ajaksi."""
+    g = np.ones(N)
+    for s in spoken:
+        a, b = int((s['start'] - .15) * SR), int((s['start'] + s['dur'] + .2) * SR)
+        g[max(0, a):min(N, b)] = db(depth_db)
+    k = int(.12 * SR)
+    return np.convolve(g, np.ones(k) / k, mode='same')
 
-if len(sys.argv) > 2:
-    with open(sys.argv[2], 'w') as f:
-        f.write('window.PUHE = ' + json.dumps(spoken, ensure_ascii=False) + ';\n')
+
+music *= ducking(-9)
+
+# ---- Äänitehosteet --------------------------------------------------------
+sfx = np.zeros(N)
+W, B, R, C = A['walk'], A['bonk'], A['ride'], A['cook']
+# Niitty: linnut ja tuuli koko ulkojakson ajan
+add(sfx, W, fades(loop('niitty', R - W + .5), .5, .8), -14)
+# Askeleet ruohossa kävelyn aikana
+for t0 in np.arange(W + .3, B - .3, 2.35):
+    add(sfx, t0, fades(snd('askeleet', 0, min(2.35, B - t0)), .01, .1), -10)
+add(sfx, W + 4.85, fades(snd('kvaak', .2, .7)), -8)
+# Isku
+add(sfx, B + 1.0, fades(snd('syva-suhahdus', .2, 1.4), .3, .5), -16)  # keppi nousee
+add(sfx, HIT - .15, fades(snd('suhahdus', 0, .45)), -4)
+add(sfx, HIT - .1, snd('isku2'), -2)
+add(sfx, HIT, snd('isku'), 0)
+add(sfx, HIT + .03, fades(snd('kvaak', .22, .18), .005, .06), -10)
+add(sfx, HIT + .6, snd('kaatuminen'), -3)
+# Ajelu: Vespa
+add(sfx, R - .35, fades(snd('syva-suhahdus', .2, 1.0), .05, .3), -10)
+add(sfx, R, fades(snd('vespa', .3, C - R + .2), .25, .35), -8)
+# Keittiö: paistuminen, haukkaus, mässytys
+add(sfx, C - .15, fades(snd('suhahdus', 0, .45)), -12)
+add(sfx, C, fades(snd('sihina', 1.5, DUR - C), .3, .8), -9)
+add(sfx, C + 4.9 - .35, snd('haukkaus'), -2)
+add(sfx, C + 5.2, fades(snd('massytys', .4, DUR - C - 5.2), .05, .6), -8)
+
+sfx *= ducking(-4)
 
 # ---- Miksaus --------------------------------------------------------------
-mixed = np.tanh(1.2 * (music * .42 + sfx))
-mixed /= np.max(np.abs(mixed)) / .89
-fade_out = np.minimum(1, (DUR - np.arange(N) / SR) / .15)
-mixed *= fade_out
-pcm = (mixed * 32767).astype(np.int16)
-stereo = np.repeat(pcm[:, None], 2, axis=1)
+mix = voice * db(-2) + music * db(-12) + sfx
+mix = np.tanh(mix * 1.1) / np.tanh(1.1)
+mix *= .89 / (np.max(np.abs(mix)) + 1e-9)
+pcm = (mix * 32767).astype(np.int16)
 
 with wave.open(sys.argv[1] if len(sys.argv) > 1 else 'aani.wav', 'wb') as w:
     w.setnchannels(2)
     w.setsampwidth(2)
     w.setframerate(SR)
-    w.writeframes(stereo.tobytes())
+    w.writeframes(np.repeat(pcm[:, None], 2, axis=1).tobytes())
+
+if len(sys.argv) > 2:
+    with open(sys.argv[2], 'w') as f:
+        f.write('window.PUHE = ' + json.dumps(spoken, ensure_ascii=False) + ';\n')

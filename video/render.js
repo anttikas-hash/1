@@ -21,6 +21,7 @@ const out = path.join(dir, path.basename(dir) + '.mp4');
   const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
   await page.goto('file://' + path.join(dir, 'index.html'));
+  await page.evaluate(() => document.fonts.ready);
   const duration = await page.evaluate(() => window.DURATION);
   const n = Math.round(duration * fps);
   for (let i = 0; i < n; i++) {
