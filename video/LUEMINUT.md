@@ -1,12 +1,12 @@
 # Videoputki
 
-Äänetön pystyvideo (1080×1920). Ääni, tekstitys ja musiikki lisätään CapCutissa.
+Pystyvideo (1080×1920). Jos kohteen hakemistossa on `aani.py`, se syntetisoi musiikin ja ääniefektit ja ne liitetään videoon; äänetön versio tallentuu nimellä `*-mykka.mp4` CapCutia varten.
 
 1. `<nimi>/index.html`: SVG-animaatio ja `window.render(t)`, joka piirtää ruudun ajan `t` (sekuntia) mukaan. Sama `t` tuottaa aina saman ruudun. `window.DURATION` kertoo pituuden.
 2. `render.js` kaappaa ruudut Playwrightilla ja kokoaa ne ffmpegillä.
 
 ```
-apt-get update -qq && apt-get install -y ffmpeg
+apt-get update -qq && apt-get install -y ffmpeg && pip install numpy
 NODE_PATH=/opt/node22/lib/node_modules node render.js kissa-ja-ankka     # tai: npm install playwright
 ```
 

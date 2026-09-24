@@ -28,5 +28,15 @@ const out = path.join(dir, path.basename(dir) + '.mp4');
   execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-framerate', String(fps),
     '-i', path.join(frames, '%04d.png'), '-c:v', 'libx264', '-pix_fmt', 'yuv420p',
     '-crf', '20', '-movflags', '+faststart', out], { stdio: 'inherit' });
+  // Jos hakemistossa on aani.py, se tekee ääniraidan ja video saa äänen.
+  // Äänetön versio jää talteen nimellä *-mykka.mp4 CapCut-editointia varten.
+  const sound = path.join(dir, 'aani.py');
+  if (fs.existsSync(sound)) {
+    const wav = path.join(frames, 'aani.wav'), mute = out.replace(/\.mp4$/, '-mykka.mp4');
+    execFileSync('python3', [sound, wav], { stdio: 'inherit' });
+    fs.renameSync(out, mute);
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', mute, '-i', wav,
+      '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart', out], { stdio: 'inherit' });
+  }
   console.log('valmis:', out);
 })();
